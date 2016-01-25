@@ -1,1 +1,87 @@
-Hello World
+<!DOCTYPE html>
+<head>
+<link href='https://fonts.googleapis.com/css?family=Londrina+Shadow' rel='stylesheet' type='text/css'>
+  <style>
+    body {
+    margin:10px;
+    }
+    
+    h1 {
+      font-size: 60px;
+      font-family: 'Londrina Shadow', cursive;
+      text-align: center;
+      color: rgba(0,170,200,1);
+      padding: 80px;
+      background-color: rgba(0,120,30,.2);
+    }
+    ul {
+      padding: 15px;
+      margin: -40px 0 10px 0;
+      background: rgba(0,0,0,0.6);
+      text-align: center;
+    }
+    li {
+      display: inline;
+      padding: 10px 90px 0 20px;
+      color: rgba(255,255,255,1);
+      font-size: 20px;
+      font-family: helvetica, sans-serif;
+    }
+    h2 {
+      font-family: helvetica, sans-serif;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 10px;
+    }
+    p {
+      font-family: helvetica, sans-serif;
+      max-width: 500px;
+      margin: 10px auto;
+      padding: 10px;
+    }
+    button {
+      padding: 10px;
+      margin: 0 0 10px 300px;
+      border: 3px;
+      position: relative;
+      left: 50px;
+      }
+    img {
+      margin: 40px 0px 0px 0px;
+      border: 7px solid white;
+      border-radius: 20px;
+      position: relative;
+      left: 400px
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>
+       Hello! Welcome to Xing's Site.
+    </h1>
+    <ul>
+      <li>About me</li>
+      <li>Xing's CV</li>
+      <li>Get in touch</li>
+    </ul>
+  </header>
+  <article> 
+  <h2>Hello! This is my first attempt at making anything HTML.</h2>
+    <p> Hello! I'm coding! This is great. I have an awesome husband. He gives the best massages. </p>
+    <button> CLICK HERE IF YOU AGREE</button> <div>
+    <img src="https://scontent-ord1-1.xx.fbcdn.net/hphotos-xta1/v/t1.0-9/12189770_10204975636824805_2205358822688886638_n.jpg?oh=c0747e24f66ad6cd3965444e7514fc19&oe=572B606E" alt="Xing and Ben" style="width:340px;height:228px;">
+    </div>
+  </article>
+  <article>
+  <h2> I'm currently at a cafe</h2>
+  <p>Cafe's are awesome. A great place to work, good coffee, and 90s music.</p>
+  </article>
+<script>
+$("button").on("click", function() {
+  alert("Thanks for agreeing, Ben!");
+});
+</script>
+</body>
+
