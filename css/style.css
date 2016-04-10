@@ -36,8 +36,9 @@
 	}
 
 	a {
-		color: #f32853;
-		text-decoration: underline;
+		color: #256452;
+		text-decoration: none;
+        font-style: bold;
 	}
 
 		a:hover {
