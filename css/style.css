@@ -1039,13 +1039,13 @@
 		}
 
 			#header.alt h1 {
-				color: #ffffff;
+				color: #484848;
 				left: 2.5em;
 				top: 2em;
 			}
 
 				#header.alt h1 a {
-					color: #ffffff;
+					color: #484848;
 				}
 
 			#header.alt nav {
@@ -1054,7 +1054,7 @@
 			}
 
 				#header.alt nav a {
-					color: #ddd;
+					color: #484848;
 				}
 
 					#header.alt nav a:active, #header.alt nav a:hover {
@@ -1069,9 +1069,9 @@
 /* Banner */
 
 	#banner {
-		padding: 12em 0 10em 0;
+		padding: 20em 0 20em 0;
 		background-attachment: fixed;
-		background-image: url("images/overlay.png"), url("../images/pic01.jpg");
+		background-image: url("../images/tdot.jpg");
 		background-position: center top;
 		background-size: cover;
 		line-height: 1.75;
@@ -1083,9 +1083,9 @@
 		}
 
 		#banner h2 {
-			color: #ffffff;
+			color: #484848;
 			display: inline-block;
-			font-size: 3.5em;
+			font-size: 3em;
 			line-height: 1.35;
 			margin-bottom: 0.5em;
 		}
@@ -1172,7 +1172,7 @@
 				}
 
 		#footer .copyright {
-			margin: 2em 0;
+			margin: 1em 0;
 			padding: 0;
 			text-align: center;
 		}
