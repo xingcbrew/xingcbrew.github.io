@@ -33,7 +33,7 @@
 /* Banner */
 
 	#banner {
-		padding: 6em 2em 6em 2em;
+		padding: 6em 2em 16em 2em;
 	}
 
 		#banner br {
@@ -63,7 +63,7 @@
 /* Footer */
 
 	#footer {
-		padding: 3em 0 2em 0;
+		padding: 2em 0 2em 0;
 	}
 
 		#footer .icons {
