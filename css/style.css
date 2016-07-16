@@ -448,7 +448,7 @@
         .feature-grid .feature {
 			display: inline-block;
 			float: left;
-			margin-bottom: 3em;
+			margin-bottom: .75em;
 			width: 50%;   
 		}
        
@@ -467,7 +467,7 @@
         }
 
 			.feature-grid .feature .content {
-				width: 60%;
+				width: 50%;
 			}
 
 			.feature-grid .feature .image {
@@ -482,7 +482,7 @@
 			.feature-grid .feature:nth-child(odd) .content, .feature-grid .feature:nth-child(odd) .image {
 				float: right;
 				margin-right: 5%;
-				text-align: right;
+				text-align: left;
 			}
 
 			.feature-grid .feature:nth-child(even) .content, .feature-grid .feature:nth-child(even) .image {
