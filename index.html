@@ -1,79 +1,238 @@
 <!DOCTYPE HTML>
+<!--
+	Astral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+
 <html>
 	<head>
-		<title>XCB - Home</title>
+		<title>Xing C. Brew</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
 	<body>
 
-		<!-- Header -->
-			<header id="header">
-				<div class="inner">
+		<!-- Wrapper-->
+			<div id="wrapper">
+
+				<!-- Nav -->
 					<nav id="nav">
-						<a href="index.html">Home</a>
-                        <a href="data.html">Data</a>
-                        <a href="projects.html">Other Sh!t</a>
-						<a href="about.html">About</a>
+						<a href="#me" class="icon fa-home active"><span>Home</span></a>
+						<a href="#portfolio" class="icon fa-folder"><span>Portfolio</span></a>
+						<a href="https://www.linkedin.com/in/xingcbrew/" class="icon fa-linkedin" target="_blank"><span>Linkedin</span></a>
+                        <a href="https://github.com/xingcbrew" class="icon fa-github" target="_blank"><span>Github</span></a>
+                        <a href="#contact" class="icon fa-envelope"><span>Contact</span></a>
 					</nav>
-					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
-				</div>
-			</header>
 
-		<!-- Banner -->
-			<section id="banner">
-				<div class="inner">
-					<header>
-                        <h1>Maps, Data, and Other Sh!t</h1>
-                        <p>by Xing C. Brew</p>
-                        <br />
-					</header>
-				</div>
-			</section>
+				<!-- Main -->
+					<div id="main">
 
+						<!-- Me -->
+							<article id="me" class="panel">
+								<header>
+									<h1>Xing C. Brew</h1>
+									<p>Cool chick</p>
+								</header>
+								<a href="#work" class="jumplink pic">
+									<span class="arrow icon fa-chevron-right"><span>See my work</span></span>
+									<img src="images/me.png" alt="" />
+								</a>
+							</article>
+                        
+                        <!-- Work -->
+							<article id="portfolio" class="panel">
+								<header>
+									<h2>Portfolio</h2>
+								</header>
+								<p>
+									Papers, Maps, Data, etc.
+								</p>
+								<section>
+									<div class="row">
+										<div class="4u 12u$(mobile)"> 
+                                            <div class="imgWrap">
+                                            <a href="#openModal1" class="image fit"><img src="images/refugees.png" alt=""><p class="imgDescription">Visualizing data on refugees in Canada using R</p></a> 
+                                                <div id="openModal1" class="modalDialog">
+                                                    <div>
+                                                        <a href="#close" title="Close" class="close"> &#10005;</a>
+                                                        <div class="inner">
+                                                            <header class="align-center">
+                                                                <h2>Visualizing Data on Refugees in Canada</h2>
+                                                                <p>Below are graphs that show different statistics about resettled refugee and refugee claimants using data from <a href="http://open.canada.ca/data/en/dataset/ca243c40-a6d3-4a46-a578-b4fad4369df0" target="_blank">Government of Canada Open Data</a></p>
+                                                            </header>  
+                                                            <img src="images/refugees%20graphs/cumulative_refugees.png" alt="" style="height:700px">
+                                                                <p>This graph shows the cumulative number of Government Resettled refugees in Canada between 2011 and September 2016</p> 
+                                                            <hr/>
+                                                            <img src="images/refugees%20graphs/educ.png" alt="" style="height:700px"> 
+                                                                <p>This shows the level of education of the Government Resettled refugees in Canada. Note that this is for refugees of all ages (children included), hence why there are so many with low education.</p>  
+                                                              <hr/>
+                                                              <img src="images/refugees%20graphs/claims_by_country.png" alt="" style="height:700px"> 
+                                                                <p>This chart shows total number of refugee claimants in Canada each year from 2011-2015 by country. The top 10 countries are coloured, and the rest are grouped together in Other.</p>  
+                                                              <hr/>
+                                                            <img src="images/refugees%20graphs/resettled2.png" alt="" style="height:700px"> 
+                                                                <p>As can be seen by this graph of Syrian refugees who entered Canada between November 2015 and September 2016, there is a fairly equal number of male and females.</p> 
+                                                              <hr/>
+                                                            <img src="images/refugees%20graphs/syrian1.png" alt="" style="height:700px"> 
+                                                                <p></p> 
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+										<div class="4u 12u$(mobile)"> 
+                                            <div class="imgWrap">
+                                            <a href="#openModal2" class="image fit"><img src="images/homeless.png" alt=""><p class="imgDescription">Interactive map of homeless shelters in Toronto</p></a> 
+                                                <div id="openModal2" class="modalDialog">
+                                                    <div>
+                                                    <a href="#close" title="Close" class="close"> &#10005;</a>
+                                                    				<div>
+                                                                        <header>
+                                                                            <h2>Map of Toronto's Homeless Shelters</h2>
+                                                                            <p>This map indicates the location of homeless shelters around Toronto. The circles are sized based on the number beds the shelter has and they are coloured based on the type of people the it serves (see legend at bottom right). Click on a cicle to get information about the shelter - address, phone number, and number of beds.</p>
+                                                                        </header>      
 
-		<!-- Three -->
-			<section id="three" class="wrapper align-center">
-				<div class="inner">
-                    <h3>LATEST POSTS</h3>
-					<div class="flex flex-2">
-						<article>
-							<div class="image round">
-								<img src="images/homeless.jpeg" alt="Pic 01" />
-							</div>
-							<header>
-								<h3>Toronto Homeless Shelters</h3>
-							</header>
-							<p>Map of all of Toronto's homeless shelter locations, type, and capacity.</p>
-							<footer>
-								<a href="maps.html" class="button">See Map</a>
-							</footer>
-						</article>
-						<article>
-							<div class="image round">
-								<img src="images/pic02.jpg" alt="Pic 02" />
-							</div>
-							<header>
-								<h3>Vulnerable and Extinct Languages</h3>
-							</header>
-							<p>Map of endangered languages in North America</p>
-							<footer>
-								<a href="maps.html" class="button">See Map</a>
-							</footer>
-						</article>
+                                                                        <div class = "iframe">
+                                                                            <span class="image fit">
+                                                                            <iframe src="https://cdn.rawgit.com/xingcbrew/data_TO/master/interactive%20maps/shelter1.html" height = 600 width = 80%></iframe>
+                                                                            </span>
+                                                                                <p>Data from <a href = "http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=30bcb5989b985310VgnVCM1000003dd60f89RCRD" target = "_blank">Toronto Open Data Catalogue</a> and <a href = "http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=e29dd4b4920c0410VgnVCM10000071d60f89RCRD" target="_blank">Housing and Homeless Services.</a></p>
+                                                                        </div>
+                                                                    </div>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+										<div class="4u 12u$(mobile)"> 
+                                            <div class="imgWrap">
+                                            <a href="#openModal3" class="image fit"><img src="images/languages.png" alt=""><p class="imgDescription">Mapping endangered and extinct languages in North America</p></a> 
+                                                <div id="openModal3" class="modalDialog">
+                                                    <div>
+                                                    <a href="#close" title="Close" class="close"> &#10005;</a>
+                                                        <header class="align-center">
+                                                            <h2>Map of Endangered and Extinct Languages in North America</h2>
+                                                            <p>This map shows the many vulnerable, endangered, and extinct languages in Canada, USA, and Mexico. </p>
+                                                        </header>    
+                                                        <div class = "iframe">
+                                                            <span class="image fit">
+                                                            <iframe src="https://cdn.rawgit.com/xingcbrew/maps101/master/namer_languages.html" height = 500 width = 80%></iframe>
+                                                            </span>
+                                                            <h4>UNESCO's classification system to show just how 'in trouble' the language is:</h4>
+                                                                <div class="row"> 
+                                                                    <ul>
+                                                                    <li>Vulnerable - most children speak the language, but it may be restricted to certain domains (e.g., home)</li>
+                                                                    <li>Definitely endangered - children no longer learn the language as a 'mother tongue' in the home</li>
+                                                                    <li>Severely endangered - language is spoken by grandparents and older generations; while the parent generation may understand it, they do not speak it to children or among themselves</li>
+                                                                    <li>Critically endangered - the youngest speakers are grandparents and older, and they speak the language partially and infrequently</li>
+                                                                    <li>Extinct - there are no speakers left</li>
+                                                                    </ul>
+                                                                </div>
+                                                            <p>Data from <a href = "https://www.theguardian.com/news/datablog/2011/apr/15/language-extinct-endangered" target = "_blank">The Guardian's Data Blog</a>.</p>
+                                                        </div>    
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="4u 12u$(mobile)"> 
+                                            <div class="imgWrap">
+                                            <a href="papers/Street%20Vendors%20in%20Bandung.pdf" target="_blank" class="image fit"><img src="images/bandung.png" alt="Bandung"><p class="imgDescription">An Urban Planning Problem With Economic Potential Street Vendors in Bandung, Indonesia</p></a> 
+                                            </div>
+                                        </div>
+                                        <div class="4u 12u$(mobile)"> 
+                                            <div class="imgWrap">
+                                            <a href="papers/St-Gallens-Essay_Next-Small-Big-Thing.pdf" target="_blank" class="image fit"><img src="images/stgal.PNG" alt=""><p class="imgDescription">So you want to talk about the next small BIG thing? LETS!</p></a> 
+                                            </div>
+                                        </div>
+										<div class="4u 12u$(mobile)"> 
+                                            <div class="imgWrap">
+                                            <a href="papers/Master's%20Thesis.pdf" target="_blank" class="image fit"><img src="images/beijing.png" alt=""><p class="imgDescription">Pavement Livelihoods: An Analysis of Street Vendor Livelihoods in Beijing, China Using the Sustainable Livelihoods Approach</p></a> 
+                                            </div>
+                                        </div>
+										
+										<div class="4u 12u$(mobile)"> 
+                                            <div class="imgWrap">
+                                            <a href="#openModal6" class="image fit"><img src="images/stgal.PNG" alt=""><p class="imgDescription">Project 2</p></a> 
+                                                <div id="openModal6" class="modalDialog">
+                                                    <div>
+                                                    <a href="#close" title="Close" class="close"> &#10005;</a>
+                                                    <p>Test</p>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+										<div class="4u 12u$(mobile)"> 
+                                            <div class="imgWrap">
+                                            <a href="#openModal1" class="image fit"><img src="images/stgal.PNG" alt=""><p class="imgDescription">Project 2</p></a> 
+                                                <div id="openModal1" class="modalDialog">
+                                                    <div>
+                                                    <a href="#close" title="Close" class="close"> &#10005;</a>
+                                                    <p>Test</p>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+										<div class="4u 12u$(mobile)"> 
+                                            <div class="imgWrap">
+                                            <a href="#openModal1" class="image fit"><img src="images/stgal.PNG" alt=""><p class="imgDescription">Project 2</p></a> 
+                                                <div id="openModal1" class="modalDialog">
+                                                    <div>
+                                                    <a href="#close" title="Close" class="close"> &#10005;</a>
+                                                    <p>Test</p>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+									</div>
+								</section>
+							</article>
+
+						<!-- Contact -->
+							<article id="contact" class="panel">
+								<header>
+									<h2>Contact Me</h2>
+								</header>
+								<form action="https://formspree.io/xingcbrew@gmail.com" method="POST">
+									
+										<div class="row">
+											<div class="6u 12u$(mobile)">
+												<input type="text" name="name" placeholder="Name" />
+											</div>
+											<div class="6u$ 12u$(mobile)">
+												<input type="text" name="_replyto" placeholder="Email" />
+											</div>
+											<div class="12u$">
+												<textarea name="message" placeholder="Message" rows="8"></textarea>
+											</div>
+											<div class="12u$">
+												<input type="submit" name="submit" value="Send" />
+											</div>
+                                            <input type="hidden" name="_next" value="http://xingcbrew.github.io/index.html"/>
+										</div>
+									
+								</form>
+							</article>
+
 					</div>
-				</div>
-			</section>
 
-		<!-- Footer -->
-			<footer id="footer">
-			</footer>
+				<!-- Footer -->
+					<div id="footer">
+						<ul class="copyright">
+							<li>&copy; 2017</li>
+						</ul>
+					</div>
+
+			</div>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/skel-viewport.min.js"></script>
 			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
 
 	</body>
