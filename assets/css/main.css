@@ -748,9 +748,9 @@
 /* Basic */
 
 	body {
-		background-image: url("images/overlay.png"), url("/images/toronto.jpg");
-		background-repeat: repeat, no-repeat;
-		background-size: auto, 100% 100%;
+		background-image: url("/images/toronto.jpg");
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
 		font-family: 'Source Sans Pro', sans-serif;
 		font-weight: 300;
 		color: #777777;
