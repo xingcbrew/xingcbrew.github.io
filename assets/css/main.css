@@ -755,7 +755,7 @@
 		font-weight: 300;
 		color: #777777;
 	}
-
+/*
 		body.is-loading *, body.is-loading *:before, body.is-loading *:after {
 			-moz-transition: none !important;
 			-webkit-transition: none !important;
@@ -766,7 +766,7 @@
 			-ms-animation: none !important;
 			animation: none !important;
 		}
-
+*/
 	input, textarea, select {
 		font-family: 'Source Sans Pro', sans-serif;
 		font-weight: 300;
