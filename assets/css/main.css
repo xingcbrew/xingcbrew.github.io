@@ -28,7 +28,6 @@
 
 	ol, ul {
 		list-style: none;
-        margin: 1em;
 	}
 
 	blockquote, q {
@@ -748,14 +747,12 @@
 /* Basic */
 
 	body {
-		background-color: #333333;
-		background-repeat: no-repeat;
-		background-size: 100% 100%;
+		background-color: #638678;
 		font-family: 'Source Sans Pro', sans-serif;
 		font-weight: 300;
-		color: #575965;
+		color: #777777;
 	}
-/*
+
 		body.is-loading *, body.is-loading *:before, body.is-loading *:after {
 			-moz-transition: none !important;
 			-webkit-transition: none !important;
@@ -766,7 +763,7 @@
 			-ms-animation: none !important;
 			animation: none !important;
 		}
-*/
+
 	input, textarea, select {
 		font-family: 'Source Sans Pro', sans-serif;
 		font-weight: 300;
@@ -777,6 +774,11 @@
 		font-weight: 400;
 		color: #363636;
 	}
+
+    a { 
+    color: #363636;
+    text-decoration: none;    
+    }
 
 	blockquote {
 		border-left: solid 0.5em #ddd;
@@ -813,7 +815,6 @@
 
 	p, ul, ol, dl, table, blockquote, form {
 		margin-bottom: 2em;
-        
 	}
 
 /* Table */
@@ -907,7 +908,7 @@
 		}
 
 	header > p {
-		color: #575965;
+		color: #aaa;
 	}
 
 /* Image */
@@ -924,7 +925,6 @@
 		.image.fit {
 			display: block;
 			width: 100%;
-            opacity: 
 		}
 
 		.image.featured {
@@ -1271,7 +1271,7 @@
 				#nav a {
 					font-size: 2.5em;
 					margin: 0 0.25em 0 0.25em;
-					opacity: 0.6;
+					opacity: 0.35;
 					outline: 0;
 					-moz-transition: opacity .25s ease-in-out;
 					-webkit-transition: opacity .25s ease-in-out;
@@ -1445,49 +1445,8 @@
 						letter-spacing: -0.015em;
 						margin-top: 0;
 					}
-        
-    
-        
-        /* About */
 
-			#about .arrow {
-						display: block;
-						position: absolute;
-						right: 0;
-						top: 50%;
-						margin-top: -1.375em;
-						width: 2.25em;
-						height: 2.25em;
-						background: #000;
-						background: rgba(0, 0, 0, 0.6);
-						color: #ffffff;
-						text-align: center;
-						line-height: 2.25em;
-						font-size: 1.5em;
-						z-index: 1;
-						-moz-transition: width .15s ease-in-out, padding-right .15s ease-in-out;
-						-webkit-transition: width .15s ease-in-out, padding-right .15s ease-in-out;
-						-ms-transition: width .15s ease-in-out, padding-right .15s ease-in-out;
-						transition: width .15s ease-in-out, padding-right .15s ease-in-out;
-					}
-
-						#about .arrow:before {
-							position: relative;
-							padding-right: 0;
-							top: 0.1em;
-						}
-
-						#about .arrow span {
-							display: block;
-							text-indent: -9999px;
-						}
-        
-                    #about :hover .arrow {
-						width: 3em;
-						padding-right: 0.25em;
-                        	}
-		
-        /* Footer */
+		/* Footer */
 
 			#footer {
 				text-align: center;
@@ -1495,7 +1454,7 @@
 				font-size: 0.75em;
 			}
 
-
+	}
 
 /* Mobile */
 
@@ -1634,12 +1593,6 @@
 					font-size: 1.25em;
 				}
 
-        
-        /* About */
-        #about .arrow {
-            display: none;
-            }
-               
 		/* Footer */
 
 			#footer {
