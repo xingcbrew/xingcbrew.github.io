@@ -747,7 +747,7 @@
 /* Basic */
 
 	body {
-		background-image: url("/images/toronto.jpg");
+		background-color: #1B2320;
         background-size: cover;
 		font-family: 'Source Sans Pro', sans-serif;
 		font-weight: 300;
@@ -764,11 +764,6 @@
 			-ms-animation: none !important;
 			animation: none !important;
 		}
-
-           #cv {
-               background-color:
-               color: #585B5A;
-           }  
 
 	input, textarea, select {
 		font-family: 'Source Sans Pro', sans-serif;
@@ -1092,6 +1087,12 @@
 			display: none;
 		}
 
+.icon.contact {
+    margin-right: 10px;
+    margin-left: 10px;
+    color: #328cc7;
+    }
+
 /* Nav */
 
 	#nav a {
@@ -1158,11 +1159,11 @@
 
 		#footer .copyright li {
 			display: inline-block;
+            font-size: 10pt;
 		}
 
 			#footer .copyright li:before {
 				display: inline;
-				content: '\2022';
 				opacity: 0.5;
 				padding: 0 0.75em 0 0.75em;
 			}
@@ -1567,7 +1568,7 @@
 
 			.panel {
 				padding: 10px 10px 10px 10px;
-				margin: 0 0 5px 0;
+				margin: 0 0 10px 0;
 				background: #ffffff;
 				box-shadow: 0px 5px 0px 0px rgba(0, 0, 0, 0.25);
 			}
