@@ -1,217 +1,158 @@
 <!DOCTYPE HTML>
-
 <html>
 	<head>
-		<title>Xing C. Brew</title>
+		<title>Untitled</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
-	<body>
+	<body class="is-preload">
 
-		<!-- Wrapper-->
-			<div id="wrapper">
+		<!-- Page wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+                        <span class="logo"><a href="index.html">Gosling's Landing</a></span>
+						<a href="#menu"><span>Menu</span></a>
+					</header>
 
 				<!-- Nav -->
-					<nav id="nav">
-						<a href="#me" class="icon fa-home active"><span>Home</span></a>
-                        <a href="#about" class="icon fa-user o"><span>About</span></a>
-						<a href="#portfolio" class="icon fa-folder"><span>Portfolio</span></a>
-                        <a href="#contact" class="icon fa-envelope"><span>Contact</span></a>
-                        <a href="http://bit.ly/2tV8DDR" class="icon colour fa-file" target="_blank"><span>CV</span></a>
-						<a href="https://www.linkedin.com/in/xingcbrew/" class="icon colour fa-linkedin" target="_blank"><span>Linkedin</span></a>
-                        <a href="https://github.com/xingcbrew" class="icon colour fa-github" target="_blank"><span>Github</span></a>
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="index.html">Home</a></li>
+                                <li><a href="rooms.html">Rooms</a></li>
+								<li><a href="gallery.html">Gallery</a></li>
+                                <li><a href="events.html">Events</a></li>
+								<li><a href="rooms.html">Book a Bed</a></li>
+								<li><a href="contact.html">Contact Us</a></li>
+							</ul>
+							<a class="close"><span>Close</span></a>
+						</div>
 					</nav>
 
-				<!-- Main -->
-					<div id="main">
+				<!-- Banner -->
+					<section id="banner">
+						<div class="inner">
+							<h1>Your home away from home in the heart of Toronto</h1>
+                            <p></p>
+							<div class="content">
+								<ul class="actions special">
+									<li><a href="rooms.html" class="button large next">Book a bed</a></li>
+								</ul>
+							</div>
+						</div>
+					</section>
 
-						<!-- Me -->
-							<article id="me" class="panel">
-								<header>
-									<h1>Xing Brew</h1>
-									<p>Life enthusiast</p>
-								</header>
-								<a href="#about" class="jumplink pic">
-									<span class="arrow icon fa-chevron-right"><span>Go to about</span></span>
-									<img src="images/homepage.jpg" alt="" />
-								</a>
-							</article>
-                        
-                        
-                            <!-- Me -->
-							<article id="about" class="panel">
-								<header>
-									<h2>About Me</h2>
-									<p>Hello, I am Xing. I'm 28 years old and live in Toronto with my husband. I currently run an airbnb and also work as chief operating officer of <a href="http://databrew.cc" target="_blank">databrew</a>, a small data consulting company I co-founded with my husband and his brother. 
-                                    </p>
-         
-                        <!-- Portfolio -->
-					       <article id="portfolio" class="panel">
-								<header>
-									<h2>Portfolio</h2>
-								</header>
-								<section>
-                                <h3>Websites</h3> 
-                                    <div class="row">       
-                                        <div class="4u 12u$(mobile)"> 
-                                            <div class="imgWrap">
-                                            <a href="http://databrew.cc" target="_blank" class="image fit"><img src="images/databrew.png" alt="databrew"><p class="imgDescription">databrew</p></a> 
-                                            </div>
-                                        </div>
-                                        <div class="4u 12u$(mobile)"> 
-                                            <div class="imgWrap">
-                                            <a href="http://kyempapu.org" target="_blank" class="image fit"><img src="images/kyempapusite.png" alt=""><p class="imgDescription">Kyempapu</p></a> 
-                                            </div>
-                                        </div>
-										<div class="4u 12u$(mobile)"> 
-                                            <div class="imgWrap">
-                                            <a href="https://www.tuinatoronto.ca" target="_blank" class="image fit"><img src="images/tuina.png" alt=""><p class="imgDescription">Tuina Toronto</p></a> 
-                                            </div>
-                                        </div>   
-                                    </div>
-                                    
-                                    
-								<h3>Data &amp; Maps</h3>
-									<div class="row">
-										<div class="4u 12u$(mobile)"> 
-                                            <div class="imgWrap">
-                                              <a href="#openModal1" class="image fit"><img src="images/refugees.png"><p class="imgDescription">Visualizing data on refugees in Canada using R</p></a> 
-                                                <div id="openModal1" class="modalDialog">
-                                                    <div>
-                                                        <a href="#close" title="Close" class="close"> &#10005;</a>
-                                                        <div class="inner">
-                                                            <header class="align-center">
-                                                                <h2>Visualizing Data on Refugees in Canada</h2>
-                                                                <p>Below are graphs that show different statistics about resettled refugee and refugee claimants using data from <a href="http://open.canada.ca/data/en/dataset/ca243c40-a6d3-4a46-a578-b4fad4369df0" target="_blank">Government of Canada Open Data</a></p>
-                                                            </header>  
-                                                            <img src="images/refugees%20graphs/cumulative_refugees.png">
-                                                                <p>This graph shows the cumulative number of Government Resettled refugees in Canada between 2011 and September 2016</p> 
-                                                            <hr/>
-                                                            <img src="images/refugees%20graphs/educ.png"> 
-                                                                <p>This shows the level of education of the Government Resettled refugees in Canada. Note that this is for refugees of all ages (children included), hence why there are so many with low education.</p>  
-                                                              <hr/>
-                                                              <img src="images/refugees%20graphs/claims_by_country.png"> 
-                                                                <p>This chart shows total number of refugee claimants in Canada each year from 2011-2015 by country. The top 10 countries are coloured, and the rest are grouped together in Other.</p>  
-                                                              <hr/>
-                                                            <img src="images/refugees%20graphs/resettled2.png"> 
-                                                                <p>As can be seen by this graph of Syrian refugees who entered Canada between November 2015 and September 2016, there is a fairly equal number of male and females.</p> 
-                                                              <hr/>
-                                                            <img src="images/refugees%20graphs/syrian1.png"> 
-                                                                <p></p> 
-                                                        </div>
-                                                    </div>
-                                                </div> 
-                                            </div>
-                                        </div>
-										<div class="4u 12u$(mobile)"> 
-                                            <div class="imgWrap">
-                                            <a href="#openModal2" class="image fit"><img src="images/homeless.png"><p class="imgDescription">Interactive map of homeless shelters in Toronto</p></a> 
-                                                <div id="openModal2" class="modalDialog">
-                                                    <div>
-                                                    <a href="#close" title="Close" class="close"> &#10005;</a>
-                                                    				<div>
-                                                                        <header>
-                                                                            <h2>Map of Toronto's Homeless Shelters</h2>
-                                                                            <p>This map indicates the location of homeless shelters around Toronto. The circles are sized based on the number beds the shelter has and they are coloured based on the type of people the it serves (see legend at bottom right). Click on a cicle to get information about the shelter - address, phone number, and number of beds.</p>
-                                                                        </header>      
+				<!-- Section About -->
+					<section id="about" class="wrapper">
+                        <section id="logo">
+                        <div class="image">
+                             <img src="images/hostel/logo.png" alt="" />
+                        </div>
+                    </section>
+						<div class="inner">
+                            <div class="split">
+								<div class="content">
+									<header>
+										<h2>About</h2>
+									</header>
+									<p>Gosling’s Landing is a newly renovated, family run hostel tucked into a quiet neighbourhood in the center of the city. We not only aim to provide affordable accommodation for travellers, but also a home away from home. We have events such as family dinners, boardgame nights, evening socials, and organized outings to help everyone get connected.</p> 
+                                    <p>We have a nice and big common area with comfy couches and a workspace for those looking to get in a few hours on the laptop. Our kitchen is also well equipped for travellers who like to cook. Whether you’re here for a few days or a few weeks, we’ll take you under our wing. No Gosling gets left behind!</p>
 
-                                                                        <div class="iframe">
-                                                                            <span class="image fit">
-                                                                            <iframe src="https://cdn.rawgit.com/xingcbrew/data_TO/master/interactive%20maps/shelter1.html"></iframe>
-                                                                            </span>
-                                                                                <p>Data from <a href = "http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=30bcb5989b985310VgnVCM1000003dd60f89RCRD" target = "_blank">Toronto Open Data Catalogue</a> and <a href = "http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=e29dd4b4920c0410VgnVCM10000071d60f89RCRD" target="_blank">Housing and Homeless Services.</a></p>
-                                                                        </div>
-                                                                    </div>
-                                                    </div>
-                                                </div> 
-                                            </div>
-                                        </div>
-										<div class="4u 12u$(mobile)"> 
-                                            <div class="imgWrap">
-                                            <a href="#openModal3" class="image fit"><img src="images/languages.png" alt=""><p class="imgDescription">Mapping endangered and extinct languages in North America</p></a> 
-                                                <div id="openModal3" class="modalDialog">
-                                                    <div>
-                                                    <a href="#close" title="Close" class="close"> &#10005;</a>
-                                                        <header class="align-center">
-                                                            <h2>Map of Endangered and Extinct Languages in North America</h2>
-                                                            <p>This map shows the many vulnerable, endangered, and extinct languages in Canada, USA, and Mexico. </p>
-                                                        </header>    
-                                                        <div class ="iframe">
-                                                            <iframe src="https://cdn.rawgit.com/xingcbrew/maps101/master/namer_languages.html"></iframe>
-                                    
-                                                            <h4>UNESCO's classification system to show just how 'in trouble' the language is:</h4>
-                                                                <div class="row"> 
-                                                                    <ul style="list-style-type:circle">
-                                                                    <li>Vulnerable - most children speak the language, but it may be restricted to certain domains (e.g., home)</li>
-                                                                    <li>Definitely endangered - children no longer learn the language as a 'mother tongue' in the home</li>
-                                                                    <li>Severely endangered - language is spoken by grandparents and older generations; while the parent generation may understand it, they do not speak it to children or among themselves</li>
-                                                                    <li>Critically endangered - the youngest speakers are grandparents and older, and they speak the language partially and infrequently</li>
-                                                                    <li>Extinct - there are no speakers left</li>
-                                                                    </ul>
-                                                                </div>
-                                                            <p>Data from <a href = "https://www.theguardian.com/news/datablog/2011/apr/15/language-extinct-endangered" target = "_blank">The Guardian's Data Blog</a>.</p>
-                                                        </div>    
-                                                    </div>
-                                                </div> 
-                                            </div>
-                                        </div>
-                                    </div>   
-                                <h3>Research &amp; Papers</h3>    
-                                 <div class="row">       
-                                       <div class="4u 12u$(mobile)"> 
-                                            <div class="imgWrap">
-                                            <a href="papers/youthparticipation.pdf" target="_blank" class="image fit"><img src="images/youth.png" alt=""><p class="imgDescription">UNESCO Research Paper: Engaging and Increaing Meaningful Particpation of Youth in Diasporas</p></a> 
-                                            </div>
-                                        </div>
-                                        <div class="4u 12u$(mobile)"> 
-                                            <div class="imgWrap">
-                                            <a href="papers/St-Gallens-Essay_Next-Small-Big-Thing.pdf" target="_blank" class="image fit"><img src="images/stgal.PNG" alt=""><p class="imgDescription">So you want to talk about the next small BIG thing? LETS!</p></a> 
-                                            </div>
-                                        </div>
-										<div class="4u 12u$(mobile)"> 
-                                            <div class="imgWrap">
-                                            <a href="papers/beijingstreetvendors.pdf" target="_blank" class="image fit"><img src="images/beijing.png" alt=""><p class="imgDescription">Pavement Livelihoods: An Analysis of Street Vendor Livelihoods in Beijing, China Using the Sustainable Livelihoods Approach</p></a> 
-                                            </div>
-                                        </div>   
-                                </div>
-                                <div class="row">       
-                                     <div class="4u 12u$(mobile)"> 
-                                            <div class="imgWrap">
-                                            <a href="papers/Street%20Vendors%20in%20Bandung.pdf" target="_blank" class="image fit"><img src="images/bandung.jpg" alt=""><p class="imgDescription">An Urban Planning Problem With Economic Potential Street Vendors in Bandung, Indonesia</p></a> 
-                                            </div>
-                                        </div>    
-                                </div>   
+									<ul class="actions">
+										<li><a href="about.html" class="button next">Full Story</a></li>
+									</ul>
+                                 
+								</div>
+								<ul class="contact-icons">
 								
-								</section>
-							</article>
+									<li><a href="#" class="icon alt fa-facebook"><span class="label">@GoslingsLanding</span></a></li>
+									<li><a href="#" class="icon alt fa-instagram"><span class="label">@GoslingsLanding</span></a></li>
+									<li><a href="mailto: hello@goslingslanding.ca" class="icon alt fa-envelope"><span class="label">hello@goslingslanding.ca</span></a></li>
+								</ul>
+                                
+							</div>
+                            
+						</div>
+					</section>
 
-						<!-- Contact -->
-							<article id="contact" class="panel">
-								<header>
-									<h2>Get in touch</h2>
-								</header>	
-								<p><a class="icon fa-envelope contact"></a> xingcbrew@gmail.com <a class="icon fa-twitter contact"></a>@xingcbrew</p>		
-							</article>
+                
+                <!-- Section Location -->
+					<section id="footer" class="wrapper" style="background-color: #FEDB5B">
+						<div class="inner">
+							<div class="split2">
+								<div class="content">
+				
+									<header>
+										<h2>Location</h2>
+									</header>
+									<p>We are nested right next to Toronto’s Kensington Market/Chinatown neighbourhood, surrounded by an endless supply of local restaurants, cafes, bars, and shops. Other nearby sites include Graffiti Alley, City Hall, Yonge &amp; Dundas Square, CN Tower, and Harbourfront. Located a block or two away from four bus/streetcar routes heading in all directions, it's easy to get around town. As we're on a quiet street, you can sleep without the sound of traffic while also being minutes away from all the excitement!</p>
+									<ul class="actions">
+										<li><a href="directions.html" class="button next">View Map and Directions</a></li>
+									</ul>
+								</div>
+                                
+                                <div class="content">
+                                    <div style="width: 100%"><iframe width="100%" height="400" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=84%20Augusta%20Avenue%2C%20Toronto+(Gosling's%20Landing)&amp;ie=UTF8&amp;t=&amp;z=13&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
+                                    
+                                </div>
+                                
+							</div>
+                            
+						</div>
+					</section>
 
-                </div>
+                <!-- Section Rooms -->
+					<section id="rooms" class="wrapper">
+						<div class="inner">
+								<div class="content">
+									<header>
+										<h2>Rooms</h2>
+									</header>
+                                    
+                                    <div class="box alt">
+												<div class="gallery">
+													<a href="images/hostel/rm1.jpg"><img src="images/hostel/rm1.jpg" alt="" /></a>
+                                                    <a href="images/hostel/rm2.jpg"><img src="images/hostel/rm2.jpg" alt="" /></a>
+                                                    <a href="images/hostel/rm3.jpg"><img src="images/hostel/rm3.jpg" alt="" /></a>
+                                                    <a href="images/hostel/rm4.jpg"><img src="images/hostel/rm4.jpg" alt="" /></a>
+													<a href="images/hostel/rm5.jpg"><img src="images/hostel/rm5.jpg" alt="" /></a>
+                                                    <a href="images/hostel/rm6.jpg"><img src="images/hostel/rm6.jpg" alt="" /></a>
+												</div>
+											</div>
+									<ul class="actions">
+										<li><a href="rooms.html" class="button next">Book a Bed</a></li>
+									</ul>
+								
+								</div>
+                                                            
+						</div>
+					</section>
+
+                
+				<!-- Copyright -->
+					<section class="wrapper style2">
+						<div class="inner">
+                            <a href="#" class="icon alt fa-facebook"></a>
+							<a href="#" class="icon alt fa-instagram"></a>
+							<a href="#" class="icon alt fa-envelope"></a>
+                            <p></p>
+                            <p>&copy; Gosling's Landing 2019</p>
+                        </div>    
+					</section>
+
 			</div>
-        <!-- Footer -->
-					<div id="footer">
-						<ul class="copyright">
-							<li>&copy; Xing Brew 2017 | Template by <a href="html5up.net">HTML5 UP</a></li>
-						</ul>
-					</div>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/skel-viewport.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
 
 	</body>
