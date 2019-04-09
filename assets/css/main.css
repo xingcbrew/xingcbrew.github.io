@@ -2485,6 +2485,11 @@ input, select, textarea {
 			.image.main {
 				margin: 0 0 2rem 0;
 			}
+            
+            .image.event {
+                visibility: hidden;
+                display: none;
+			}
 
 		}
 
@@ -2932,7 +2937,7 @@ input, select, textarea {
                     display: inline-block;
                     height: 3rem;
                     line-height: 3rem;
-                    margin-right: 1rem;
+                    margin-right: 0.5rem;
                     text-align: center;
                     width: 3rem;
                     background-color: #FEDB5B;
