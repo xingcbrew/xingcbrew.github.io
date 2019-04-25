@@ -60,12 +60,12 @@
 
 					// Images (in the format of 'url': 'alignment').
 						images: {
-							'images/hostel/candles.jpg': '0% 35%',
+							'images/hostel/flowers.jpg': '0% 35%',
+                            'images/hostel/candles.jpg': '0% 35%',
 							'images/hostel/space.jpg': 'center',
 							'images/hostel/rm1.jpg': 'center',
                             'images/hostel/table.jpg': 'center',
 							'images/hostel/rm4.jpg': 'center',
-                            'images/hostel/shelf.jpg': 'center'
 						},
 
 					// Delay.
