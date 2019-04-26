@@ -1931,6 +1931,19 @@ input, select, textarea {
 			padding: 0 2.25rem;
 		}
 
+        input[type="submit"].large1,
+		input[type="reset"].large1,
+		input[type="button"].large1,
+		button.large1,
+		.button.large1 {
+			font-size: 1rem;
+            background-color: #FFD666;
+            color: black;
+			height: 3.75rem;
+			line-height: 3.5rem;
+			padding: 0 2.25rem;
+		}
+
 		input[type="submit"].next,
 		input[type="reset"].next,
 		input[type="button"].next,
@@ -4186,7 +4199,7 @@ input, select, textarea {
 		#banner input[type="button"],
 		#banner button,
 		#banner .button {
-			background-color: transparent;
+			background-color: #20BFD8;
 			border-color: #ffffff;
 			color: #ffffff !important;
 		}
@@ -4399,15 +4412,17 @@ input, select, textarea {
 		}
 
 		#banner h1 {
-			border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 			color: #ffffff;
-			font-size: 4.75rem;
+			font-size: 6.75rem;
 			margin: 0 auto;
 			padding-bottom: 3rem;
 			position: relative;
 			text-align-last: left;
 			text-align: left;
 			opacity: 0.95;
+            font-family: 'Amatic SC', cursive;
+            line-height: 1.25em;
+
 		}
 
 		#banner .inner {
@@ -4805,6 +4820,6 @@ input, select, textarea {
 
 	.copyright {
 		color: rgba(40, 40, 40, 0.5);
-		text-align: center;
+        text-align: center;
         
 	}
