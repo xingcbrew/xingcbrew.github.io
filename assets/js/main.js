@@ -60,12 +60,12 @@
 
 					// Images (in the format of 'url': 'alignment').
 						images: {
-							'images/hostel/flowers-yellow.jpg': '0% 35%',
-                            'images/hostel/space.jpg': 'center',
-                            'images/hostel/candles.jpg': 'center',
-							'images/hostel/rm1.jpg': 'center',
-                            'images/hostel/table.jpg': 'center',
-							'images/hostel/rm4.jpg': 'center',
+							'images/hostel/flowers-banner.jpg': '0% 35%',
+                            'images/hostel/space-banner.jpg': 'center',
+                            'images/hostel/candles-banner.jpg': 'center',
+							'images/hostel/rm1-banner.jpg': 'center',
+                            'images/hostel/table-banner.jpg': 'center',
+							'images/hostel/rm4-banner.jpg': 'center',
 						},
 
 					// Delay.
