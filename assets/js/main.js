@@ -62,10 +62,13 @@
 						images: {
 							'images/hostel/flowers-banner.jpg': '0% 35%',
                             'images/hostel/space-banner.jpg': 'center',
-                            'images/hostel/candles-banner.jpg': 'center',
-							'images/hostel/rm1-banner.jpg': 'center',
+                            'images/hostel/games2-banner.jpg': 'center',
                             'images/hostel/table-banner.jpg': 'center',
 							'images/hostel/rm4-banner.jpg': 'center',
+                            'images/hostel/games-banner.jpg': 'center',
+                            'images/hostel/candles-banner.jpg': 'center',
+							'images/hostel/rm1-banner.jpg': 'center',
+                           
 						},
 
 					// Delay.
