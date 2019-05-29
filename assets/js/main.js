@@ -60,7 +60,7 @@
 
 					// Images (in the format of 'url': 'alignment').
 						images: {
-							'images/hostel/flowers.jpg': '0% 35%',
+							'images/hostel/flowers.jpg': 'center',
                             'images/hostel/space.jpg': 'center',
                             'images/hostel/games-banner.jpg': 'center',
                             'images/hostel/table.jpg': 'center',
