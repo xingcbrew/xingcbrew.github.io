@@ -2500,8 +2500,7 @@ input, select, textarea {
 			}
             
             .image.event {
-                visibility: hidden;
-                display: none;
+                display: block;
 			}
 
 		}
