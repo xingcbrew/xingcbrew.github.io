@@ -61,6 +61,7 @@
 					// Images (in the format of 'url': 'alignment').
 						images: {
 							'images/hostel/flowers.jpg': 'center',
+                            'images/hostel/common%20space%20new.jpg': 'center',
                             'images/hostel/games-banner.jpg': 'center',
                             'images/hostel/workspace%20new.jpg': 'center',
                            
