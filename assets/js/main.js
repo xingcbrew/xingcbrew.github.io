@@ -63,7 +63,6 @@
 							'images/hostel/flowers.jpg': 'center',
                             'images/hostel/games-banner.jpg': 'center',
                             'images/hostel/workspace%20new.jpg': 'center',
-							'images/hostel/rm1.jpg': 'center',
                            
 						},
 
