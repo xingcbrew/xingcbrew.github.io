@@ -1,0 +1,97 @@
+census_division,demographic_val,2016,2021
+Hamilton,Arab,2455,4000
+Hamilton,Black,5220,7020
+Hamilton,Chinese,3330,3605
+Hamilton,Filipino,1915,2540
+Hamilton,Japanese,150,190
+Hamilton,Korean,505,605
+Hamilton,Latin American,2125,2385
+Hamilton,Multiple visible minorities,895,1635
+Hamilton,South Asian,5635,9990
+Hamilton,Southeast Asian,1495,2240
+Hamilton,"Visible minority, n.i.e.",660,600
+Hamilton,West Asian,1270,1775
+Toronto,Arab,9115,10045
+Toronto,Black,57645,62555
+Toronto,Chinese,75490,66730
+Toronto,Filipino,32360,38695
+Toronto,Japanese,2280,2260
+Toronto,Korean,10990,9685
+Toronto,Latin American,17665,19490
+Toronto,Multiple visible minorities,12125,16615
+Toronto,South Asian,78805,100065
+Toronto,Southeast Asian,10420,14630
+Toronto,"Visible minority, n.i.e.",8380,8110
+Toronto,West Asian,13760,14065
+Ottawa,Arab,10255,14255
+Ottawa,Black,16940,23845
+Ottawa,Chinese,9945,10640
+Ottawa,Filipino,2475,3265
+Ottawa,Japanese,495,540
+Ottawa,Korean,800,985
+Ottawa,Latin American,2455,2870
+Ottawa,Multiple visible minorities,1940,2950
+Ottawa,South Asian,9080,16135
+Ottawa,Southeast Asian,2855,3875
+Ottawa,"Visible minority, n.i.e.",650,780
+Ottawa,West Asian,2060,2690
+Waterloo,Arab,1875,2860
+Waterloo,Black,3835,6200
+Waterloo,Chinese,6230,6150
+Waterloo,Filipino,740,1355
+Waterloo,Japanese,130,225
+Waterloo,Korean,745,750
+Waterloo,Latin American,2280,2925
+Waterloo,Multiple visible minorities,895,1300
+Waterloo,South Asian,6510,19265
+Waterloo,Southeast Asian,2070,2720
+Waterloo,"Visible minority, n.i.e.",870,940
+Waterloo,West Asian,1275,1320
+Peel,Arab,9855,11790
+Peel,Black,32780,32840
+Peel,Chinese,13740,12715
+Peel,Filipino,12810,12885
+Peel,Japanese,475,480
+Peel,Korean,1635,1355
+Peel,Latin American,6890,6905
+Peel,Multiple visible minorities,5940,7150
+Peel,South Asian,93980,137860
+Peel,Southeast Asian,4930,6295
+Peel,"Visible minority, n.i.e.",6300,6725
+Peel,West Asian,3275,3415
+York,Arab,3020,2845
+York,Black,6270,7610
+York,Chinese,46535,48395
+York,Filipino,4945,5855
+York,Japanese,575,330
+York,Korean,3250,3625
+York,Latin American,2830,3385
+York,Multiple visible minorities,3980,5415
+York,South Asian,24160,28745
+York,Southeast Asian,3110,3245
+York,"Visible minority, n.i.e.",1585,2090
+York,West Asian,8285,10850
+Durham,Arab,1340,1695
+Durham,Black,11535,15560
+Durham,Chinese,2075,2310
+Durham,Filipino,2895,4225
+Durham,Japanese,330,260
+Durham,Korean,210,315
+Durham,Latin American,1200,1540
+Durham,Multiple visible minorities,1905,2995
+Durham,South Asian,11700,18030
+Durham,Southeast Asian,455,545
+Durham,"Visible minority, n.i.e.",1735,2125
+Durham,West Asian,1705,2595
+Halton,Arab,2450,4510
+Halton,Black,3095,4415
+Halton,Chinese,3535,5065
+Halton,Filipino,2145,2860
+Halton,Japanese,395,305
+Halton,Korean,1095,1275
+Halton,Latin American,1655,2000
+Halton,Multiple visible minorities,960,1715
+Halton,South Asian,8820,15320
+Halton,Southeast Asian,630,935
+Halton,"Visible minority, n.i.e.",470,560
+Halton,West Asian,825,1060
