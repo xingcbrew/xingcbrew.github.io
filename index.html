@@ -3,19 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Simple Page</title>
+    <title>ASL Name Generator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Simple Page</h1>
-    </header>
-    <section>
-        <h2>This is a test page</h2>
-        <p>This is a simple HTML page template to get you started. Replace this text with your own content.</p>
-    </section>
-
-    <footer>
-        <p>Thank you for visiting my page!</p>
-    </footer>
+    <div class="container">
+        <h1>ASL Name Generator</h1>
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <button onclick="generateASL()">Generate</button>
+        <div id="output"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
