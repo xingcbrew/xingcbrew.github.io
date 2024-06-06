@@ -4,7 +4,7 @@ function generateASL() {
     output.innerHTML = '';  // Clear previous output
 
     for (let char of name) {
-        if (char >= 'A' && char <= 'Z') {
+        if (char >= 'a' && char <= 'z') {
             const img = document.createElement('img');
             img.src = `asl/${char}.png`;  // Assuming images are named A.png, B.png, etc.
             img.alt = char;
