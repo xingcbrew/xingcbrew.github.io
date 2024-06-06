@@ -8,9 +8,6 @@ function generateASL() {
             const img = document.createElement('img');
             img.src = `asl/${char}.png`;  // Assuming images are named A.png, B.png, etc.
             img.alt = char;
-            img.onerror = function() {
-                console.error(`Failed to load image for ${char}`);
-            };
             output.appendChild(img);
         }
     }
