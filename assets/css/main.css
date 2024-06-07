@@ -153,6 +153,10 @@ input, select, textarea {
 			border-bottom-color: transparent;
 			color: #FF5757 !important;
 		}
+		
+		a .title {
+		  color: #FF5757 !important;
+		}
 
 	strong, b {
 		font-weight: 900;
@@ -2910,7 +2914,7 @@ input, select, textarea {
 						-webkit-tap-highlight-color: transparent;
 						width: 4em;
 						text-indent: 4em;
-						font-size: 1em;
+						font-size: 1.2em;
 						overflow: hidden;
 						padding: 0;
 						white-space: nowrap;
@@ -3188,29 +3192,20 @@ input, select, textarea {
 			-webkit-flex-direction: row;
 			-ms-flex-direction: row;
 			flex-direction: row;
+			text-align: center;
+			justify-content: center;
 		}
 
-			#footer > .inner > * > :last-child {
-				margin-bottom: 0;
-			}
-
-			#footer > .inner section:nth-child(1) {
-				width: calc(66% - 2.5em);
-				margin-right: 2.5em;
-			}
-
-			#footer > .inner section:nth-child(2) {
-				width: calc(33% - 2.5em);
-				margin-left: 2.5em;
-			}
 
 			#footer > .inner .copyright {
 				width: 100%;
 				padding: 0;
-				margin-top: 5em;
+				margin-top: 3em;
+				margin-bottom: -3em;
 				list-style: none;
 				font-size: 0.8em;
 				color: rgba(88, 88, 88, 0.5);
+				text-align: center;
 			}
 
 				#footer > .inner .copyright a {
@@ -3237,31 +3232,8 @@ input, select, textarea {
 				padding: 5em 0 3em 0 ;
 			}
 
-				#footer > .inner section:nth-child(1) {
-					width: calc(66% - 1.25em);
-					margin-right: 1.25em;
-				}
-
-				#footer > .inner section:nth-child(2) {
-					width: calc(33% - 1.25em);
-					margin-left: 1.25em;
-				}
-
 		}
 
-		@media screen and (max-width: 980px) {
-
-			#footer > .inner section:nth-child(1) {
-				width: 66%;
-				margin-right: 0;
-			}
-
-			#footer > .inner section:nth-child(2) {
-				width: calc(33% - 2.5em);
-				margin-left: 2.5em;
-			}
-
-		}
 
 		@media screen and (max-width: 736px) {
 
@@ -3276,20 +3248,6 @@ input, select, textarea {
 					flex-direction: column;
 				}
 
-					#footer > .inner section:nth-child(1) {
-						width: 100%;
-						margin-right: 0;
-						margin: 3em 0 0 0;
-					}
-
-					#footer > .inner section:nth-child(2) {
-						-moz-order: -1;
-						-webkit-order: -1;
-						-ms-order: -1;
-						order: -1;
-						width: 100%;
-						margin-left: 0;
-					}
 
 					#footer > .inner .copyright {
 						margin-top: 3em;
@@ -3300,7 +3258,7 @@ input, select, textarea {
 		@media screen and (max-width: 480px) {
 
 			#footer > .inner .copyright {
-				margin-top: 3em;
+				margin-top: 2em;
 			}
 
 				#footer > .inner .copyright li {
