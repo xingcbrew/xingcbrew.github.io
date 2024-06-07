@@ -1,5 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Helvetica, sans-serif;
+    color:  #3b3b3b;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,12 +11,53 @@ body {
 .container {
     text-align: center;
     background: white;
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+#output {
+    margin-top: 30px; /* Add space above the ASL characters */
+}
+
 #output img {
-    height: 50px;
-    margin: 5px;
+    height: 150px;  /* Increase height */
+    width: 140px;   /* Ensure proportional scaling */
+    margin: 2px;    /* Reduce margin */
+}
+
+#textOutput {
+    margin-top: 30px; /* Add margin above the text output */
+    font-size: 20px;
+    letter-spacing: 2px; /* Adjust the letter spacing as needed */
+}
+
+button {
+    margin-top: 20px; /* Add margin above the button */
+    padding: 10px 20px;
+    background-color: #FF7F50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #FFB347;
+}
+
+input[type="text"] {
+    border: none;
+    border-bottom: 2px solid grey;
+    background: transparent;
+    outline: none;
+    padding: 5px 0;
+    font-size: 16px;
+    width: 180px; /* Adjust width as needed */
+    text-align: left;
+    margin-right: 15px;
+}
+
+input[type="text"]::placeholder {
+    color: grey;
 }

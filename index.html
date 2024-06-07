@@ -9,9 +9,11 @@
 <body>
     <div class="container">
         <h1>ASL Name Generator</h1>
-        <input type="text" id="nameInput" placeholder="Enter your name">
+        <input type="text" id="nameInput" placeholder="Enter your name" oninput="checkInput()">
         <button onclick="generateASL()">Generate</button>
         <div id="output"></div>
+        <div id="textOutput"></div> <!-- Container for text output -->
+        <button id="downloadButton" onclick="downloadASLImage()" style="display: none;">Download Image</button>
     </div>
     <script src="script.js"></script>
 </body>
