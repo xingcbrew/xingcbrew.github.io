@@ -6,7 +6,7 @@ function generateASL() {
     textOutput.innerHTML = ''; // Clear previous text output
 
     for (let char of name) {
-        if (char >= 'A' && char <= 'C') {
+        if (char >= 'A' && char <= 'Z') {
             const img = document.createElement('img');
             img.src = `asl/${char}.png`;  // Assuming images are named A.png, B.png, C.png
             img.alt = char;
