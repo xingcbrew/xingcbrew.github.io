@@ -223,7 +223,9 @@ input, select, textarea {
 	}
 
 	h3 {
-		font-size: 1em;
+		font-size: 1.2em;
+		letter-spacing: 0.25em;
+		margin-bottom: 1em;
 	}
 
 	h5 {
@@ -3292,25 +3294,8 @@ input, select, textarea {
 
 		}
 		
-/*ASL image output*/
-
-#output {
-    margin-top: 40px;
-    align-items: center;
-    text-align: center;
-}
-
-#output img {
-    height: 150px;  /* Increase height */
-    width: 140px;   /* Ensure proportional scaling */
-    margin: 2px;    /* Reduce margin */
-}
-
-#textOutput {
-    align-items: center;
-    text-align: center;
-}
-
+		
+/* Containers */		
 .container {
   margin-bottom: 5em;
 }
@@ -3318,3 +3303,53 @@ input, select, textarea {
 .containerSmall {
   margin-bottom: -2em;
 }
+
+.container img.title {
+  max-height: 50px;
+}
+		
+/*ASL and Braille image output*/
+
+#output {
+    margin-top: 20px;
+    align-items: center;
+    text-align: center;
+}
+
+#output img {
+    height: 150px;  
+    width: 140px;   
+}
+
+#textOutput {
+    align-items: center;
+    text-align: center;
+}
+
+#brailleOutput {
+    margin-top: -50px; !important
+    align-items: center;
+    text-align: center;
+}
+
+#brailleOutput img {
+    height: 150px;
+    width: 100px;
+}
+
+#brailleTextOutput {
+    letter-spacing: 1px;
+    align-items: center;
+    text-align: center;
+}
+
+	@media screen and (max-width: 480px) {
+    #output img {
+        height: 75px;  
+        width: 70px;   
+    }
+    #brailleOutput img {
+        height: 75px;
+        width: 50px;
+		
+			}

@@ -64,17 +64,32 @@
 						<div class="inner">
 							<header>
 								<h1>Welcome to Name Creations</h1>
-  							 <p>This website will allow you to generate images of names and words in American Sign Language (ASL) fingerspelling (and soon in braille, morse code, and more), which you can download as PNG files. It's completely free to use and you're welcome to create as many images as you'd like! If you'd like to support my work and help me continue adding features to this website, donations can be made by clicking the 'Support Me' button at the bottom left of the screen. Thanks in advance!</p>
-      <p><b>Enter a name below and click 'Generate' to get started!</b></p>
+  							 <p>Create images of names and words in American Sign Language (ASL) fingerspelling and Braille letters, available for download as PNG files. These tools are <b>completely free to use</b>, and you are welcome to generate and download as many images as you like! If you would like to support my work and help me continue adding new features to this site, donations are appreciated and can be made by clicking the 'Support Me' button at the bottom left of the screen. Thank you in advance!</p>
+
 							</header>
 	 <div class="container">
-            <input type="text" id="nameInput" placeholder="Click here to enter a name" oninput="checkInput()">
+	         <img class="title" src="images/name.png" alt="" />
+	         <h3>ASL Name Generator</h3>
+            <input type="text" id="nameInput" placeholder="Enter a name" oninput="checkInput()">
             <button onclick="generateASL()">Generate Name in ASL</button> 
             <button id="downloadButton" onclick="downloadASLImage()" style="display: none;">Download Image</button>
             <div id="additionalText" style="display: none;"><i>Note: Longer names that appear on multiple lines on the screen will be printed on one line in the downloaded image.</i></div>
             <div id="output"></div>
             <div id="textOutput"></div>
     </div>
+    
+     <div class="container">
+       <img class="title"  src="images/braille.png" alt="" />
+        <h3>Braille Name Generator</h3>
+        <input type="text" id="brailleNameInput" placeholder="Enter a name" oninput="checkBrailleInput()">
+        <button onclick="generateBraille()">Generate Name in Braille</button>
+        <button id="downloadBrailleButton" onclick="downloadBrailleImage()" style="display: none;">Download Image</button>
+        <div id="brailleAdditionalText" style="display: none;">Note: Longer names that appear on multiple lines on the screen will be printed on one line in the downloaded image.</div>
+    </div>
+        <div id="brailleOutput"></div>
+        <div id="brailleTextOutput"></div> <!-- Container for text output -->
+        
+        
   <!--   
    <div class="containerSmall">
       <h4>Looking for more customized ASL name products?</h4>
@@ -224,7 +239,7 @@
 				<!-- Footer -->
 					<footer id="footer">
 						<div class="inner">
-							
+
 							<section>
 								<h2>Find me Online</h2>
 								<ul class="icons">
