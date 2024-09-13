@@ -1,0 +1,17 @@
+category,immigration,Age 15-19,Age 20-24,Age 25-29,Age 15-19 Total,Age 20-24 Total,Age 25-29 Total,Age 15-19 Percent,Age 20-24 Percent,Age 25-29 Percent
+"No certificate, diploma or degree",Canadian Born,412095,41125,38970,667380,639795,653410,61.7,6.4,6
+"No certificate, diploma or degree",Immigrants,60230,8395,11085,109345,152735,222375,55.1,5.5,5
+"No certificate, diploma or degree",Refugees,16690,3990,4665,26365,30440,36930,63.3,13.1,12.6
+"No certificate, diploma or degree",Non-permanent residents,9590,2355,2010,22575,96075,93385,42.5,2.5,2.2
+High (secondary) school diploma or equivalency certificate,Canadian Born,240905,318580,167665,667380,639795,653410,36.1,49.8,25.7
+High (secondary) school diploma or equivalency certificate,Immigrants,45575,72420,39200,109345,152735,222375,41.7,47.4,17.6
+High (secondary) school diploma or equivalency certificate,Refugees,8860,15790,10815,26365,30440,36930,33.6,51.9,29.3
+High (secondary) school diploma or equivalency certificate,Non-permanent residents,10670,33815,10380,22575,96075,93385,47.3,35.2,11.1
+"College, CEGEP or other non-university certificate or diploma",Canadian Born,9635,111590,161825,667380,639795,653410,1.4,17.4,24.8
+"College, CEGEP or other non-university certificate or diploma",Immigrants,1685,20885,36780,109345,152735,222375,1.5,13.7,16.5
+"College, CEGEP or other non-university certificate or diploma",Refugees,370,4440,7700,26365,30440,36930,1.4,14.6,20.9
+"College, CEGEP or other non-university certificate or diploma",Non-permanent residents,1630,23900,13405,22575,96075,93385,7.2,24.9,14.4
+"University certificate, diploma or degree",Canadian Born,1895,152580,259315,667380,639795,653410,0.3,23.8,39.7
+"University certificate, diploma or degree",Immigrants,895,47905,130760,109345,152735,222375,0.8,31.4,58.8
+"University certificate, diploma or degree",Refugees,135,5310,12445,26365,30440,36930,0.5,17.4,33.7
+"University certificate, diploma or degree",Non-permanent residents,465,34935,66400,22575,96075,93385,2.1,36.4,71.1
