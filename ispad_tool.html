@@ -23,7 +23,7 @@
   --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 16px; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 17px; }
 .shell { max-width: 1100px; margin: 0 auto; padding: 28px 32px 60px; }
 
 /* Header */
@@ -123,6 +123,20 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
 /* Fluid calc */
 .fluid-calc { margin-top: 10px; padding: 7px 10px; background: var(--blue-light); border-left: 3px solid var(--blue-mid); border-radius: 0 var(--radius) var(--radius) 0; font-size: 12px; color: var(--blue-text); display: flex; align-items: center; gap: 7px; }
 
+
+/* Diagnosis tool */
+.diag-q { margin-bottom:4px; }
+.diag-btn { background: var(--ispad-blue-light); color: var(--ispad-blue); border: 1px solid #BFD0E8; border-radius: var(--radius); padding: 8px 28px; font-size: 13px; font-weight: 700; cursor: pointer; transition: background .1s; }
+.diag-btn:hover { background: #D5E3F5; }
+.diag-btn-no { background: var(--bg2); color: var(--text2); border-color: var(--border2); }
+.diag-btn-no:hover { background: var(--bg3); }
+.diag-trail { font-size:12px; color:var(--text3); margin-bottom:10px; padding:8px 12px; background:var(--bg2); border-radius:var(--radius); border-left:3px solid var(--border2); }
+.diag-result-t1d { background: var(--blue-light); border: 1px solid var(--blue-mid); border-radius: var(--radius-lg); padding: 18px 20px; }
+.diag-result-t2d { background: var(--amber-light); border: 1px solid #E8C46A; border-radius: var(--radius-lg); padding: 18px 20px; }
+.diag-result-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+.diag-result-t1d .diag-result-title { color: var(--blue-text); }
+.diag-result-t2d .diag-result-title { color: var(--amber-border); }
+
 /* Search / Figures placeholders */
 .placeholder-section { padding: 40px 0; text-align: center; color: var(--text3); font-size: 14px; }
 .placeholder-section i { font-size: 36px; display: block; margin-bottom: 10px; }
@@ -187,7 +201,7 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
 <div class="shell">
 
   <div style="margin-bottom:16px">
-    <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/ispad%20logo.svg" alt="ISPAD logo" style="height:52px;width:auto;display:block;margin-bottom:12px">
+    <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/ispad%20logo.svg" alt="ISPAD logo" style="height:72px;width:auto;display:block;margin-bottom:14px">
     <h1>ISPAD Clinical Practice Consensus Guidelines Tool</h1>
   </div>
   <p class="intro">ISPAD's Clinical Practice Consensus Guidelines are the only comprehensive set of clinical recommendations for children, adolescents, and young adults with diabetes worldwide. This tool allows you to explore the guidelines with ease and includes decision making tools for clinicians based on the 2024 and 2026 Guidelines.</p>
@@ -347,6 +361,67 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
       </div>
     </div>
 
+
+    <div class="accordion" id="acc-diag">
+      <div class="acc-header" onclick="toggleAcc('acc-diag')">
+        <span class="acc-title">Diagnosis of New Onset Diabetes in Youth</span>
+        <i class="ti ti-chevron-down acc-chevron" id="chev-acc-diag"></i>
+      </div>
+      <div class="acc-body" id="body-acc-diag">
+
+        <div class="flag-info result-flag" style="margin-bottom:20px">
+          <i class="ti ti-info-circle"></i>
+          <span>Assumes HbA1c &gt;6.5% at presentation. Order pancreatic autoantibodies at first contact — see ISPAD Ch. 3 §3.3.</span>
+        </div>
+
+        <div id="diag-steps">
+
+          <div class="diag-q" id="diag-q1">
+            <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:12px">BMI ≥ 85th percentile for age and sex?</div>
+            <div style="display:flex;gap:10px">
+              <button class="diag-btn" onclick="diagAnswer(1,'yes')">Yes</button>
+              <button class="diag-btn diag-btn-no" onclick="diagAnswer(1,'no')">No</button>
+            </div>
+          </div>
+
+          <div class="diag-q" id="diag-q2" style="display:none">
+            <div class="diag-trail" id="diag-trail-2"></div>
+            <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:12px">Age &gt;10 years or has started puberty?</div>
+            <div style="display:flex;gap:10px">
+              <button class="diag-btn" onclick="diagAnswer(2,'yes')">Yes</button>
+              <button class="diag-btn diag-btn-no" onclick="diagAnswer(2,'no')">No</button>
+            </div>
+          </div>
+
+          <div class="diag-q" id="diag-q3" style="display:none">
+            <div class="diag-trail" id="diag-trail-3"></div>
+            <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:12px">Signs of metabolic co-morbidities? <span style="font-size:12px;font-weight:400;color:var(--text3)">(acanthosis nigricans, hypertension, dyslipidaemia, PCOS, fatty liver)</span></div>
+            <div style="display:flex;gap:10px">
+              <button class="diag-btn" onclick="diagAnswer(3,'yes')">Yes</button>
+              <button class="diag-btn diag-btn-no" onclick="diagAnswer(3,'no')">No</button>
+            </div>
+          </div>
+
+          <div class="diag-q" id="diag-q4" style="display:none">
+            <div class="diag-trail" id="diag-trail-4"></div>
+            <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:12px">Diabetic ketoacidosis or cerebral oedema present?</div>
+            <div style="display:flex;gap:10px">
+              <button class="diag-btn" onclick="diagAnswer(4,'yes')">Yes</button>
+              <button class="diag-btn diag-btn-no" onclick="diagAnswer(4,'no')">No</button>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="diag-result" style="display:none;margin-top:20px"></div>
+
+        <div style="margin-top:16px">
+          <span class="clear-lnk" onclick="clearDiag()">Clear &amp; start again</span>
+        </div>
+
+      </div>
+    </div>
+
   </div><!-- /sec-aids -->
 
   <!-- ── GUIDELINES SEARCH ──────────────────────────────────────────── -->
@@ -368,88 +443,88 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
     <div class="fig-list" id="fig-grid">
       <div class="fig-row" data-tags="hypoglycemia symptoms signs autonomic neuroglycopenic" data-title="hypoglycemia symptoms & signs" onclick="openLightbox('symptoms')">
         <div class="fig-preview">
-          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/symptoms%20and%20signs.png" alt="Hypoglycemia Symptoms & Signs" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
+          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/symptoms%20and%20signs.png" alt="Symptoms and Signs of Hypoglycemia" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
         </div>
         <div class="fig-info">
           <span class="fig-chapter-badge">Ch. 5 · Fig. 1</span>
-          <div class="fig-row-title">Hypoglycemia Symptoms & Signs</div>
+          <div class="fig-row-title">Symptoms and Signs of Hypoglycemia</div>
           <div class="fig-row-tags">hypoglycemia · symptoms · signs · autonomic · neuroglycopenic</div>
           <span class="fig-view-btn"><i class="ti ti-zoom-in"></i> View full size</span>
         </div>
       </div>
       <div class="fig-row" data-tags="hypoglycemia risk factors t1d" data-title="risk factors for hypoglycemia" onclick="openLightbox('risk_factors')">
         <div class="fig-preview">
-          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/risk%20factors.png" alt="Risk Factors for Hypoglycemia" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
+          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/risk%20factors.png" alt="Risk Factors for Hypoglycemia in Youth with T1D" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
         </div>
         <div class="fig-info">
           <span class="fig-chapter-badge">Ch. 5 · Fig. 2</span>
-          <div class="fig-row-title">Risk Factors for Hypoglycemia</div>
+          <div class="fig-row-title">Risk Factors for Hypoglycemia in Youth with T1D</div>
           <div class="fig-row-tags">hypoglycemia · risk · factors · t1d</div>
           <span class="fig-view-btn"><i class="ti ti-zoom-in"></i> View full size</span>
         </div>
       </div>
       <div class="fig-row" data-tags="hypoglycemia management treatment glucagon" data-title="hypoglycemia management" onclick="openLightbox('hypo_mgmt')">
         <div class="fig-preview">
-          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/hypoglycemia%20management.png" alt="Hypoglycemia Management" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
+          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/hypoglycemia%20management.png" alt="Algorithm for Hypoglycemia Management" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
         </div>
         <div class="fig-info">
           <span class="fig-chapter-badge">Ch. 5 · Fig. 3</span>
-          <div class="fig-row-title">Hypoglycemia Management</div>
+          <div class="fig-row-title">Algorithm for Hypoglycemia Management</div>
           <div class="fig-row-tags">hypoglycemia · management · treatment · glucagon</div>
           <span class="fig-view-btn"><i class="ti ti-zoom-in"></i> View full size</span>
         </div>
       </div>
       <div class="fig-row" data-tags="hypoglycemia prevention t1d" data-title="hypoglycemia prevention" onclick="openLightbox('prevention')">
         <div class="fig-preview">
-          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/prevention.png" alt="Hypoglycemia Prevention" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
+          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/prevention.png" alt="Strategies for Hypoglycemia Prevention" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
         </div>
         <div class="fig-info">
           <span class="fig-chapter-badge">Ch. 5 · Fig. 4</span>
-          <div class="fig-row-title">Hypoglycemia Prevention</div>
+          <div class="fig-row-title">Strategies for Hypoglycemia Prevention</div>
           <div class="fig-row-tags">hypoglycemia · prevention · t1d</div>
           <span class="fig-view-btn"><i class="ti ti-zoom-in"></i> View full size</span>
         </div>
       </div>
       <div class="fig-row" data-tags="hypoglycemia levels classification level 1 level 2 level 3 cgm" data-title="hypoglycemia classification" onclick="openLightbox('table1')">
         <div class="fig-preview">
-          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/table%201.png" alt="Hypoglycemia Classification" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
+          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/table%201.png" alt="Hypoglycemia Classification Levels (Table 1)" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
         </div>
         <div class="fig-info">
           <span class="fig-chapter-badge">Ch. 5 · Table 1</span>
-          <div class="fig-row-title">Hypoglycemia Classification</div>
+          <div class="fig-row-title">Hypoglycemia Classification Levels (Table 1)</div>
           <div class="fig-row-tags">hypoglycemia · levels · classification · level · 1 · level · 2 · level · 3 · cgm</div>
           <span class="fig-view-btn"><i class="ti ti-zoom-in"></i> View full size</span>
         </div>
       </div>
       <div class="fig-row" data-tags="glucagon products table hypoglycemia treatment" data-title="glucagon products" onclick="openLightbox('glucagon')">
         <div class="fig-preview">
-          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/glucagon%20table.png" alt="Glucagon Products" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
+          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/glucagon%20table.png" alt="Available Glucagon Products for Hypoglycemia Treatment (Table 2)" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
         </div>
         <div class="fig-info">
           <span class="fig-chapter-badge">Ch. 5 · Table 2</span>
-          <div class="fig-row-title">Glucagon Products</div>
+          <div class="fig-row-title">Available Glucagon Products for Hypoglycemia Treatment (Table 2)</div>
           <div class="fig-row-tags">glucagon · products · table · hypoglycemia · treatment</div>
           <span class="fig-view-btn"><i class="ti ti-zoom-in"></i> View full size</span>
         </div>
       </div>
       <div class="fig-row" data-tags="dka diabetic ketoacidosis pathophysiology therapy insulin fluid resuscitation ketone glucose counterregulatory" data-title="dka integrated pathophysiology–therapy link" onclick="openLightbox('dka_path')">
         <div class="fig-preview">
-          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:12px;text-align:center;padding:8px">Image<br>coming soon</div>
+          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/Pathophysiology.png" alt="Integrated Pathophysiology–Therapy Link in Pediatric Diabetic Ketoacidosis" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
         </div>
         <div class="fig-info">
           <span class="fig-chapter-badge">Ch. 6 · Fig. 1</span>
-          <div class="fig-row-title">DKA Integrated Pathophysiology–Therapy Link</div>
+          <div class="fig-row-title">Integrated Pathophysiology–Therapy Link in Pediatric Diabetic Ketoacidosis</div>
           <div class="fig-row-tags">dka · diabetic · ketoacidosis · pathophysiology · therapy · insulin · fluid · re</div>
           <span class="fig-view-btn"><i class="ti ti-zoom-in"></i> View full size</span>
         </div>
       </div>
       <div class="fig-row" data-tags="psychosocial psychological social biological spiritual" data-title="psychosocial factors in youth diabetes" onclick="openLightbox('psychosocial')">
         <div class="fig-preview">
-          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:12px;text-align:center;padding:8px">Image<br>coming soon</div>
+          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/Psychosocial.png" alt="Psychosocial Factors in Youth with Diabetes" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
         </div>
         <div class="fig-info">
           <span class="fig-chapter-badge">Ch. 12 · Fig. 1</span>
-          <div class="fig-row-title">Psychosocial Factors in Youth Diabetes</div>
+          <div class="fig-row-title">Psychosocial Factors in Youth with Diabetes</div>
           <div class="fig-row-tags">psychosocial · psychological · social · biological · spiritual</div>
           <span class="fig-view-btn"><i class="ti ti-zoom-in"></i> View full size</span>
         </div>
@@ -471,28 +546,28 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
       </div>
       <div class="lb-body">
     <div class="lb-item" id="lb-symptoms" style="display:none">
-      <img id="lb-img-symptoms" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/symptoms%20and%20signs.png" alt="Hypoglycemia Symptoms & Signs" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
+      <img id="lb-img-symptoms" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/symptoms%20and%20signs.png" alt="Symptoms and Signs of Hypoglycemia" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
     </div>
     <div class="lb-item" id="lb-risk_factors" style="display:none">
-      <img id="lb-img-risk_factors" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/risk%20factors.png" alt="Risk Factors for Hypoglycemia" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
+      <img id="lb-img-risk_factors" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/risk%20factors.png" alt="Risk Factors for Hypoglycemia in Youth with T1D" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
     </div>
     <div class="lb-item" id="lb-hypo_mgmt" style="display:none">
-      <img id="lb-img-hypo_mgmt" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/hypoglycemia%20management.png" alt="Hypoglycemia Management" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
+      <img id="lb-img-hypo_mgmt" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/hypoglycemia%20management.png" alt="Algorithm for Hypoglycemia Management" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
     </div>
     <div class="lb-item" id="lb-prevention" style="display:none">
-      <img id="lb-img-prevention" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/prevention.png" alt="Hypoglycemia Prevention" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
+      <img id="lb-img-prevention" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/prevention.png" alt="Strategies for Hypoglycemia Prevention" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
     </div>
     <div class="lb-item" id="lb-table1" style="display:none">
-      <img id="lb-img-table1" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/table%201.png" alt="Hypoglycemia Classification" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
+      <img id="lb-img-table1" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/table%201.png" alt="Hypoglycemia Classification Levels (Table 1)" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
     </div>
     <div class="lb-item" id="lb-glucagon" style="display:none">
-      <img id="lb-img-glucagon" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/glucagon%20table.png" alt="Glucagon Products" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
+      <img id="lb-img-glucagon" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/glucagon%20table.png" alt="Available Glucagon Products for Hypoglycemia Treatment (Table 2)" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
     </div>
     <div class="lb-item" id="lb-dka_path" style="display:none">
-      <img id="lb-img-dka_path" src="" alt="DKA Integrated Pathophysiology–Therapy Link" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
+      <img id="lb-img-dka_path" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/Pathophysiology.png" alt="Integrated Pathophysiology–Therapy Link in Pediatric Diabetic Ketoacidosis" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
     </div>
     <div class="lb-item" id="lb-psychosocial" style="display:none">
-      <img id="lb-img-psychosocial" src="" alt="Psychosocial Factors in Youth Diabetes" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
+      <img id="lb-img-psychosocial" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/Psychosocial.png" alt="Psychosocial Factors in Youth with Diabetes" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
     </div>
         
         </div>
@@ -758,7 +833,7 @@ function calcGCS() {
 }
 
 // ── Figures ──────────────────────────────────────────────────────────────────
-const FIGS_META = [{"id": "symptoms", "title": "Hypoglycemia Symptoms & Signs", "chapter": "Ch. 5 · Fig. 1"}, {"id": "risk_factors", "title": "Risk Factors for Hypoglycemia", "chapter": "Ch. 5 · Fig. 2"}, {"id": "hypo_mgmt", "title": "Hypoglycemia Management", "chapter": "Ch. 5 · Fig. 3"}, {"id": "prevention", "title": "Hypoglycemia Prevention", "chapter": "Ch. 5 · Fig. 4"}, {"id": "table1", "title": "Hypoglycemia Classification", "chapter": "Ch. 5 · Table 1"}, {"id": "glucagon", "title": "Glucagon Products", "chapter": "Ch. 5 · Table 2"}, {"id": "dka_path", "title": "DKA Integrated Pathophysiology–Therapy Link", "chapter": "Ch. 6 · Fig. 1"}, {"id": "psychosocial", "title": "Psychosocial Factors in Youth Diabetes", "chapter": "Ch. 12 · Fig. 1"}];
+const FIGS_META = [{"id": "symptoms", "title": "Symptoms and Signs of Hypoglycemia", "chapter": "Ch. 5 · Fig. 1"}, {"id": "risk_factors", "title": "Risk Factors for Hypoglycemia in Youth with T1D", "chapter": "Ch. 5 · Fig. 2"}, {"id": "hypo_mgmt", "title": "Algorithm for Hypoglycemia Management", "chapter": "Ch. 5 · Fig. 3"}, {"id": "prevention", "title": "Strategies for Hypoglycemia Prevention", "chapter": "Ch. 5 · Fig. 4"}, {"id": "table1", "title": "Hypoglycemia Classification Levels (Table 1)", "chapter": "Ch. 5 · Table 1"}, {"id": "glucagon", "title": "Available Glucagon Products for Hypoglycemia Treatment (Table 2)", "chapter": "Ch. 5 · Table 2"}, {"id": "dka_path", "title": "Integrated Pathophysiology–Therapy Link in Pediatric Diabetic Ketoacidosis", "chapter": "Ch. 6 · Fig. 1"}, {"id": "psychosocial", "title": "Psychosocial Factors in Youth with Diabetes", "chapter": "Ch. 12 · Fig. 1"}];
 
 function filterFigs() {
   const q = document.getElementById('fig-search').value.toLowerCase().trim();
@@ -795,6 +870,76 @@ function closeLightboxOutside(e) {
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+
+// ── Diagnosis of New Onset Diabetes ──────────────────────────────────────────
+const diagTrail = [];
+
+function diagAnswer(q, ans) {
+  diagTrail.push({ q, ans });
+
+  // Hide current question buttons (lock answer)
+  document.querySelectorAll(`#diag-q${q} .diag-btn`).forEach(b => {
+    b.disabled = true;
+    b.style.opacity = b.textContent.toLowerCase() === ans ? '1' : '0.35';
+  });
+
+  const t1dNotes = `<ul style="margin:8px 0 0 18px;font-size:13px;color:var(--blue-text);line-height:1.7">
+    <li>Reconsider T2D if pancreatic autoantibodies are negative</li>
+    <li>Consider MODY if autoantibodies negative <em>and</em> no clinical features of insulin resistance, no history of genitourinary tract abnormalities or neonatal diabetes, or stable isolated fasting hyperglycaemia</li>
+  </ul>`;
+
+  const showResult = (type) => {
+    document.getElementById('diag-result').style.display = '';
+    if (type === 't1d') {
+      document.getElementById('diag-result').innerHTML = `
+        <div class="diag-result-t1d">
+          <div class="diag-result-title"><i class="ti ti-circle-check"></i> Treat as Type 1 Diabetes</div>
+          <div style="font-size:13px;color:var(--blue-text);font-weight:600">Further considerations:</div>
+          ${t1dNotes}
+        </div>`;
+    } else {
+      document.getElementById('diag-result').innerHTML = `
+        <div class="diag-result-t2d">
+          <div class="diag-result-title"><i class="ti ti-circle-check"></i> Treat as Type 2 Diabetes</div>
+          <div style="font-size:13px;color:var(--amber-border)">Confirm with clinical review and autoantibody results. Initiate T2D management pathway per ISPAD Ch. 3.</div>
+        </div>`;
+    }
+  };
+
+  const showNext = (nextQ, trailText) => {
+    const el = document.getElementById(`diag-q${nextQ}`);
+    el.style.display = '';
+    document.getElementById(`diag-trail-${nextQ}`).textContent = trailText;
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+
+  if (q === 1) {
+    if (ans === 'no') return showResult('t1d');
+    showNext(2, 'BMI ≥ 85th percentile → Yes');
+  } else if (q === 2) {
+    if (ans === 'no') return showResult('t1d');
+    showNext(3, 'BMI ≥ 85th percentile → Yes · Age >10 / puberty → Yes');
+  } else if (q === 3) {
+    if (ans === 'no') return showResult('t1d');
+    showNext(4, 'BMI ≥ 85th percentile → Yes · Age >10 / puberty → Yes · Metabolic co-morbidities → Yes');
+  } else if (q === 4) {
+    if (ans === 'yes') return showResult('t1d');
+    return showResult('t2d');
+  }
+}
+
+function clearDiag() {
+  diagTrail.length = 0;
+  ['diag-q2','diag-q3','diag-q4','diag-result'].forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+  document.getElementById('diag-q1').style.display = '';
+  document.querySelectorAll('.diag-btn').forEach(b => { b.disabled = false; b.style.opacity = '1'; });
+  ['diag-trail-2','diag-trail-3','diag-trail-4'].forEach(id => {
+    document.getElementById(id).textContent = '';
+  });
+}
 
 // ── CHAPTER SEARCH ────────────────────────────────────────────────────────────
 
