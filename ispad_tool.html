@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISPAD Clinical Practice Consensus Guidelines Tool</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+:root {
+  --ispad-blue: #1B3A6B;
+  --ispad-blue-mid: #2756A0;
+  --ispad-blue-light: #E8EEF7;
+  --ispad-teal: #3A8C8C;
+  --green: #1D9E75; --green-light: #E1F5EE; --green-mid: #5DCAA5;
+  --amber-light: #FAEEDA; --amber-mid: #EF9F27; --amber-border: #BA7517;
+  --coral-light: #FAECE7; --coral-mid: #F0997B;
+  --blue-light: #E6F1FB; --blue-mid: #85B7EB; --blue-text: #042C53;
+  --teal-green: #97C459; --teal-text: #173404;
+  --bg: #ffffff; --bg2: #f4f5f7; --bg3: #e8eaed;
+  --text: #1a1a1a; --text2: #555; --text3: #888;
+  --border: rgba(0,0,0,0.10); --border2: rgba(0,0,0,0.18);
+  --radius: 6px; --radius-lg: 10px;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 15px; }
+.shell { max-width: 1100px; margin: 0 auto; padding: 28px 32px 60px; }
+
+/* Header */
+.header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px; }
+.logo-wrap { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.logo-icon { width: 48px; height: 48px; }
+.logo-text-wrap { display: flex; flex-direction: column; }
+.logo-name { font-size: 13px; font-weight: 700; color: var(--ispad-blue); line-height: 1.2; }
+.logo-full { font-size: 10px; color: var(--text2); line-height: 1.3; max-width: 160px; }
+h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 10px; }
+.intro { font-size: 13px; color: var(--text2); line-height: 1.65; margin-bottom: 24px; }
+
+/* Nav buttons */
+.nav-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 32px; }
+.nav-btn { background: var(--ispad-blue); color: #fff; border: none; border-radius: var(--radius); padding: 13px 10px; font-size: 13px; font-weight: 600; cursor: pointer; text-align: center; letter-spacing: .01em; transition: background .12s; }
+.nav-btn:hover { background: var(--ispad-blue-mid); }
+.nav-btn.active { background: var(--ispad-blue-mid); outline: 2px solid #6B9AE0; outline-offset: 2px; }
+
+/* Sections */
+.section { display: none; } .section.active { display: block; }
+
+/* Accordion */
+.accordion { border: 1px solid var(--border2); border-radius: var(--radius-lg); margin-bottom: 14px; overflow: hidden; }
+.acc-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: var(--bg2); cursor: pointer; user-select: none; }
+.acc-header:hover { background: var(--bg3); }
+.acc-title { font-size: 14px; font-weight: 600; color: var(--text); }
+.acc-chevron { font-size: 18px; color: var(--text3); transition: transform .2s; }
+.acc-chevron.open { transform: rotate(180deg); }
+.acc-body { display: none; padding: 20px 18px; background: var(--bg); }
+.acc-body.open { display: block; }
+
+/* Form */
+.field-row { display: flex; gap: 14px; align-items: flex-end; margin-bottom: 16px; flex-wrap: wrap; }
+.fld { display: flex; flex-direction: column; gap: 4px; }
+.fld label { font-size: 12px; font-weight: 500; color: var(--text2); }
+.fld input, .fld select { font-size: 13px; padding: 7px 10px; border: 1px solid var(--border2); border-radius: var(--radius); background: var(--bg); color: var(--text); }
+.fld input:focus, .fld select:focus { outline: none; border-color: var(--ispad-blue-mid); box-shadow: 0 0 0 3px rgba(39,86,160,.1); }
+.fld .unit { font-size: 11px; color: var(--text3); margin-top: 1px; }
+.or-sep { font-size: 12px; color: var(--text3); padding-bottom: 8px; align-self: flex-end; }
+.input-sm { width: 80px; }
+.input-md { width: 110px; }
+.input-lg { width: 160px; }
+
+/* Assess button */
+.assess-btn { background: var(--ispad-blue); color: #fff; border: none; border-radius: var(--radius); padding: 10px 28px; font-size: 13px; font-weight: 700; cursor: pointer; letter-spacing: .04em; margin-top: 4px; }
+.assess-btn:hover { background: var(--ispad-blue-mid); }
+.clear-lnk { font-size: 12px; color: var(--text3); cursor: pointer; margin-left: 12px; text-decoration: underline; }
+
+/* Result area */
+.result-area { margin-top: 16px; background: var(--bg2); border-radius: var(--radius); padding: 14px 16px; min-height: 44px; font-size: 13px; color: var(--text2); line-height: 1.6; display: none; }
+.result-area.visible { display: block; }
+.result-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--text3); margin-bottom: 6px; }
+.result-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.result-sub { font-size: 12px; color: var(--text2); margin-bottom: 12px; }
+.result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px; }
+.rcol-title { font-size: 11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+.ri { font-size: 13px; color: var(--text); display: flex; align-items: flex-start; gap: 6px; line-height: 1.5; margin-bottom: 4px; }
+.ri i { font-size: 13px; color: var(--green); margin-top: 2px; flex-shrink: 0; }
+.ri.w i { color: var(--amber-border); }
+.result-flag { margin-top: 10px; padding: 7px 10px; border-radius: 0 var(--radius) var(--radius) 0; font-size: 12px; display: flex; align-items: flex-start; gap: 7px; line-height: 1.5; }
+.flag-warn { background: var(--amber-light); border-left: 3px solid var(--amber-mid); color: #633806; }
+.flag-info { background: var(--blue-light); border-left: 3px solid var(--blue-mid); color: var(--blue-text); }
+.flag-ok   { background: var(--green-light); border-left: 3px solid var(--green-mid); color: #085041; }
+.result-badge { display: inline-block; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
+.badge-mild    { background: #EAF3DE; color: var(--teal-text); }
+.badge-mod     { background: var(--amber-light); color: var(--amber-border); }
+.badge-sev     { background: var(--coral-light); color: #993C1D; }
+.badge-hhs     { background: var(--blue-light); color: var(--blue-text); }
+.badge-hhs-dka { background: var(--amber-light); color: #854F0B; }
+.badge-pending { background: var(--bg3); color: var(--text2); }
+.badge-ok      { background: var(--green-light); color: #085041; }
+
+/* PDF link */
+.pdf-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; background: var(--ispad-blue-light); color: var(--ispad-blue); font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: var(--radius); text-decoration: none; cursor: pointer; border: 1px solid #BFD0E8; }
+.pdf-link:hover { background: #D5E3F5; }
+
+/* Pending list */
+.pending-list { list-style: none; padding: 0; margin-top: 8px; }
+.pending-list li { display: flex; align-items: flex-start; gap: 7px; font-size: 13px; color: var(--text); line-height: 1.5; margin-bottom: 5px; }
+.pending-list li i { color: var(--amber-border); font-size: 14px; margin-top: 2px; flex-shrink: 0; }
+
+/* GCS toggle */
+.toggle-row { display: flex; gap: 8px; margin-bottom: 18px; }
+.toggle-btn { padding: 7px 22px; font-size: 13px; font-weight: 500; border-radius: var(--radius); cursor: pointer; border: 1px solid var(--border2); background: var(--bg); color: var(--text2); transition: all .1s; }
+.toggle-btn.on { background: var(--ispad-blue-light); border-color: #BFD0E8; color: var(--ispad-blue); font-weight: 600; }
+
+/* GCS dropdowns */
+.gcs-field { margin-bottom: 14px; }
+.gcs-field label { font-size: 12px; font-weight: 500; color: var(--text2); display: block; margin-bottom: 4px; }
+.gcs-field select { width: 100%; font-size: 13px; padding: 8px 36px 8px 10px; border: 1px solid var(--border2); border-radius: var(--radius); background: var(--bg); color: var(--text); appearance: auto; }
+.gcs-field select:focus { outline: none; border-color: var(--ispad-blue-mid); box-shadow: 0 0 0 3px rgba(39,86,160,.1); }
+.gcs-score-row { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.gcs-score-label { font-size: 13px; font-weight: 600; color: var(--text2); }
+.gcs-score-val { font-size: 22px; font-weight: 700; color: var(--ispad-blue); min-width: 36px; }
+.gcs-interp { font-size: 13px; color: var(--text2); }
+
+/* Fluid calc */
+.fluid-calc { margin-top: 10px; padding: 7px 10px; background: var(--blue-light); border-left: 3px solid var(--blue-mid); border-radius: 0 var(--radius) var(--radius) 0; font-size: 12px; color: var(--blue-text); display: flex; align-items: center; gap: 7px; }
+
+/* Search / Figures placeholders */
+.placeholder-section { padding: 40px 0; text-align: center; color: var(--text3); font-size: 14px; }
+.placeholder-section i { font-size: 36px; display: block; margin-bottom: 10px; }
+
+@media (max-width: 560px) {
+  .nav-btns { grid-template-columns: 1fr; }
+  .result-grid { grid-template-columns: 1fr; }
+  .field-row { flex-direction: column; align-items: flex-start; }
+}
+
+/* Figures section */
+.search-wrap { position: relative; margin-bottom: 20px; }
+.search-wrap i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--text3); pointer-events: none; }
+.search-wrap input { width: 100%; font-size: 15px; padding: 12px 14px 12px 44px; border: 1px solid var(--border2); border-radius: 30px; background: var(--bg2); color: var(--text); }
+.search-wrap input:focus { outline: none; border-color: var(--ispad-blue-mid); box-shadow: 0 0 0 3px rgba(39,86,160,.1); background: var(--bg); }
+.fig-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.fig-card { position: relative; border-radius: var(--radius-lg); overflow: hidden; cursor: pointer; border: 1px solid var(--border); transition: box-shadow .15s, transform .15s; background: var(--bg2); }
+.fig-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.12); transform: translateY(-2px); }
+.fig-thumb { width: 100%; aspect-ratio: 4/3; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--bg2); }
+.fig-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.fig-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(80,80,80,.72); padding: 10px 12px; }
+.fig-label { display: block; font-size: 13px; font-weight: 600; color: #fff; line-height: 1.3; }
+.fig-chapter { display: block; font-size: 11px; color: rgba(255,255,255,.7); margin-top: 2px; }
+
+/* Lightbox */
+/* Chapter search cards */
+.chap-card { border: 1px solid var(--border2); border-radius: var(--radius-lg); padding: 18px 20px; margin-bottom: 14px; background: var(--bg); transition: box-shadow .15s; }
+.chap-card:hover { box-shadow: 0 3px 14px rgba(0,0,0,.09); }
+.chap-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+.chap-num { font-size: 11px; font-weight: 700; background: var(--ispad-blue-light); color: var(--ispad-blue); padding: 2px 8px; border-radius: 20px; letter-spacing: .04em; }
+.chap-year { font-size: 11px; color: var(--text3); }
+.chap-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; line-height: 1.35; }
+.chap-desc { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 12px; }
+.chap-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+.chap-tag { font-size: 11px; color: var(--text3); background: var(--bg2); border: 1px solid var(--border); border-radius: 20px; padding: 2px 8px; }
+.chap-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.chap-link { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: var(--radius); text-decoration: none; border: 1px solid; transition: background .1s; }
+.chap-link-doi { background: var(--ispad-blue-light); color: var(--ispad-blue); border-color: #BFD0E8; }
+.chap-link-doi:hover { background: #D5E3F5; }
+.chap-link-pdf { background: var(--green-light); color: #085041; border-color: #8DCFB8; }
+.chap-link-pdf:hover { background: #C4EAE0; }
+.chap-new-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; color: var(--amber-border); background: var(--amber-light); border: 1px solid #E8C46A; padding: 2px 7px; border-radius: 20px; letter-spacing: .04em; margin-left: 4px; }
+.chap-none { text-align: center; color: var(--text3); font-size: 14px; padding: 40px 0; }
+
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.7); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+.lightbox.open { display: flex; }
+.lb-box { background: var(--bg); border-radius: var(--radius-lg); max-width: 860px; width: 100%; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; }
+.lb-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.lb-title { font-size: 14px; font-weight: 600; color: var(--text); }
+.lb-download { display: inline-flex; align-items: center; gap: 5px; background: var(--ispad-blue-light); color: var(--ispad-blue); font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: var(--radius); text-decoration: none; border: 1px solid #BFD0E8; }
+.lb-download:hover { background: #D5E3F5; }
+.lb-close { background: none; border: none; cursor: pointer; font-size: 18px; color: var(--text2); padding: 4px; border-radius: var(--radius); display: flex; align-items: center; }
+.lb-close:hover { background: var(--bg2); }
+.lb-body { overflow-y: auto; padding: 20px; display: flex; align-items: flex-start; justify-content: center; }
+.lb-body img { max-width: 100%; height: auto; border-radius: var(--radius); display: block; }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <h1>ISPAD Clinical Practice Consensus Guidelines Tool</h1>
+  <p class="intro">ISPAD's Clinical Practice Consensus Guidelines are the only comprehensive set of clinical recommendations for children, adolescents, and young adults with diabetes worldwide. This tool allows you to explore the guidelines with ease and includes decision making tools for clinicians based on the 2024 and 2026 Guidelines.</p>
+
+  <!-- Nav -->
+  <div class="nav-btns">
+    <button class="nav-btn active" onclick="showSection('aids', this)">Decision Aids</button>
+    <button class="nav-btn" onclick="showSection('search', this)">Guidelines Search</button>
+    <button class="nav-btn" onclick="showSection('figs', this)">Figures &amp; Tables</button>
+  </div>
+
+  <!-- ── DECISION AIDS ───────────────────────────────────────────────── -->
+  <div class="section active" id="sec-aids">
+
+    <div style="display:flex;align-items:flex-start;gap:10px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:12px 16px;margin-bottom:20px;font-size:12px;color:var(--text2);line-height:1.6">
+      <i class="ti ti-info-circle" style="font-size:16px;color:var(--text3);flex-shrink:0;margin-top:1px"></i>
+      <span><strong style="color:var(--text)">For clinical decision support only.</strong> These tools are intended to assist clinicians in applying the ISPAD Clinical Practice Consensus Guidelines and do not replace clinical judgement, institutional protocols, or direct patient assessment. They are not diagnostic tools.</span>
+    </div>
+
+    <!-- Accordion 1: DKA vs HHS -->
+    <div class="accordion" id="acc-dka">
+      <div class="acc-header" onclick="toggleAcc('acc-dka')">
+        <span class="acc-title">DKA vs HHS Treatment Protocol Selection Aid</span>
+        <i class="ti ti-chevron-down acc-chevron open" id="chev-acc-dka"></i>
+      </div>
+      <div class="acc-body open" id="body-acc-dka">
+
+        <div style="display:flex;flex-wrap:wrap;gap:20px 28px;align-items:flex-end;margin-bottom:18px">
+          <div class="fld">
+            <label>Blood Glucose</label>
+            <div style="display:flex;align-items:center;gap:6px">
+              <input type="number" class="input-sm" id="bg-mmol" placeholder="" oninput="syncGlucose('mmol')">
+              <span class="unit">mmol/L</span>
+              <span style="font-size:12px;color:var(--text3);line-height:1">or</span>
+              <input type="number" class="input-sm" id="bg-mgdl" placeholder="" oninput="syncGlucose('mgdl')">
+              <span class="unit">mg/dL</span>
+            </div>
+          </div>
+          <div class="fld">
+            <label>Serum Osmolality</label>
+            <div style="display:flex;align-items:center;gap:6px">
+              <input type="number" class="input-md" id="osm" placeholder="">
+              <span class="unit">mOsm/kg</span>
+            </div>
+          </div>
+          <div class="fld">
+            <label>Venous pH</label>
+            <input type="number" class="input-sm" id="ph" placeholder="" step="0.01" oninput="updateClinicalVisibility()">
+          </div>
+          <div class="fld">
+            <label>Bicarbonate</label>
+            <div style="display:flex;align-items:center;gap:6px">
+              <input type="number" class="input-sm" id="bicarb" placeholder="" oninput="updateClinicalVisibility()">
+              <span class="unit">mmol/L</span>
+            </div>
+          </div>
+          <div class="fld">
+            <label>BOHB (blood ketones)</label>
+            <div style="display:flex;align-items:center;gap:6px">
+              <input type="number" class="input-sm" id="bohb" placeholder="" step="0.1" oninput="updateClinicalVisibility()">
+              <span class="unit">mmol/L</span>
+            </div>
+          </div>
+          <div class="fld" id="clinical-row" style="display:none">
+            <label>Clinical Status</label>
+            <select id="clinical" style="width:280px">
+              <option value="">– select –</option>
+              <option value="y">Well-appearing, not vomiting, haemodynamically stable</option>
+              <option value="n">Unwell / vomiting / haemodynamically unstable</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="assess-btn" onclick="runDKAHHS()">ASSESS</button>
+        <span class="clear-lnk" onclick="clearDKAHHS()">Clear</span>
+
+        <div class="result-area" id="dka-result"></div>
+
+      </div>
+    </div>
+
+    <!-- Accordion 2: GCS -->
+    <div class="accordion" id="acc-gcs">
+      <div class="acc-header" onclick="toggleAcc('acc-gcs')">
+        <span class="acc-title">Glasgow Coma Scale</span>
+        <i class="ti ti-chevron-down acc-chevron" id="chev-acc-gcs"></i>
+      </div>
+      <div class="acc-body" id="body-acc-gcs">
+
+        <div style="font-size:12px;color:var(--text2);margin-bottom:14px;line-height:1.5">Select the best response observed. Score = Eye (1–4) + Verbal (1–5) + Motor (1–6). Range: 3–15.</div>
+
+        <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:6px">Is the child verbal?</div>
+        <div class="toggle-row">
+          <button class="toggle-btn on" id="btn-verbal" onclick="setVerbal(true)">Verbal</button>
+          <button class="toggle-btn" id="btn-nonverbal" onclick="setVerbal(false)">Non-verbal</button>
+        </div>
+
+        <!-- Eye -->
+        <div class="gcs-field">
+          <label>Eye Response (E)</label>
+          <select id="gcs-eye" onchange="calcGCS()">
+            <option value="">– select –</option>
+            <option value="4">4 — Eyes open spontaneously</option>
+            <option value="3">3 — Eyes open to verbal command</option>
+            <option value="2">2 — Eyes open to pain</option>
+            <option value="1">1 — No eye opening</option>
+          </select>
+        </div>
+
+        <!-- Verbal — shown based on toggle -->
+        <div class="gcs-field" id="verbal-field">
+          <label>Best Verbal Response (V)</label>
+          <select id="gcs-verbal" onchange="calcGCS()">
+            <option value="">– select –</option>
+            <option value="5">5 — Oriented, normal conversation</option>
+            <option value="4">4 — Confused, disoriented conversation</option>
+            <option value="3">3 — Words, but incoherent</option>
+            <option value="2">2 — No words, only incomprehensible sounds / moaning</option>
+            <option value="1">1 — No verbal response</option>
+          </select>
+        </div>
+
+        <!-- Non-verbal — hidden by default -->
+        <div class="gcs-field" id="nonverbal-field" style="display:none">
+          <label>Best Verbal Response — Non-verbal child (V)</label>
+          <select id="gcs-nonverbal" onchange="calcGCS()">
+            <option value="">– select –</option>
+            <option value="5">5 — Smiles, oriented to sound, follows objects and interacts</option>
+            <option value="4">4 — Consolable when crying and interacts inappropriately</option>
+            <option value="3">3 — Inconsistently consolable and moans; makes vocal sounds</option>
+            <option value="2">2 — Inconsolable, irritable, restless, cries</option>
+            <option value="1">1 — No response</option>
+          </select>
+        </div>
+
+        <!-- Motor -->
+        <div class="gcs-field">
+          <label>Best Motor Response (M)</label>
+          <select id="gcs-motor" onchange="calcGCS()">
+            <option value="">– select –</option>
+            <option value="6">6 — Obeys commands</option>
+            <option value="5">5 — Localizes pain</option>
+            <option value="4">4 — Withdrawal from pain</option>
+            <option value="3">3 — Flexion to pain (decorticate posture)</option>
+            <option value="2">2 — Extension to pain (decerebrate posture)</option>
+            <option value="1">1 — No motor response</option>
+          </select>
+        </div>
+
+        <div class="gcs-score-row">
+          <span class="gcs-score-label">GCS score:</span>
+          <span class="gcs-score-val" id="gcs-score">—</span>
+          <span class="gcs-interp" id="gcs-interp"></span>
+        </div>
+        <div class="result-area" id="gcs-result" style="margin-top:12px"></div>
+
+      </div>
+    </div>
+
+  </div><!-- /sec-aids -->
+
+  <!-- ── GUIDELINES SEARCH ──────────────────────────────────────────── -->
+  <div class="section" id="sec-search">
+    <div class="search-wrap" style="margin-bottom:16px">
+      <i class="ti ti-search"></i>
+      <input type="text" id="chapter-search" placeholder="Search chapters by topic, keyword, or title…" oninput="filterChapters()" autocomplete="off">
+    </div>
+    <div style="font-size:12px;color:var(--text3);margin-bottom:20px" id="chap-count"></div>
+    <div id="chapter-results"></div>
+  </div>
+
+  <!-- ── FIGURES & TABLES ───────────────────────────────────────────── -->
+  <div class="section" id="sec-figs">
+    <div class="search-wrap">
+      <i class="ti ti-search"></i>
+      <input type="text" id="fig-search" placeholder="search" oninput="filterFigs()">
+    </div>
+    <div class="fig-grid" id="fig-grid">
+      <div class="fig-card" data-tags="hypoglycemia symptoms signs autonomic neuroglycopenic" data-title="hypoglycemia symptoms & signs" onclick="openLightbox('symptoms')">
+        <div class="fig-thumb">
+          <img src="" alt="Hypoglycemia Symptoms & Signs">
+        </div>
+        <div class="fig-overlay">
+          <span class="fig-label">Hypoglycemia Symptoms & Signs</span>
+          <span class="fig-chapter">Ch. 5 · Fig. 1</span>
+        </div>
+      </div>
+      <div class="fig-card" data-tags="hypoglycemia risk factors t1d" data-title="risk factors for hypoglycemia" onclick="openLightbox('risk_factors')">
+        <div class="fig-thumb">
+          <img src="" alt="Risk Factors for Hypoglycemia">
+        </div>
+        <div class="fig-overlay">
+          <span class="fig-label">Risk Factors for Hypoglycemia</span>
+          <span class="fig-chapter">Ch. 5 · Fig. 2</span>
+        </div>
+      </div>
+      <div class="fig-card" data-tags="hypoglycemia management treatment glucagon" data-title="hypoglycemia management" onclick="openLightbox('hypo_mgmt')">
+        <div class="fig-thumb">
+          <img src="" alt="Hypoglycemia Management">
+        </div>
+        <div class="fig-overlay">
+          <span class="fig-label">Hypoglycemia Management</span>
+          <span class="fig-chapter">Ch. 5 · Fig. 3</span>
+        </div>
+      </div>
+      
+      <div class="fig-card" data-tags="hypoglycemia prevention t1d" data-title="hypoglycemia prevention" onclick="openLightbox('prevention')">
+        <div class="fig-thumb">
+          <img src="" alt="Hypoglycemia Prevention">
+        </div>
+        <div class="fig-overlay">
+          <span class="fig-label">Hypoglycemia Prevention</span>
+          <span class="fig-chapter">Ch. 5 · Fig. 4</span>
+        </div>
+      </div>
+      <div class="fig-card" data-tags="hypoglycemia levels classification level 1 level 2 level 3 cgm" data-title="hypoglycemia classification levels" onclick="openLightbox('table1')">
+        <div class="fig-thumb">
+          <img src="" alt="Hypoglycemia Classification">
+        </div>
+        <div class="fig-overlay">
+          <span class="fig-label">Hypoglycemia Classification</span>
+          <span class="fig-chapter">Ch. 5 · Table 1</span>
+        </div>
+      </div>
+    </div>
+
+      <div class="fig-card" data-tags="glucagon products table hypoglycemia treatment" data-title="glucagon products comparison" onclick="openLightbox('glucagon')">
+        <div class="fig-thumb">
+          <img src="" alt="Glucagon Products">
+        </div>
+        <div class="fig-overlay">
+          <span class="fig-label">Glucagon Products</span>
+          <span class="fig-chapter">Ch. 5 · Table 2</span>
+        </div>
+      </div>
+      <div class="fig-card" data-tags="dka diabetic ketoacidosis pathophysiology therapy insulin fluid resuscitation ketone glucose counterregulatory" data-title="DKA Integrated Pathophysiology–Therapy Link" onclick="openLightbox('dka_path')">
+        <div class="fig-thumb">
+          <img id="lb-img-dka_path-thumb" src="" alt="DKA pathophysiology diagram">
+          <div class="fig-overlay"><span class="fig-label">DKA Integrated Pathophysiology–Therapy</span></div>
+        </div>
+      </div>
+      <div class="fig-card" data-tags="psychosocial psychological social biological spiritual" data-title="psychosocial factors in youth diabetes" onclick="openLightbox('psychosocial')">
+        <div class="fig-thumb">
+          <img src="" alt="Psychosocial Factors in Youth Diabetes">
+        </div>
+        <div class="fig-overlay">
+          <span class="fig-label">Psychosocial Factors in Youth Diabetes</span>
+          <span class="fig-chapter">Ch. 12 · Fig. 1</span>
+        </div>
+      </div>
+    
+    <p class="fig-none" id="fig-none" style="display:none;color:var(--text3);font-size:13px;padding:20px 0">No figures match your search.</p>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+    <div class="lb-box">
+      <div class="lb-header">
+        <span class="lb-title" id="lb-title"></span>
+        <div style="display:flex;gap:8px;align-items:center">
+          <a class="lb-download" id="lb-download" download><i class="ti ti-download"></i> Download</a>
+          <button class="lb-close" onclick="closeLightbox()"><i class="ti ti-x"></i></button>
+        </div>
+      </div>
+      <div class="lb-body">
+        
+    <div class="lb-item" id="lb-prevention" style="display:none">
+      <img src="" alt="Hypoglycemia Prevention" id="lb-img-prevention">
+    </div>
+    <div class="lb-item" id="lb-risk_factors" style="display:none">
+      <img src="" alt="Risk Factors for Hypoglycemia" id="lb-img-risk_factors">
+    </div>
+    <div class="lb-item" id="lb-symptoms" style="display:none">
+      <img src="" alt="Hypoglycemia Symptoms & Signs" id="lb-img-symptoms">
+    </div>
+    <div class="lb-item" id="lb-hypo_mgmt" style="display:none">
+      <img src="" alt="Hypoglycemia Management" id="lb-img-hypo_mgmt">
+    </div>
+    <div class="lb-item" id="lb-psychosocial" style="display:none">
+      <img src="" alt="Psychosocial Factors in Youth Diabetes" id="lb-img-psychosocial">
+    </div>
+      <div class="lb-item" id="lb-glucagon" style="display:none">
+      <img src="" alt="Glucagon Products" id="lb-img-glucagon">
+    </div>
+    <div class="lb-item" id="lb-table1" style="display:none">
+      <img src="" alt="Hypoglycemia Classification" id="lb-img-table1">
+    </div>
+    <div class="lb-item" id="lb-dka_path" style="display:none">
+      <img id="lb-img-dka_path" src="" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
+    </div>
+                </div>
+    </div>
+  </div>
+
+</div><!-- /shell -->
+
+<script>
+// ── Nav ──────────────────────────────────────────────────────────────────────
+function showSection(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── Accordion ────────────────────────────────────────────────────────────────
+function toggleAcc(id) {
+  const body  = document.getElementById('body-' + id);
+  const chev  = document.getElementById('chev-' + id);
+  const open  = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  chev.classList.toggle('open', !open);
+}
+
+// ── Glucose sync ─────────────────────────────────────────────────────────────
+function syncGlucose(from) {
+  const mmol = document.getElementById('bg-mmol');
+  const mgdl = document.getElementById('bg-mgdl');
+  // Display sync only — routing logic uses each unit's own guideline thresholds
+  if (from === 'mmol' && mmol.value !== '') {
+    mgdl.value = Math.round(parseFloat(mmol.value) * 18);
+  } else if (from === 'mgdl' && mgdl.value !== '') {
+    mmol.value = (parseFloat(mgdl.value) / 18).toFixed(1);
+  }
+}
+
+// ── Show/hide clinical status field ─────────────────────────────────────────
+function updateClinicalVisibility() {
+  const p  = parseFloat(document.getElementById('ph').value);
+  const b  = parseFloat(document.getElementById('bicarb').value);
+  const k  = parseFloat(document.getElementById('bohb').value);
+  const hasPH = !isNaN(p), hasB = !isNaN(b), hasK = !isNaN(k);
+  const sevAcid = (hasPH && p < 7.1) || (hasB && b < 5);
+  const modAcid = !sevAcid && ((hasPH && p < 7.2) || (hasB && b < 10));
+  // Show clinical status only when mild DKA is plausible (not severe/moderate acid)
+  const mildOnly = !sevAcid && !modAcid && ((hasPH && p < 7.3) || (hasB && b < 18) || (hasK && k >= 3.0));
+  document.getElementById('clinical-row').style.display = mildOnly ? '' : 'none';
+  if (!mildOnly) document.getElementById('clinical').value = '';
+}
+
+// ── DKA / HHS logic ──────────────────────────────────────────────────────────
+function runDKAHHS() {
+  // Use mmol/L if entered; otherwise convert from mg/dL using guideline thresholds
+  const rawMmol = parseFloat(document.getElementById('bg-mmol').value);
+  const rawMgdl = parseFloat(document.getElementById('bg-mgdl').value);
+  // Resolve g in mmol/L for display, but track which unit was primary
+  const g = !isNaN(rawMmol) ? rawMmol : (!isNaN(rawMgdl) ? rawMgdl / 18 : NaN);
+  // Apply guideline-stated thresholds per unit to avoid rounding mismatches
+  const gMgdl = !isNaN(rawMgdl) ? rawMgdl : (!isNaN(rawMmol) ? rawMmol * 18 : NaN);
+  const o  = parseFloat(document.getElementById('osm').value);
+  const p  = parseFloat(document.getElementById('ph').value);
+  const b  = parseFloat(document.getElementById('bicarb').value);
+  const k  = parseFloat(document.getElementById('bohb').value);
+  const cl = document.getElementById('clinical').value;
+  const wt = NaN; // weight field removed
+  const el = document.getElementById('dka-result');
+  el.classList.add('visible');
+
+  const hasG = !isNaN(g), hasO = !isNaN(o), hasPH = !isNaN(p), hasB = !isNaN(b), hasK = !isNaN(k);
+
+  // ISPAD 2024 thresholds — use guideline-stated values per unit
+  // Lower: >11 mmol/L or >200 mg/dL; Upper: >33.3 mmol/L or >600 mg/dL
+  const loThresh = !isNaN(rawMgdl) ? gMgdl > 200 : g > 11;
+  const hiG      = !isNaN(rawMgdl) ? gMgdl > 600 : g >= 33.3;
+  const hiO       = o > 320;
+  const dkaAcid   = (hasPH && p < 7.3)  || (hasB && b < 18);
+  const dkaKeto   = hasK && k >= 3.0;
+  const hhsPH     = hasPH && p > 7.3;
+  const hhsBicarb = hasB  && b > 15;
+  const hhsKeto   = hasK  && k < 3.0;
+  const sevAcid   = (hasPH && p < 7.1)  || (hasB && b < 5);
+  const modAcid   = !sevAcid && ((hasPH && p < 7.2) || (hasB && b < 10));
+
+  if (!hasG) {
+    el.innerHTML = `<div style="text-align:center;padding:28px 0;color:var(--text3)"><i class="ti ti-input-search" style="font-size:32px;display:block;margin-bottom:8px"></i><span style="font-size:14px">Please enter patient data above and press <strong style="color:var(--text2)">Assess</strong>.</span></div>`; return;
+  }
+  if (!loThresh) {
+    el.innerHTML = summary('ok', 'Glucose below threshold', 'DKA/HHS threshold not met (≤11 mmol/L / ≤200 mg/dL). Monitor and reassess if symptoms develop.', [], [], NaN, false); return;
+  }
+  if (!hasO) {
+    if (hiG) { el.innerHTML = pending(['Serum osmolality — required at glucose >33 mmol/L to distinguish HHS from DKA', 'Venous pH and bicarbonate', 'BOHB (DKA threshold ≥3.0 mmol/L)']); return; }
+    if (!hasPH && !hasB && !hasK) { el.innerHTML = pending(['Serum osmolality — to rule out HHS', 'Venous pH and bicarbonate', 'BOHB (DKA threshold ≥3.0 mmol/L)']); return; }
+    const warn = flag('warn', 'Osmolality not entered — needed to rule out HHS before finalising protocol.');
+    el.innerHTML = warn + classifyDKA(p, b, k, hasPH, hasB, hasK, cl, wt); return;
+  }
+
+  // Osmolality >320 with glucose NOT >33: HHS impossible, but note elevated osmolality
+  if (!hiG && hiO && (!hasPH && !hasB && !hasK)) {
+    const warn = flag('warn', 'Osmolality >320 mOsm/kg noted, but glucose ≤33 mmol/L — HHS criteria not met. Enter pH, bicarbonate, and BOHB to classify DKA.');
+    el.innerHTML = warn + pending(['Venous pH', 'Bicarbonate', 'BOHB (DKA threshold ≥3.0 mmol/L)']); return;
+  }
+
+  if (hiG && hiO) {
+    if (!hasPH && !hasB && !hasK) { el.innerHTML = pending(['Venous pH — HHS: pH >7.3 / DKA: pH <7.3', 'Bicarbonate — HHS: bicarb >15 mmol/L', 'BOHB — HHS: <3.0 mmol/L / DKA: ≥3.0 mmol/L']); return; }
+    if (dkaAcid && dkaKeto) {
+      el.innerHTML = summary('hhs-dka', 'Hyperosmolar DKA',
+        'Glucose >33 mmol/L · osmolality >320 mOsm/kg · pH <7.3 · BOHB ≥3.0 mmol/L',
+        ['IV fluid resuscitation — monitor osmolality closely; avoid rapid correction',
+         'Insulin infusion after initial fluid bolus',
+         'Monitor glucose, BOHB, electrolytes, osmolality q1h',
+         'Neurological observations — high cerebral oedema risk'],
+        ['Osmolality correction must be gradual — target <3 mOsm/kg/h decrease',
+         'ICU-level monitoring recommended'], wt, true);
+    } else if (hhsPH && hhsBicarb && hhsKeto) {
+      el.innerHTML = summary('hhs', 'HHS',
+        'Glucose >33 mmol/L · osmolality >320 mOsm/kg · pH >7.3 · bicarbonate >15 · BOHB <3.0 mmol/L',
+        ['IV 0.9% NaCl bolus 10–20 mL/kg over 1–2h',
+         'Gradual rehydration over 48h — avoid rapid osmolality correction',
+         'Insulin only if BOHB rising or acidosis develops',
+         'Monitor glucose, osmolality, electrolytes q1–2h'],
+        ['No insulin initially unless acidosis or rising ketones present',
+         'Cerebral oedema risk with rapid correction — go slow'], wt, true);
+    } else {
+      const miss = [];
+      if (!hasPH) miss.push('Venous pH — HHS requires pH >7.3');
+      if (!hasB)  miss.push('Bicarbonate — HHS requires bicarb >15 mmol/L');
+      if (!hasK)  miss.push('BOHB — HHS requires <3.0 mmol/L; DKA ≥3.0 mmol/L');
+      el.innerHTML = pending(miss.length ? miss : ['Review pH, bicarbonate, and BOHB against thresholds']);
+    }
+  } else {
+    const note = hiG ? flag('ok', 'HHS ruled out — osmolality ≤320 mOsm/kg. Glucose >33 mmol/L with normal osmolality is consistent with DKA.') : '';
+    el.innerHTML = note + classifyDKA(p, b, k, hasPH, hasB, hasK, cl, wt);
+  }
+}
+
+function classifyDKA(p, b, k, hasPH, hasB, hasK, cl, wt) {
+  const dkaAcid = (hasPH && p < 7.3) || (hasB && b < 18);
+  const dkaKeto = hasK && k >= 3.0;
+  const sevAcid = (hasPH && p < 7.1) || (hasB && b < 5);
+  const modAcid = !sevAcid && ((hasPH && p < 7.2) || (hasB && b < 10));
+  const noAcid  = (hasPH && p >= 7.3) && (hasB && b >= 18);
+
+  if (!hasPH && !hasB && !hasK) return pending(['Venous pH', 'Bicarbonate', 'BOHB (DKA threshold ≥3.0 mmol/L)']);
+  if (noAcid && !dkaKeto) return summary('ok', 'DKA criteria not met', 'pH ≥7.3, bicarbonate ≥18 mmol/L, BOHB <3.0 mmol/L. Monitor and reassess if clinical picture changes.', [], [], wt, false);
+
+  if (sevAcid) return summary('sev', 'Severe DKA', 'pH <7.1 or bicarbonate <5 mmol/L',
+    ['IV 0.9% NaCl bolus 10 mL/kg over 30–60 min (may repeat once)',
+     'Rehydrate over 48h; add dextrose when glucose <14 mmol/L',
+     'Insulin 0.05–0.1 U/kg/h — start 1–2h after fluids',
+     'Neurological observations q1h'],
+    ['ICU-level monitoring indicated', 'High cerebral oedema risk — avoid rapid fluid shifts', 'K⁺ ≥3.5 mmol/L required before starting insulin'], wt, true);
+
+  if (modAcid) return summary('mod', 'Moderate DKA', 'pH 7.1–7.19 or bicarbonate 5–9 mmol/L',
+    ['IV 0.9% NaCl bolus 10 mL/kg over 30–60 min',
+     'Rehydrate over 48h; add dextrose when glucose <14 mmol/L',
+     'Insulin 0.05–0.1 U/kg/h — start 1–2h after fluids',
+     'Monitor glucose, BOHB, electrolytes, pH q1–2h'],
+    ['Check K⁺ before insulin — replace if <3.5 mmol/L', 'Monitor for cerebral oedema signs'], wt, true);
+
+  if (cl === 'y') return summary('mild', 'Mild DKA — SC insulin eligible', 'pH 7.2–7.29 / bicarbonate 10–17 mmol/L · well-appearing',
+    ['SC rapid-acting insulin — dose per weight-based protocol',
+     'Oral rehydration if tolerated',
+     'Monitor glucose q1–2h, BOHB q2h',
+     'Review at 2h — escalate to IV if not improving'],
+    ['Only if: well-appearing, not hyperosmolar, not vomiting, haemodynamically stable'], wt, true);
+
+  return summary('mild', 'Mild DKA', 'pH 7.2–7.29 / bicarbonate 10–17 mmol/L',
+    ['IV 0.9% NaCl bolus 10 mL/kg over 30–60 min',
+     'Rehydrate over 48h; add dextrose when glucose <14 mmol/L',
+     'Insulin 0.05 U/kg/h — start 1–2h after fluids',
+     'Monitor glucose q1–2h, BOHB q2h'],
+    ['Reassess at 2h — escalate if not improving', 'Check K⁺ before insulin'], wt, true);
+}
+
+function summary(type, title, sub, recs, warns, wt, showGrid) {
+  const badges = { mild:'badge-mild', mod:'badge-mod', sev:'badge-sev', hhs:'badge-hhs', 'hhs-dka':'badge-hhs-dka', ok:'badge-ok', pending:'badge-pending' };
+  const labels = { mild:'Mild DKA', mod:'Moderate DKA', sev:'Severe DKA', hhs:'HHS', 'hhs-dka':'Hyperosmolar DKA', ok:'', pending:'Additional labs required' };
+  let html = `<div class="result-label">Assessment</div>`;
+  html += `<span class="result-badge ${badges[type]}">${labels[type]||title}</span>`;
+  html += `<div class="result-title">${title}</div>`;
+  html += `<div class="result-sub">${sub}</div>`;
+  if (showGrid) {
+    html += `<a class="pdf-link" href="#" onclick="return false" style="margin-top:14px;display:inline-flex"><i class="ti ti-file-text"></i>Link to protocol PDF</a>`;
+  }
+  return html;
+}
+
+function pending(items) {
+  return `<div class="result-label">Additional labs required</div>
+    <ul class="pending-list">${items.map(i=>`<li><i class="ti ti-circle-dashed"></i>${i}</li>`).join('')}</ul>`;
+}
+
+function flag(type, msg) {
+  const cls = { warn:'flag-warn', info:'flag-info', ok:'flag-ok' };
+  const icon = { warn:'ti-alert-triangle', info:'ti-info-circle', ok:'ti-circle-check' };
+  return `<div class="result-flag ${cls[type]}" style="margin-bottom:10px"><i class="ti ${icon[type]}" style="font-size:14px;flex-shrink:0;margin-top:1px"></i><div>${msg}</div></div>`;
+}
+
+function clearDKAHHS() {
+  ['bg-mmol','bg-mgdl','osm','ph','bicarb','bohb'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('clinical').value = '';
+  const el = document.getElementById('dka-result');
+  el.classList.remove('visible');
+  el.innerHTML = '';
+}
+
+// ── GCS ──────────────────────────────────────────────────────────────────────
+let isVerbal = true;
+
+function setVerbal(v) {
+  isVerbal = v;
+  document.getElementById('btn-verbal').classList.toggle('on', v);
+  document.getElementById('btn-nonverbal').classList.toggle('on', !v);
+  document.getElementById('verbal-field').style.display    = v ? '' : 'none';
+  document.getElementById('nonverbal-field').style.display = v ? 'none' : '';
+  document.getElementById('gcs-verbal').value    = '';
+  document.getElementById('gcs-nonverbal').value = '';
+  calcGCS();
+}
+
+function calcGCS() {
+  const eye    = parseInt(document.getElementById('gcs-eye').value)    || 0;
+  const verbal = isVerbal
+    ? (parseInt(document.getElementById('gcs-verbal').value)    || 0)
+    : (parseInt(document.getElementById('gcs-nonverbal').value) || 0);
+  const motor  = parseInt(document.getElementById('gcs-motor').value)  || 0;
+
+  const scoreEl  = document.getElementById('gcs-score');
+  const interpEl = document.getElementById('gcs-interp');
+  const resEl    = document.getElementById('gcs-result');
+
+  if (!eye || !verbal || !motor) {
+    scoreEl.textContent  = '—';
+    interpEl.textContent = '';
+    resEl.classList.remove('visible');
+    resEl.innerHTML = '';
+    return;
+  }
+
+  const score = eye + verbal + motor;
+  scoreEl.textContent = score;
+
+  let interp, colour, note;
+  if (score >= 13) {
+    interp = 'Mild / no significant impairment'; colour = '#3B6D11';
+    note   = 'GCS 13–15: mild or no neurological impairment. Continue monitoring.';
+  } else if (score >= 9) {
+    interp = 'Moderate impairment'; colour = '#854F0B';
+    note   = 'GCS 9–12: moderate neurological impairment. Closely monitor neurological status. Consider senior review.';
+  } else {
+    interp = 'Severe impairment'; colour = '#993C1D';
+    note   = 'GCS ≤8: severe neurological impairment — airway at risk. Immediate senior review. Consider securing airway.';
+  }
+
+  interpEl.textContent  = interp;
+  interpEl.style.color  = colour;
+  resEl.classList.add('visible');
+  resEl.innerHTML = `<div class="result-label">Interpretation</div>
+    <div style="font-size:13px;color:var(--text);line-height:1.6">${note}</div>
+    <div style="font-size:12px;color:var(--text3);margin-top:8px">E${eye} + V${verbal} + M${motor} = ${score}</div>`;
+}
+
+// ── Figures ──────────────────────────────────────────────────────────────────
+const FIGS_META = [{"id": "symptoms", "title": "Hypoglycemia Symptoms & Signs", "chapter": "Ch. 5 · Fig. 1"}, {"id": "risk_factors", "title": "Risk Factors for Hypoglycemia", "chapter": "Ch. 5 · Fig. 2"}, {"id": "hypo_mgmt", "title": "Hypoglycemia Management", "chapter": "Ch. 5 · Fig. 3"}, {"id": "prevention", "title": "Hypoglycemia Prevention", "chapter": "Ch. 5 · Fig. 4"}, {"id": "table1", "title": "Hypoglycemia Classification", "chapter": "Ch. 5 · Table 1"}, {"id": "glucagon", "title": "Glucagon Products", "chapter": "Ch. 5 · Table 2"}, {"id": "dka_path", "title": "DKA Integrated Pathophysiology–Therapy Link", "chapter": "Ch. 6 · Fig. 1"}, {"id": "psychosocial", "title": "Psychosocial Factors in Youth Diabetes", "chapter": "Ch. 12 · Fig. 1"}];
+
+function filterFigs() {
+  const q = document.getElementById('fig-search').value.toLowerCase().trim();
+  const cards = document.querySelectorAll('.fig-card');
+  let visible = 0;
+  cards.forEach(card => {
+    const match = !q || card.dataset.tags.includes(q) || card.dataset.title.includes(q);
+    card.style.display = match ? '' : 'none';
+    if (match) visible++;
+  });
+  document.getElementById('fig-none').style.display = visible === 0 ? '' : 'none';
+}
+
+function openLightbox(id) {
+  const meta = FIGS_META.find(f => f.id === id);
+  document.querySelectorAll('.lb-item').forEach(el => el.style.display = 'none');
+  document.getElementById('lb-' + id).style.display = '';
+  document.getElementById('lb-title').textContent = meta.title + ' · ' + meta.chapter;
+  const img = document.getElementById('lb-img-' + id);
+  const dl = document.getElementById('lb-download');
+  dl.href = img.src;
+  dl.download = id + '.png';
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeLightboxOutside(e) {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// ── CHAPTER SEARCH ────────────────────────────────────────────────────────────
+
+const CHAPTERS = [
+  {
+    num: 'Ch. 2',
+    year: '2024',
+    title: 'Screening, Staging, and Strategies to Preserve Beta-Cell Function in Children and Adolescents with Type 1 Diabetes',
+    authors: 'Haller MJ, Bell KJ, Besser REJ et al.',
+    desc: 'Updates the 2022 ISPAD staging framework (Stages 1–4 T1D). Covers general population and family-history-based islet autoantibody (AAB) screening, metabolic surveillance protocols by AAB status and age, OGTT interpretation, CGM use in early-stage T1D, psychological burden of screening, and the FDA approval of teplizumab to delay Stage 2→3 progression.',
+    whatsNew: ['New Stage 2a/2b sub-classifications for dysglycemia', 'Teplizumab (anti-CD3) FDA-approved for Stage 2 T1D', 'ICD-10 codes for presymptomatic T1D (USA & UK)', 'Expanded guidance on CGM for early-stage monitoring'],
+    tags: ['screening', 'staging', 'T1D prevention', 'teplizumab', 'autoantibody', 'OGTT', 'beta cell', 'DKA prevention', 'islet autoimmunity', 'genetic risk', 'HLA', 'presymptomatic'],
+    doi: 'https://doi.org/10.1159/000543035',
+    localPdf: 'ICPCG-Chapter-2-2024 (1).pdf',
+    journal: 'Horm Res Paediatr 2024;97:529–545'
+  },
+  {
+    num: 'Ch. 8',
+    year: '2024',
+    title: 'Glycemic Targets',
+    authors: 'de Bock M, Agwu JC, Deabreu M et al.',
+    desc: 'Sets updated glycemic targets for children and adolescents with diabetes. Recommends HbA1c ≤6.5% (48 mmol/mol) for those using advanced technologies (CGM + AID), and ≤7.0% (53 mmol/mol) in all other settings. Covers CGM time-in-range targets, the emerging time-in-tight-range (TITR) metric, SMBG targets, and the relationship between glycemic control and long-term complications including retinopathy, nephropathy, neuropathy, cognition, and BMI.',
+    whatsNew: ['New primary HbA1c target: ≤6.5% (48 mmol/mol) for those with access to CGM + AID', 'Time in tight range (TITR >50%) introduced as emerging CGM metric', 'Discussion of BMI and glycemic target interactions', 'More succinct chapter with cross-references to technology chapters'],
+    tags: ['HbA1c', 'glycemic targets', 'CGM', 'time in range', 'TIR', 'TITR', 'SMBG', 'blood glucose', 'AID', 'automated insulin delivery', 'retinopathy', 'nephropathy', 'hypoglycemia', 'complications'],
+    doi: 'https://doi.org/10.1159/000543266',
+    localPdf: 'ICPCG-Chapter-8-2024.pdf',
+    journal: 'Horm Res Paediatr 2024;97:546–554'
+  },
+  {
+    num: 'Ch. 9',
+    year: '2024',
+    title: 'Insulin and Adjunctive Treatments in Children and Adolescents with Diabetes',
+    authors: 'Cengiz E, Danne T, Ahmad T et al.',
+    desc: 'Comprehensive review of insulin formulations and regimens for pediatric diabetes. Covers mealtime insulins (rapid-acting, ultra-rapid-acting including faster aspart and URLi, inhaled), basal insulins (glargine U100/U300, detemir, degludec), biosimilars, injection technique, insulin absorption factors, and devices. Includes principles of MDI and pump therapy, dose calculation (500-rule, 1800-rule, insulin:carb ratio), and inpatient insulin management. A dedicated section covers adjunctive medications: pramlintide, metformin, GLP-1 receptor agonists, and SGLT-2 inhibitors. Also addresses insulin access and affordability globally.',
+    whatsNew: ['Updated guidance on new ultra-rapid-acting insulins (faster aspart, URLi)', 'Once-weekly basal insulin analogs (icodec, Basal Insulin Fc) reviewed', 'Expanded adjunctive medication section: GLP-1RA, SGLT-2 inhibitors, pramlintide, metformin', 'Key considerations on insulin access, affordability, and WHO global coverage targets'],
+    tags: ['insulin', 'MDI', 'basal bolus', 'rapid-acting insulin', 'glargine', 'degludec', 'detemir', 'NPH', 'pump', 'CSII', 'AID', 'bolus', 'injection technique', 'lipohypertrophy', 'GLP-1', 'SGLT-2', 'metformin', 'pramlintide', 'adjunct therapy', 'insulin storage', 'affordability', 'biosimilar', 'carbohydrate counting'],
+    doi: 'https://doi.org/10.1159/000543169',
+    localPdf: 'ICPCG-Chapter-9-2024 (1).pdf',
+    journal: 'Horm Res Paediatr 2024;97:584–614'
+  },
+];
+
+function renderChapters(list) {
+  const el = document.getElementById('chapter-results');
+  const countEl = document.getElementById('chap-count');
+  if (!list.length) {
+    el.innerHTML = '<div class="chap-none"><i class="ti ti-search-off" style="font-size:32px;display:block;margin-bottom:8px"></i>No chapters match your search.</div>';
+    countEl.textContent = '';
+    return;
+  }
+  countEl.textContent = list.length === CHAPTERS.length
+    ? `${list.length} chapters — 2024 ISPAD Clinical Practice Consensus Guidelines`
+    : `${list.length} of ${CHAPTERS.length} chapters match`;
+  el.innerHTML = list.map(ch => {
+    const newList = ch.whatsNew.length
+      ? `<div style="margin-bottom:12px"><span class="chap-new-badge" style="margin-left:0;margin-bottom:6px;display:inline-flex"><i class="ti ti-sparkles"></i>What's New</span><ul style="margin:6px 0 0 16px;padding:0;font-size:12px;color:var(--text2);line-height:1.7">${ch.whatsNew.map(w => `<li>${w}</li>`).join('')}</ul></div>`
+      : '';
+    const tags = ch.tags.length
+      ? `<div class="chap-tags">${ch.tags.map(t => `<span class="chap-tag">${t}</span>`).join('')}</div>`
+      : '';
+    const doiBtn = ch.doi
+      ? `<a class="chap-link chap-link-doi" href="${ch.doi}" target="_blank" rel="noopener"><i class="ti ti-external-link"></i>Article (DOI)</a>`
+      : '';
+    const pdfBtn = ch.localPdf
+      ? `<a class="chap-link chap-link-pdf" href="${ch.localPdf}" target="_blank"><i class="ti ti-file-type-pdf"></i>Open PDF</a>`
+      : '';
+    const authors = ch.authors ? `<span style="font-size:12px;color:var(--text3)">${ch.authors}</span>` : '';
+    const journal = ch.journal ? `<div style="font-size:11px;color:var(--text3);margin-bottom:10px">${ch.journal}</div>` : '';
+    return `
+      <div class="chap-card">
+        <div class="chap-meta">
+          <span class="chap-num">${ch.num}</span>
+          <span class="chap-year">ISPAD ${ch.year}</span>
+        </div>
+        <div class="chap-title">${ch.title}</div>
+        ${authors}
+        ${journal}
+        <div class="chap-desc">${ch.desc}</div>
+        ${newList}
+        ${tags}
+        <div class="chap-actions">${doiBtn}${pdfBtn}</div>
+      </div>`;
+  }).join('');
+}
+
+function filterChapters() {
+  const q = document.getElementById('chapter-search').value.toLowerCase().trim();
+  if (!q) { renderChapters(CHAPTERS); return; }
+  const terms = q.split(/\s+/);
+  const matches = CHAPTERS.filter(ch => {
+    const haystack = [ch.title, ch.desc, ch.authors, ch.num, ch.journal,
+      ...ch.tags, ...ch.whatsNew].join(' ').toLowerCase();
+    return terms.every(t => haystack.includes(t));
+  });
+  renderChapters(matches);
+}
+
+// Init on load
+document.addEventListener('DOMContentLoaded', () => renderChapters(CHAPTERS));
+
+</script>
+</body>
+</html>
