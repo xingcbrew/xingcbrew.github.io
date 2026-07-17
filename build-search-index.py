@@ -63,9 +63,21 @@ def detect_chapter(path: Path) -> dict:
     return {"num": "Unknown", "title": path.stem}
 
 
+LIGATURES = str.maketrans({
+    'ﬁ': 'fi', 'ﬂ': 'fl', 'ﬀ': 'ff', 'ﬃ': 'ffi', 'ﬄ': 'ffl', 'ﬅ': 'st', 'ﬆ': 'st',
+    '’': "'", '‘': "'", '“': '"', '”': '"',
+    '–': '-', '—': '-',
+})
+
 def clean(text: str) -> str:
-    # Remove hyphenation across lines, collapse whitespace
-    text = re.sub(r'-\n', '', text)
+    # Fix ligatures and smart quotes
+    text = text.translate(LIGATURES)
+    # Rejoin hyphenated line breaks (word-\ncontinuation)
+    text = re.sub(r'-\s*\n\s*', '', text)
+    # Remove watermark/URL fragments (short tokens containing slashes or dots mid-word)
+    text = re.sub(r'\s*/[a-z]{2,6}(?=[A-Z])', ' ', text)
+    text = re.sub(r'\b[a-z]{2,4}\.[a-z]{2,3}(?=[A-Z])', '', text)
+    # Collapse whitespace
     text = re.sub(r'\n+', ' ', text)
     text = re.sub(r'\s{2,}', ' ', text)
     return text.strip()
@@ -94,6 +106,9 @@ def chunk_page_text(raw: str) -> list:
         stripped = line.strip()
         if not stripped:
             continue
+        # Skip lines that are too short to be real content (watermark fragments, page numbers)
+        if len(stripped) < 4 or (len(stripped) < 15 and not stripped[0].isdigit()):
+            continue
         if is_heading(stripped):
             flush()
             buffer = []
@@ -110,13 +125,98 @@ def chunk_page_text(raw: str) -> list:
     return chunks
 
 
+def words_to_text(words) -> str:
+    """Reconstruct text from word objects, inserting spaces and newlines by position."""
+    if not words:
+        return ''
+    lines = []
+    current_line = []
+    prev_bottom = None
+
+    for w in sorted(words, key=lambda x: (round(x['top'] / 3), x['x0'])):
+        if prev_bottom is not None and w['top'] > prev_bottom + 2:
+            if current_line:
+                lines.append(' '.join(current_line))
+            current_line = []
+        current_line.append(w['text'])
+        prev_bottom = w['bottom']
+
+    if current_line:
+        lines.append(' '.join(current_line))
+    return '\n'.join(lines)
+
+
+def chars_to_text(chars) -> str:
+    """
+    Reconstruct text from character objects, inserting spaces when
+    the horizontal gap between characters exceeds the average char width.
+    This fixes PDFs where space glyphs are missing from the font encoding.
+    """
+    if not chars:
+        return ''
+    # Sort by line (top) then x position
+    chars = sorted(chars, key=lambda c: (round(c['top'] / 4), c['x0']))
+
+    widths = [c['width'] for c in chars if c['width'] > 0]
+    avg_w  = sum(widths) / len(widths) if widths else 5
+
+    result = []
+    prev = None
+    for c in chars:
+        if prev is None:
+            result.append(c['text'])
+            prev = c
+            continue
+        # New line
+        if c['top'] > prev['bottom'] + 2:
+            result.append('\n')
+        else:
+            gap = c['x0'] - prev['x1']
+            if gap > avg_w * 0.5:
+                result.append(' ')
+        result.append(c['text'])
+        prev = c
+    return ''.join(result)
+
+
+def extract_page_text(page) -> str:
+    """
+    Handle two-column PDFs by splitting at the midpoint and using
+    word-level extraction (with looser tolerances) to preserve spacing.
+    """
+    width  = page.width
+    height = page.height
+    mid    = width / 2
+
+    # Use loose x/y tolerances so nearby glyphs are grouped as one word
+    kwargs = dict(x_tolerance=3, y_tolerance=3)
+
+    # Crop outer margins (watermarks sit ~30pt from each edge)
+    margin  = 30
+    left_col  = page.within_bbox((margin, 0, mid - 4,     height))
+    right_col = page.within_bbox((mid + 4, 0, width - margin, height))
+
+    left_chars  = left_col.chars
+    right_chars = right_col.chars
+
+    left_text  = chars_to_text(left_chars)
+    right_text = chars_to_text(right_chars)
+
+    # Single-column page: one side nearly empty
+    if not left_text.strip() or not right_text.strip():
+        full = page.within_bbox((margin, 0, width - margin, height))
+        return chars_to_text(full.chars)
+
+    return left_text + '\n' + right_text
+
+
 def extract_pdf(path: Path) -> list[dict]:
     meta = detect_chapter(path)
     records = []
 
     with pdfplumber.open(path) as pdf:
         for page_num, page in enumerate(pdf.pages, start=1):
-            raw = page.extract_text()
+            raw = extract_page_text(page)
             if not raw:
                 continue
             pairs = chunk_page_text(raw)
@@ -127,7 +227,6 @@ def extract_pdf(path: Path) -> list[dict]:
                     "page": page_num,
                     "heading": heading,
                     "text": text,
-                    # pre-build a lowercase search field
                     "_search": (
                         (heading or '') + ' ' + text
                     ).lower()

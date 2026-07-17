@@ -23,7 +23,7 @@
   --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 17px; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 18.5px; }
 .shell { max-width: 1100px; margin: 0 auto; padding: 28px 32px 60px; }
 
 /* Header */
@@ -31,14 +31,14 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 .logo-wrap { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .logo-icon { width: 48px; height: 48px; }
 .logo-text-wrap { display: flex; flex-direction: column; }
-.logo-name { font-size: 13px; font-weight: 700; color: var(--ispad-blue); line-height: 1.2; }
+.logo-name { font-size: 14.5px; font-weight: 700; color: var(--ispad-blue); line-height: 1.2; }
 .logo-full { font-size: 10px; color: var(--text2); line-height: 1.3; max-width: 160px; }
 h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 10px; }
-.intro { font-size: 13px; color: var(--text2); line-height: 1.65; margin-bottom: 24px; }
+.intro { font-size: 14.5px; color: var(--text2); line-height: 1.65; margin-bottom: 24px; }
 
 /* Nav buttons */
 .nav-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 32px; }
-.nav-btn { background: var(--ispad-blue); color: #fff; border: none; border-radius: var(--radius); padding: 13px 10px; font-size: 13px; font-weight: 600; cursor: pointer; text-align: center; letter-spacing: .01em; transition: background .12s; }
+.nav-btn { background: var(--ispad-blue); color: #fff; border: none; border-radius: var(--radius); padding: 13px 10px; font-size: 14.5px; font-weight: 600; cursor: pointer; text-align: center; letter-spacing: .01em; transition: background .12s; }
 .nav-btn:hover { background: var(--ispad-blue-mid); }
 .nav-btn.active { background: var(--ispad-blue-mid); outline: 2px solid #6B9AE0; outline-offset: 2px; }
 
@@ -49,7 +49,7 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
 .accordion { border: 1px solid var(--border2); border-radius: var(--radius-lg); margin-bottom: 14px; overflow: hidden; }
 .acc-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: var(--bg2); cursor: pointer; user-select: none; }
 .acc-header:hover { background: var(--bg3); }
-.acc-title { font-size: 14px; font-weight: 600; color: var(--text); }
+.acc-title { font-size: 15.5px; font-weight: 600; color: var(--text); }
 .acc-chevron { font-size: 18px; color: var(--text3); transition: transform .2s; }
 .acc-chevron.open { transform: rotate(180deg); }
 .acc-body { display: none; padding: 20px 18px; background: var(--bg); }
@@ -58,36 +58,36 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
 /* Form */
 .field-row { display: flex; gap: 14px; align-items: flex-end; margin-bottom: 16px; flex-wrap: wrap; }
 .fld { display: flex; flex-direction: column; gap: 4px; }
-.fld label { font-size: 12px; font-weight: 500; color: var(--text2); }
-.fld input, .fld select { font-size: 13px; padding: 7px 10px; border: 1px solid var(--border2); border-radius: var(--radius); background: var(--bg); color: var(--text); }
+.fld label { font-size: 13.5px; font-weight: 500; color: var(--text2); }
+.fld input, .fld select { font-size: 14.5px; padding: 7px 10px; border: 1px solid var(--border2); border-radius: var(--radius); background: var(--bg); color: var(--text); }
 .fld input:focus, .fld select:focus { outline: none; border-color: var(--ispad-blue-mid); box-shadow: 0 0 0 3px rgba(39,86,160,.1); }
-.fld .unit { font-size: 11px; color: var(--text3); margin-top: 1px; }
-.or-sep { font-size: 12px; color: var(--text3); padding-bottom: 8px; align-self: flex-end; }
+.fld .unit { font-size: 12.5px; color: var(--text3); margin-top: 1px; }
+.or-sep { font-size: 13.5px; color: var(--text3); padding-bottom: 8px; align-self: flex-end; }
 .input-sm { width: 80px; }
 .input-md { width: 110px; }
 .input-lg { width: 160px; }
 
 /* Assess button */
-.assess-btn { background: var(--ispad-blue); color: #fff; border: none; border-radius: var(--radius); padding: 10px 28px; font-size: 13px; font-weight: 700; cursor: pointer; letter-spacing: .04em; margin-top: 4px; }
+.assess-btn { background: var(--ispad-blue); color: #fff; border: none; border-radius: var(--radius); padding: 10px 28px; font-size: 14.5px; font-weight: 700; cursor: pointer; letter-spacing: .04em; margin-top: 4px; }
 .assess-btn:hover { background: var(--ispad-blue-mid); }
-.clear-lnk { font-size: 12px; color: var(--text3); cursor: pointer; margin-left: 12px; text-decoration: underline; }
+.clear-lnk { font-size: 13.5px; color: var(--text3); cursor: pointer; margin-left: 12px; text-decoration: underline; }
 
 /* Result area */
-.result-area { margin-top: 16px; background: var(--bg2); border-radius: var(--radius); padding: 14px 16px; min-height: 44px; font-size: 13px; color: var(--text2); line-height: 1.6; display: none; }
+.result-area { margin-top: 16px; background: var(--bg2); border-radius: var(--radius); padding: 14px 16px; min-height: 44px; font-size: 14.5px; color: var(--text2); line-height: 1.6; display: none; }
 .result-area.visible { display: block; }
-.result-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--text3); margin-bottom: 6px; }
+.result-label { font-size: 12.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--text3); margin-bottom: 6px; }
 .result-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
-.result-sub { font-size: 12px; color: var(--text2); margin-bottom: 12px; }
+.result-sub { font-size: 13.5px; color: var(--text2); margin-bottom: 12px; }
 .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px; }
-.rcol-title { font-size: 11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
-.ri { font-size: 13px; color: var(--text); display: flex; align-items: flex-start; gap: 6px; line-height: 1.5; margin-bottom: 4px; }
-.ri i { font-size: 13px; color: var(--green); margin-top: 2px; flex-shrink: 0; }
+.rcol-title { font-size: 12.5px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+.ri { font-size: 14.5px; color: var(--text); display: flex; align-items: flex-start; gap: 6px; line-height: 1.5; margin-bottom: 4px; }
+.ri i { font-size: 14.5px; color: var(--green); margin-top: 2px; flex-shrink: 0; }
 .ri.w i { color: var(--amber-border); }
-.result-flag { margin-top: 10px; padding: 7px 10px; border-radius: 0 var(--radius) var(--radius) 0; font-size: 12px; display: flex; align-items: flex-start; gap: 7px; line-height: 1.5; }
+.result-flag { margin-top: 10px; padding: 7px 10px; border-radius: 0 var(--radius) var(--radius) 0; font-size: 13.5px; display: flex; align-items: flex-start; gap: 7px; line-height: 1.5; }
 .flag-warn { background: var(--amber-light); border-left: 3px solid var(--amber-mid); color: #633806; }
 .flag-info { background: var(--blue-light); border-left: 3px solid var(--blue-mid); color: var(--blue-text); }
 .flag-ok   { background: var(--green-light); border-left: 3px solid var(--green-mid); color: #085041; }
-.result-badge { display: inline-block; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
+.result-badge { display: inline-block; font-size: 13.5px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
 .badge-mild    { background: #EAF3DE; color: var(--teal-text); }
 .badge-mod     { background: var(--amber-light); color: var(--amber-border); }
 .badge-sev     { background: var(--coral-light); color: #993C1D; }
@@ -97,40 +97,40 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
 .badge-ok      { background: var(--green-light); color: #085041; }
 
 /* PDF link */
-.pdf-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; background: var(--ispad-blue-light); color: var(--ispad-blue); font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: var(--radius); text-decoration: none; cursor: pointer; border: 1px solid #BFD0E8; }
+.pdf-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; background: var(--ispad-blue-light); color: var(--ispad-blue); font-size: 13.5px; font-weight: 600; padding: 6px 14px; border-radius: var(--radius); text-decoration: none; cursor: pointer; border: 1px solid #BFD0E8; }
 .pdf-link:hover { background: #D5E3F5; }
 
 /* Pending list */
 .pending-list { list-style: none; padding: 0; margin-top: 8px; }
-.pending-list li { display: flex; align-items: flex-start; gap: 7px; font-size: 13px; color: var(--text); line-height: 1.5; margin-bottom: 5px; }
-.pending-list li i { color: var(--amber-border); font-size: 14px; margin-top: 2px; flex-shrink: 0; }
+.pending-list li { display: flex; align-items: flex-start; gap: 7px; font-size: 14.5px; color: var(--text); line-height: 1.5; margin-bottom: 5px; }
+.pending-list li i { color: var(--amber-border); font-size: 15.5px; margin-top: 2px; flex-shrink: 0; }
 
 /* GCS toggle */
 .toggle-row { display: flex; gap: 8px; margin-bottom: 18px; }
-.toggle-btn { padding: 7px 22px; font-size: 13px; font-weight: 500; border-radius: var(--radius); cursor: pointer; border: 1px solid var(--border2); background: var(--bg); color: var(--text2); transition: all .1s; }
+.toggle-btn { padding: 7px 22px; font-size: 14.5px; font-weight: 500; border-radius: var(--radius); cursor: pointer; border: 1px solid var(--border2); background: var(--bg); color: var(--text2); transition: all .1s; }
 .toggle-btn.on { background: var(--ispad-blue-light); border-color: #BFD0E8; color: var(--ispad-blue); font-weight: 600; }
 
 /* GCS dropdowns */
 .gcs-field { margin-bottom: 14px; }
-.gcs-field label { font-size: 12px; font-weight: 500; color: var(--text2); display: block; margin-bottom: 4px; }
-.gcs-field select { width: 100%; font-size: 13px; padding: 8px 36px 8px 10px; border: 1px solid var(--border2); border-radius: var(--radius); background: var(--bg); color: var(--text); appearance: auto; }
+.gcs-field label { font-size: 13.5px; font-weight: 500; color: var(--text2); display: block; margin-bottom: 4px; }
+.gcs-field select { width: 100%; font-size: 14.5px; padding: 8px 36px 8px 10px; border: 1px solid var(--border2); border-radius: var(--radius); background: var(--bg); color: var(--text); appearance: auto; }
 .gcs-field select:focus { outline: none; border-color: var(--ispad-blue-mid); box-shadow: 0 0 0 3px rgba(39,86,160,.1); }
 .gcs-score-row { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
-.gcs-score-label { font-size: 13px; font-weight: 600; color: var(--text2); }
+.gcs-score-label { font-size: 14.5px; font-weight: 600; color: var(--text2); }
 .gcs-score-val { font-size: 22px; font-weight: 700; color: var(--ispad-blue); min-width: 36px; }
-.gcs-interp { font-size: 13px; color: var(--text2); }
+.gcs-interp { font-size: 14.5px; color: var(--text2); }
 
 /* Fluid calc */
-.fluid-calc { margin-top: 10px; padding: 7px 10px; background: var(--blue-light); border-left: 3px solid var(--blue-mid); border-radius: 0 var(--radius) var(--radius) 0; font-size: 12px; color: var(--blue-text); display: flex; align-items: center; gap: 7px; }
+.fluid-calc { margin-top: 10px; padding: 7px 10px; background: var(--blue-light); border-left: 3px solid var(--blue-mid); border-radius: 0 var(--radius) var(--radius) 0; font-size: 13.5px; color: var(--blue-text); display: flex; align-items: center; gap: 7px; }
 
 
 /* Diagnosis tool */
 .diag-q { margin-bottom:4px; }
-.diag-btn { background: var(--ispad-blue-light); color: var(--ispad-blue); border: 1px solid #BFD0E8; border-radius: var(--radius); padding: 8px 28px; font-size: 13px; font-weight: 700; cursor: pointer; transition: background .1s; }
+.diag-btn { background: var(--ispad-blue-light); color: var(--ispad-blue); border: 1px solid #BFD0E8; border-radius: var(--radius); padding: 8px 28px; font-size: 14.5px; font-weight: 700; cursor: pointer; transition: background .1s; }
 .diag-btn:hover { background: #D5E3F5; }
 .diag-btn-no { background: var(--bg2); color: var(--text2); border-color: var(--border2); }
 .diag-btn-no:hover { background: var(--bg3); }
-.diag-trail { font-size:12px; color:var(--text3); margin-bottom:10px; padding:8px 12px; background:var(--bg2); border-radius:var(--radius); border-left:3px solid var(--border2); }
+.diag-trail { font-size:13.5px; color:var(--text3); margin-bottom:10px; padding:8px 12px; background:var(--bg2); border-radius:var(--radius); border-left:3px solid var(--border2); }
 .diag-result-t1d { background: var(--blue-light); border: 1px solid var(--blue-mid); border-radius: var(--radius-lg); padding: 18px 20px; }
 .diag-result-t2d { background: var(--amber-light); border: 1px solid #E8C46A; border-radius: var(--radius-lg); padding: 18px 20px; }
 .diag-result-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
@@ -139,21 +139,21 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
 
 
 /* Search mode */
-.search-mode-btn { display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:600; padding:6px 14px; border-radius:var(--radius); border:1px solid var(--border2); background:var(--bg); color:var(--text2); cursor:pointer; transition:all .1s; }
+.search-mode-btn { display:inline-flex; align-items:center; gap:5px; font-size:13.5px; font-weight:600; padding:6px 14px; border-radius:var(--radius); border:1px solid var(--border2); background:var(--bg); color:var(--text2); cursor:pointer; transition:all .1s; }
 .search-mode-btn.active { background:var(--ispad-blue-light); color:var(--ispad-blue); border-color:#BFD0E8; }
 .text-result { border-bottom:1px solid var(--bg3); padding:14px 0; }
 .text-result:first-child { border-top:1px solid var(--bg3); }
 .text-result-meta { display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap; }
-.text-result-chapter { font-size:11px; font-weight:700; background:var(--ispad-blue-light); color:var(--ispad-blue); padding:2px 8px; border-radius:20px; }
-.text-result-page { font-size:11px; color:var(--text3); }
-.text-result-heading { font-size:12px; font-weight:600; color:var(--text2); font-style:italic; }
-.text-result-snippet { font-size:13px; color:var(--text); line-height:1.65; }
+.text-result-chapter { font-size:12.5px; font-weight:700; background:var(--ispad-blue-light); color:var(--ispad-blue); padding:2px 8px; border-radius:20px; }
+.text-result-page { font-size:12.5px; color:var(--text3); }
+.text-result-heading { font-size:13.5px; font-weight:600; color:var(--text2); font-style:italic; }
+.text-result-snippet { font-size:14.5px; color:var(--text); line-height:1.65; }
 .text-result-snippet mark { background:#FFF3B0; color:inherit; border-radius:2px; padding:0 1px; }
-.text-result-pdf { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:600; color:var(--ispad-blue); text-decoration:none; margin-top:6px; }
+.text-result-pdf { display:inline-flex; align-items:center; gap:4px; font-size:12.5px; font-weight:600; color:var(--ispad-blue); text-decoration:none; margin-top:6px; }
 .text-result-pdf:hover { text-decoration:underline; }
 
 /* Search / Figures placeholders */
-.placeholder-section { padding: 40px 0; text-align: center; color: var(--text3); font-size: 14px; }
+.placeholder-section { padding: 40px 0; text-align: center; color: var(--text3); font-size: 15.5px; }
 .placeholder-section i { font-size: 36px; display: block; margin-bottom: 10px; }
 
 @media (max-width: 560px) {
@@ -173,38 +173,38 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
 .fig-row:hover { background: var(--bg2); }
 .fig-preview { width: 180px; min-width: 180px; height: 135px; background: var(--bg2); overflow: hidden; flex-shrink: 0; }
 .fig-info { flex: 1; padding: 14px 16px; display: flex; flex-direction: column; gap: 5px; justify-content: center; }
-.fig-chapter-badge { font-size: 11px; font-weight: 700; background: var(--ispad-blue-light); color: var(--ispad-blue); padding: 2px 8px; border-radius: 20px; letter-spacing: .04em; display: inline-block; align-self: flex-start; }
-.fig-row-title { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.35; }
-.fig-row-tags { font-size: 11px; color: var(--text3); }
-.fig-view-btn { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; color: var(--ispad-blue); margin-top: 4px; }
-.fig-chapter { display: block; font-size: 11px; color: rgba(255,255,255,.7); margin-top: 2px; }
+.fig-chapter-badge { font-size: 12.5px; font-weight: 700; background: var(--ispad-blue-light); color: var(--ispad-blue); padding: 2px 8px; border-radius: 20px; letter-spacing: .04em; display: inline-block; align-self: flex-start; }
+.fig-row-title { font-size: 15.5px; font-weight: 700; color: var(--text); line-height: 1.35; }
+.fig-row-tags { font-size: 12.5px; color: var(--text3); }
+.fig-view-btn { display: inline-flex; align-items: center; gap: 4px; font-size: 13.5px; font-weight: 600; color: var(--ispad-blue); margin-top: 4px; }
+.fig-chapter { display: block; font-size: 12.5px; color: rgba(255,255,255,.7); margin-top: 2px; }
 
 /* Lightbox */
 /* Chapter search cards */
 .chap-card { border: 1px solid var(--border2); border-radius: var(--radius-lg); padding: 18px 20px; margin-bottom: 14px; background: var(--bg); transition: box-shadow .15s; }
 .chap-card:hover { box-shadow: 0 3px 14px rgba(0,0,0,.09); }
 .chap-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
-.chap-num { font-size: 11px; font-weight: 700; background: var(--ispad-blue-light); color: var(--ispad-blue); padding: 2px 8px; border-radius: 20px; letter-spacing: .04em; }
-.chap-year { font-size: 11px; color: var(--text3); }
+.chap-num { font-size: 12.5px; font-weight: 700; background: var(--ispad-blue-light); color: var(--ispad-blue); padding: 2px 8px; border-radius: 20px; letter-spacing: .04em; }
+.chap-year { font-size: 12.5px; color: var(--text3); }
 .chap-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; line-height: 1.35; }
-.chap-desc { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 12px; }
+.chap-desc { font-size: 14.5px; color: var(--text2); line-height: 1.6; margin-bottom: 12px; }
 .chap-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
-.chap-tag { font-size: 11px; color: var(--text3); background: var(--bg2); border: 1px solid var(--border); border-radius: 20px; padding: 2px 8px; }
+.chap-tag { font-size: 12.5px; color: var(--text3); background: var(--bg2); border: 1px solid var(--border); border-radius: 20px; padding: 2px 8px; }
 .chap-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-.chap-link { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: var(--radius); text-decoration: none; border: 1px solid; transition: background .1s; }
+.chap-link { display: inline-flex; align-items: center; gap: 5px; font-size: 13.5px; font-weight: 600; padding: 6px 14px; border-radius: var(--radius); text-decoration: none; border: 1px solid; transition: background .1s; }
 .chap-link-doi { background: var(--ispad-blue-light); color: var(--ispad-blue); border-color: #BFD0E8; }
 .chap-link-doi:hover { background: #D5E3F5; }
 .chap-link-pdf { background: var(--green-light); color: #085041; border-color: #8DCFB8; }
 .chap-link-pdf:hover { background: #C4EAE0; }
 .chap-new-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; color: var(--amber-border); background: var(--amber-light); border: 1px solid #E8C46A; padding: 2px 7px; border-radius: 20px; letter-spacing: .04em; margin-left: 4px; }
-.chap-none { text-align: center; color: var(--text3); font-size: 14px; padding: 40px 0; }
+.chap-none { text-align: center; color: var(--text3); font-size: 15.5px; padding: 40px 0; }
 
 .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.7); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
 .lightbox.open { display: flex; }
 .lb-box { background: var(--bg); border-radius: var(--radius-lg); max-width: 860px; width: 100%; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; }
 .lb-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
-.lb-title { font-size: 14px; font-weight: 600; color: var(--text); }
-.lb-download { display: inline-flex; align-items: center; gap: 5px; background: var(--ispad-blue-light); color: var(--ispad-blue); font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: var(--radius); text-decoration: none; border: 1px solid #BFD0E8; }
+.lb-title { font-size: 15.5px; font-weight: 600; color: var(--text); }
+.lb-download { display: inline-flex; align-items: center; gap: 5px; background: var(--ispad-blue-light); color: var(--ispad-blue); font-size: 13.5px; font-weight: 600; padding: 6px 14px; border-radius: var(--radius); text-decoration: none; border: 1px solid #BFD0E8; }
 .lb-download:hover { background: #D5E3F5; }
 .lb-close { background: none; border: none; cursor: pointer; font-size: 18px; color: var(--text2); padding: 4px; border-radius: var(--radius); display: flex; align-items: center; }
 .lb-close:hover { background: var(--bg2); }
@@ -231,8 +231,8 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
   <!-- ── DECISION AIDS ───────────────────────────────────────────────── -->
   <div class="section active" id="sec-aids">
 
-    <div style="display:flex;align-items:flex-start;gap:10px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:12px 16px;margin-bottom:20px;font-size:12px;color:var(--text2);line-height:1.6">
-      <i class="ti ti-info-circle" style="font-size:16px;color:var(--text3);flex-shrink:0;margin-top:1px"></i>
+    <div style="display:flex;align-items:flex-start;gap:10px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:12px 16px;margin-bottom:20px;font-size:13.5px;color:var(--text2);line-height:1.6">
+      <i class="ti ti-info-circle" style="font-size:17.5px;color:var(--text3);flex-shrink:0;margin-top:1px"></i>
       <span><strong style="color:var(--text)">For clinical decision support only.</strong> These tools are intended to assist clinicians in applying the ISPAD Clinical Practice Consensus Guidelines and do not replace clinical judgement, institutional protocols, or direct patient assessment. They are not diagnostic tools.</span>
     </div>
 
@@ -250,7 +250,7 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
             <div style="display:flex;align-items:center;gap:6px">
               <input type="number" class="input-sm" id="bg-mmol" placeholder="" oninput="syncGlucose('mmol');updateClinicalVisibility()">
               <span class="unit">mmol/L</span>
-              <span style="font-size:12px;color:var(--text3);line-height:1">or</span>
+              <span style="font-size:13.5px;color:var(--text3);line-height:1">or</span>
               <input type="number" class="input-sm" id="bg-mgdl" placeholder="" oninput="syncGlucose('mgdl');updateClinicalVisibility()">
               <span class="unit">mg/dL</span>
             </div>
@@ -306,9 +306,9 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
       </div>
       <div class="acc-body" id="body-acc-gcs">
 
-        <div style="font-size:12px;color:var(--text2);margin-bottom:14px;line-height:1.5">Select the best response observed. Score = Eye (1–4) + Verbal (1–5) + Motor (1–6). Range: 3–15.</div>
+        <div style="font-size:13.5px;color:var(--text2);margin-bottom:14px;line-height:1.5">Select the best response observed. Score = Eye (1–4) + Verbal (1–5) + Motor (1–6). Range: 3–15.</div>
 
-        <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:6px">Is the child verbal?</div>
+        <div style="font-size:13.5px;font-weight:500;color:var(--text2);margin-bottom:6px">Is the child verbal?</div>
         <div class="toggle-row">
           <button class="toggle-btn on" id="btn-verbal" onclick="setVerbal(true)">Verbal</button>
           <button class="toggle-btn" id="btn-nonverbal" onclick="setVerbal(false)">Non-verbal</button>
@@ -392,7 +392,7 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
         <div id="diag-steps">
 
           <div class="diag-q" id="diag-q1">
-            <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:12px">BMI ≥ 85th percentile for age and sex?</div>
+            <div style="font-size:15.5px;font-weight:600;color:var(--text);margin-bottom:12px">BMI ≥ 85th percentile for age and sex?</div>
             <div style="display:flex;gap:10px">
               <button class="diag-btn" onclick="diagAnswer(1,'yes')">Yes</button>
               <button class="diag-btn diag-btn-no" onclick="diagAnswer(1,'no')">No</button>
@@ -401,7 +401,7 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
 
           <div class="diag-q" id="diag-q2" style="display:none">
             <div class="diag-trail" id="diag-trail-2"></div>
-            <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:12px">Age &gt;10 years or has started puberty?</div>
+            <div style="font-size:15.5px;font-weight:600;color:var(--text);margin-bottom:12px">Age &gt;10 years or has started puberty?</div>
             <div style="display:flex;gap:10px">
               <button class="diag-btn" onclick="diagAnswer(2,'yes')">Yes</button>
               <button class="diag-btn diag-btn-no" onclick="diagAnswer(2,'no')">No</button>
@@ -410,7 +410,7 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
 
           <div class="diag-q" id="diag-q3" style="display:none">
             <div class="diag-trail" id="diag-trail-3"></div>
-            <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:12px">Signs of metabolic co-morbidities? <span style="font-size:12px;font-weight:400;color:var(--text3)">(acanthosis nigricans, hypertension, dyslipidaemia, PCOS, fatty liver)</span></div>
+            <div style="font-size:15.5px;font-weight:600;color:var(--text);margin-bottom:12px">Signs of metabolic co-morbidities? <span style="font-size:13.5px;font-weight:400;color:var(--text3)">(acanthosis nigricans, hypertension, dyslipidaemia, PCOS, fatty liver)</span></div>
             <div style="display:flex;gap:10px">
               <button class="diag-btn" onclick="diagAnswer(3,'yes')">Yes</button>
               <button class="diag-btn diag-btn-no" onclick="diagAnswer(3,'no')">No</button>
@@ -419,7 +419,7 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
 
           <div class="diag-q" id="diag-q4" style="display:none">
             <div class="diag-trail" id="diag-trail-4"></div>
-            <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:12px">Diabetic ketoacidosis or cerebral oedema present?</div>
+            <div style="font-size:15.5px;font-weight:600;color:var(--text);margin-bottom:12px">Diabetic ketoacidosis or cerebral oedema present?</div>
             <div style="display:flex;gap:10px">
               <button class="diag-btn" onclick="diagAnswer(4,'yes')">Yes</button>
               <button class="diag-btn diag-btn-no" onclick="diagAnswer(4,'no')">No</button>
@@ -447,10 +447,10 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
     </div>
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap">
       <div style="display:flex;gap:6px">
-        <button class="search-mode-btn active" id="btn-mode-text" onclick="setSearchMode('text')"><i class="ti ti-align-left"></i> Full text</button>
-        <button class="search-mode-btn" id="btn-mode-chapter" onclick="setSearchMode('chapter')"><i class="ti ti-books"></i> Chapters</button>
+        <button class="search-mode-btn active" id="btn-mode-chapter" onclick="setSearchMode('chapter')"><i class="ti ti-books"></i> Chapters</button>
+        <button class="search-mode-btn" id="btn-mode-text" onclick="setSearchMode('text')"><i class="ti ti-align-left"></i> Full text</button>
       </div>
-      <div style="font-size:12px;color:var(--text3)" id="chap-count"></div>
+      <div style="font-size:13.5px;color:var(--text3)" id="chap-count"></div>
     </div>
     <div id="chapter-results"></div>
   </div>
@@ -552,7 +552,7 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
       </div>
     </div>
 
-    <p class="fig-none" id="fig-none" style="display:none;color:var(--text3);font-size:13px;padding:20px 0">No figures match your search.</p>
+    <p class="fig-none" id="fig-none" style="display:none;color:var(--text3);font-size:14.5px;padding:20px 0">No figures match your search.</p>
   </div>
 
   <!-- Lightbox -->
@@ -678,7 +678,7 @@ function runDKAHHS() {
   const modAcid   = !sevAcid && ((hasPH && p < 7.2) || (hasB && b < 10));
 
   if (!hasG) {
-    el.innerHTML = `<div style="text-align:center;padding:28px 0;color:var(--text3)"><i class="ti ti-input-search" style="font-size:32px;display:block;margin-bottom:8px"></i><span style="font-size:14px">Please enter patient data above and press <strong style="color:var(--text2)">Assess</strong>.</span></div>`; return;
+    el.innerHTML = `<div style="text-align:center;padding:28px 0;color:var(--text3)"><i class="ti ti-input-search" style="font-size:32px;display:block;margin-bottom:8px"></i><span style="font-size:15.5px">Please enter patient data above and press <strong style="color:var(--text2)">Assess</strong>.</span></div>`; return;
   }
   if (!loThresh) {
     const euglycNote = (dkaAcid || dkaKeto)
@@ -809,7 +809,7 @@ function pending(items) {
 function flag(type, msg) {
   const cls = { warn:'flag-warn', info:'flag-info', ok:'flag-ok' };
   const icon = { warn:'ti-alert-triangle', info:'ti-info-circle', ok:'ti-circle-check' };
-  return `<div class="result-flag ${cls[type]}" style="margin-bottom:10px"><i class="ti ${icon[type]}" style="font-size:14px;flex-shrink:0;margin-top:1px"></i><div>${msg}</div></div>`;
+  return `<div class="result-flag ${cls[type]}" style="margin-bottom:10px"><i class="ti ${icon[type]}" style="font-size:15.5px;flex-shrink:0;margin-top:1px"></i><div>${msg}</div></div>`;
 }
 
 function clearDKAHHS() {
@@ -872,8 +872,8 @@ function calcGCS() {
   interpEl.style.color  = colour;
   resEl.classList.add('visible');
   resEl.innerHTML = `<div class="result-label">Interpretation</div>
-    <div style="font-size:13px;color:var(--text);line-height:1.6">${note}</div>
-    <div style="font-size:12px;color:var(--text3);margin-top:8px">E${eye} + V${verbal} + M${motor} = ${score}</div>`;
+    <div style="font-size:14.5px;color:var(--text);line-height:1.6">${note}</div>
+    <div style="font-size:13.5px;color:var(--text3);margin-top:8px">E${eye} + V${verbal} + M${motor} = ${score}</div>`;
 }
 
 // ── Figures ──────────────────────────────────────────────────────────────────
@@ -928,7 +928,7 @@ function diagAnswer(q, ans) {
     b.style.opacity = b.textContent.toLowerCase() === ans ? '1' : '0.35';
   });
 
-  const t1dNotes = `<ul style="margin:8px 0 0 18px;font-size:13px;color:var(--blue-text);line-height:1.7">
+  const t1dNotes = `<ul style="margin:8px 0 0 18px;font-size:14.5px;color:var(--blue-text);line-height:1.7">
     <li>Reconsider T2D if pancreatic autoantibodies are negative</li>
     <li>Consider MODY if autoantibodies negative <em>and</em> no clinical features of insulin resistance, no history of genitourinary tract abnormalities or neonatal diabetes, or stable isolated fasting hyperglycaemia</li>
   </ul>`;
@@ -939,14 +939,14 @@ function diagAnswer(q, ans) {
       document.getElementById('diag-result').innerHTML = `
         <div class="diag-result-t1d">
           <div class="diag-result-title"><i class="ti ti-circle-check"></i> Treat as Type 1 Diabetes</div>
-          <div style="font-size:13px;color:var(--blue-text);font-weight:600">Further considerations:</div>
+          <div style="font-size:14.5px;color:var(--blue-text);font-weight:600">Further considerations:</div>
           ${t1dNotes}
         </div>`;
     } else {
       document.getElementById('diag-result').innerHTML = `
         <div class="diag-result-t2d">
           <div class="diag-result-title"><i class="ti ti-circle-check"></i> Treat as Type 2 Diabetes</div>
-          <div style="font-size:13px;color:var(--amber-border)">Confirm with clinical review and autoantibody results. Initiate T2D management pathway per ISPAD Ch. 3.</div>
+          <div style="font-size:14.5px;color:var(--amber-border)">Confirm with clinical review and autoantibody results. Initiate T2D management pathway per ISPAD Ch. 3.</div>
         </div>`;
     }
   };
@@ -1039,7 +1039,7 @@ function renderChapters(list) {
     : `${list.length} of ${CHAPTERS.length} chapters match`;
   el.innerHTML = list.map(ch => {
     const newList = ch.whatsNew.length
-      ? `<div style="margin-bottom:12px"><span class="chap-new-badge" style="margin-left:0;margin-bottom:6px;display:inline-flex"><i class="ti ti-sparkles"></i>What's New</span><ul style="margin:6px 0 0 16px;padding:0;font-size:12px;color:var(--text2);line-height:1.7">${ch.whatsNew.map(w => `<li>${w}</li>`).join('')}</ul></div>`
+      ? `<div style="margin-bottom:12px"><span class="chap-new-badge" style="margin-left:0;margin-bottom:6px;display:inline-flex"><i class="ti ti-sparkles"></i>What's New</span><ul style="margin:6px 0 0 16px;padding:0;font-size:13.5px;color:var(--text2);line-height:1.7">${ch.whatsNew.map(w => `<li>${w}</li>`).join('')}</ul></div>`
       : '';
     const tags = ch.tags.length
       ? `<div class="chap-tags">${ch.tags.map(t => `<span class="chap-tag">${t}</span>`).join('')}</div>`
@@ -1050,8 +1050,8 @@ function renderChapters(list) {
     const pdfBtn = ch.localPdf
       ? `<a class="chap-link chap-link-pdf" href="${ch.localPdf}" target="_blank"><i class="ti ti-file-type-pdf"></i>Open PDF</a>`
       : '';
-    const authors = ch.authors ? `<span style="font-size:12px;color:var(--text3)">${ch.authors}</span>` : '';
-    const journal = ch.journal ? `<div style="font-size:11px;color:var(--text3);margin-bottom:10px">${ch.journal}</div>` : '';
+    const authors = ch.authors ? `<span style="font-size:13.5px;color:var(--text3)">${ch.authors}</span>` : '';
+    const journal = ch.journal ? `<div style="font-size:12.5px;color:var(--text3);margin-bottom:10px">${ch.journal}</div>` : '';
     return `
       <div class="chap-card">
         <div class="chap-meta">
@@ -1070,7 +1070,7 @@ function renderChapters(list) {
 }
 
 // ── Search mode ──────────────────────────────────────────────────────────────
-let searchMode = 'text';
+let searchMode = 'chapter';
 let searchIndex = null;
 let indexLoading = false;
 
@@ -1112,14 +1112,14 @@ async function loadIndex() {
   if (indexLoading) return null;
   indexLoading = true;
   const el = document.getElementById('chapter-results');
-  el.innerHTML = '<div style="padding:24px 0;color:var(--text3);font-size:13px"><i class="ti ti-loader" style="display:block;font-size:28px;margin-bottom:8px"></i>Loading full-text index…</div>';
+  el.innerHTML = '<div style="padding:24px 0;color:var(--text3);font-size:14.5px"><i class="ti ti-loader" style="display:block;font-size:28px;margin-bottom:8px"></i>Loading full-text index…</div>';
   try {
     const r = await fetch('ispad/search-index.json');
     if (!r.ok) throw new Error('not found');
     searchIndex = await r.json();
   } catch(e) {
     document.getElementById('chapter-results').innerHTML =
-      '<div style="padding:24px 0;color:var(--text3);font-size:13px">Full-text index not available. Upload search-index.json to GitHub.</div>';
+      '<div style="padding:24px 0;color:var(--text3);font-size:14.5px">Full-text index not available. Upload search-index.json to GitHub.</div>';
     indexLoading = false;
     return null;
   }
@@ -1169,7 +1169,7 @@ async function filterFullText() {
   );
 
   if (!matches.length) {
-    el.innerHTML = '<div style="text-align:center;color:var(--text3);font-size:14px;padding:40px 0"><i class="ti ti-search-off" style="font-size:32px;display:block;margin-bottom:8px"></i>No results found.</div>';
+    el.innerHTML = '<div style="text-align:center;color:var(--text3);font-size:15.5px;padding:40px 0"><i class="ti ti-search-off" style="font-size:32px;display:block;margin-bottom:8px"></i>No results found.</div>';
     countEl.textContent = '';
     return;
   }
@@ -1212,7 +1212,7 @@ async function filterFullText() {
 }
 
 // Init on load
-document.addEventListener('DOMContentLoaded', () => renderChapters(CHAPTERS));
+document.addEventListener('DOMContentLoaded', () => { renderChapters(CHAPTERS); });
 
 </script>
 </body>
