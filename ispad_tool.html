@@ -216,7 +216,7 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
 <div class="shell">
 
   <div style="margin-bottom:16px">
-    <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/ispad%20logo.svg" alt="ISPAD logo" style="height:72px;width:auto;display:block;margin-bottom:14px">
+    <img src="ispad/ispad%20logo.svg" alt="ISPAD logo" style="height:72px;width:auto;display:block;margin-bottom:14px">
     <h1>ISPAD Clinical Practice Consensus Guidelines Tool</h1>
   </div>
   <p class="intro">ISPAD's Clinical Practice Consensus Guidelines are the only comprehensive set of clinical recommendations for children, adolescents, and young adults with diabetes worldwide. This tool allows you to explore the guidelines with ease and includes decision making tools for clinicians based on the 2024 and 2026 Guidelines.</p>
@@ -437,6 +437,69 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
       </div>
     </div>
 
+    <!-- Accordion 4: Fuel for Movement -->
+    <div class="accordion" id="acc-fuel">
+      <div class="acc-header" onclick="toggleAcc('acc-fuel')">
+        <span class="acc-title">Fuel for Movement: Estimated Daily Needs for Youth with T1D</span>
+        <i class="ti ti-chevron-down acc-chevron" id="chev-acc-fuel"></i>
+      </div>
+      <div class="acc-body" id="body-acc-fuel">
+        <p style="font-size:13.5px;color:var(--text2);margin-bottom:16px;line-height:1.5">Estimated daily energy, carbohydrate, and protein needs based on exercise duration, intensity, age, and body weight. Boys and girls will have slightly different needs. <strong>Not a replacement for individualised assessment by a dietitian.</strong></p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+          <div class="input-group">
+            <label class="input-label" style="font-size:11.5px">Age Group</label>
+            <select id="fuel-age" onchange="updateFuelWeights()" class="dka-input">
+              <option value="">Select age group</option>
+              <option value="3-5">3–5 years</option>
+              <option value="6-10">6–10 years</option>
+              <option value="11-14">11–14 years</option>
+              <option value="15-17">15–17 years</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label class="input-label" style="font-size:11.5px">Body Weight (kg)</label>
+            <select id="fuel-weight" class="dka-input" disabled>
+              <option value="">Select age group first</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label class="input-label" style="font-size:11.5px">Exercise Intensity</label>
+            <select id="fuel-intensity" class="dka-input">
+              <option value="">Select intensity</option>
+              <option value="light">Light (METs ~3, RPE 2–3)</option>
+              <option value="moderate">Moderate (METs ~6, RPE 4–7)</option>
+              <option value="vigorous">Vigorous (METs ~9, RPE 8–10)</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label class="input-label" style="font-size:11.5px">Exercise Duration</label>
+            <select id="fuel-duration" class="dka-input">
+              <option value="">Select duration</option>
+              <option value="30">30 minutes</option>
+              <option value="60">60 minutes</option>
+              <option value="120">120 minutes</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:16px">
+          <button class="assess-btn" onclick="runFuel()">CALCULATE</button>
+          <span class="clear-lnk" onclick="clearFuel()">Clear</span>
+        </div>
+        <div id="fuel-result"></div>
+        <div style="margin-top:20px;font-size:12.5px;color:var(--text3);line-height:1.7;border-top:1px solid var(--border2);padding-top:14px">
+          <strong style="color:var(--text2)">Key Points</strong>
+          <ol style="margin:8px 0 0 16px;padding:0">
+            <li>Timing of carbohydrate and protein around exercise is essential for glycemic management and performance</li>
+            <li>Macronutrients should be provided via food first and a balanced diet to provide adequate micronutrients and fibre. Supplements should not be needed by youth</li>
+            <li>Hydration is essential before, during and after exercise</li>
+            <li>Carbohydrate requirement INCLUDES those taken for fuelling and hypoglycaemia prevention during exercise and non–insulin requiring carbohydrates</li>
+            <li>Fat intake may need to be adjusted to allow adequate carbohydrate intake while remaining within total daily energy requirements</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+
   </div><!-- /sec-aids -->
 
   <!-- ── GUIDELINES SEARCH ──────────────────────────────────────────── -->
@@ -462,91 +525,69 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
       <input type="text" id="fig-search" placeholder="search" oninput="filterFigs()">
     </div>
     <div class="fig-list" id="fig-grid">
-      <div class="fig-row" data-tags="hypoglycemia symptoms signs autonomic neuroglycopenic" data-title="hypoglycemia symptoms & signs" onclick="openLightbox('symptoms')">
+      <div class="fig-row" data-tags="ages stages nutrition growth development t1d youth" data-title="ages and stages of nutrition in youth with t1d" onclick="openLightbox('ages_stages')">
         <div class="fig-preview">
-          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/symptoms%20and%20signs.png" alt="Symptoms and Signs of Hypoglycemia" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
+          <img src="ispad/AgesAndStages.png" alt="Ages and Stages of Nutrition in Youth with T1D" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
         </div>
         <div class="fig-info">
-          <span class="fig-chapter-badge">Ch. 5 · Fig. 1</span>
-          <div class="fig-row-title">Symptoms and Signs of Hypoglycemia</div>
-          <div class="fig-row-tags">hypoglycemia · symptoms · signs · autonomic · neuroglycopenic</div>
+          <span class="fig-chapter-badge">Nutrition · 2026</span>
+          <div class="fig-row-title">Ages and Stages of Nutrition in Youth with T1D</div>
+          <div class="fig-row-tags">nutrition · ages · stages · growth · development · t1d</div>
           <span class="fig-view-btn"><i class="ti ti-zoom-in"></i> View full size</span>
         </div>
       </div>
-      <div class="fig-row" data-tags="hypoglycemia risk factors t1d" data-title="risk factors for hypoglycemia" onclick="openLightbox('risk_factors')">
+      <div class="fig-row" data-tags="dka diabetic ketoacidosis electrolytes sodium potassium fluid" data-title="electrolyte management in dka" onclick="openLightbox('electrolytes')">
         <div class="fig-preview">
-          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/risk%20factors.png" alt="Risk Factors for Hypoglycemia in Youth with T1D" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
+          <img src="ispad/Electrolytes.png" alt="Electrolyte Management in DKA" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
         </div>
         <div class="fig-info">
-          <span class="fig-chapter-badge">Ch. 5 · Fig. 2</span>
-          <div class="fig-row-title">Risk Factors for Hypoglycemia in Youth with T1D</div>
-          <div class="fig-row-tags">hypoglycemia · risk · factors · t1d</div>
+          <span class="fig-chapter-badge">DKA · 2026</span>
+          <div class="fig-row-title">Electrolyte Management in DKA</div>
+          <div class="fig-row-tags">dka · electrolytes · sodium · potassium · fluid · management</div>
           <span class="fig-view-btn"><i class="ti ti-zoom-in"></i> View full size</span>
         </div>
       </div>
-      <div class="fig-row" data-tags="hypoglycemia management treatment glucagon" data-title="hypoglycemia management" onclick="openLightbox('hypo_mgmt')">
+      <div class="fig-row" data-tags="exercise physical activity nutrition fuel carbohydrate energy t1d" data-title="exercise and nutrition for youth with t1d" onclick="openLightbox('exercise')">
         <div class="fig-preview">
-          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/hypoglycemia%20management.png" alt="Algorithm for Hypoglycemia Management" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
+          <img src="ispad/Exercise.png" alt="Exercise and Nutrition for Youth with T1D" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
         </div>
         <div class="fig-info">
-          <span class="fig-chapter-badge">Ch. 5 · Fig. 3</span>
-          <div class="fig-row-title">Algorithm for Hypoglycemia Management</div>
-          <div class="fig-row-tags">hypoglycemia · management · treatment · glucagon</div>
+          <span class="fig-chapter-badge">Nutrition · 2026</span>
+          <div class="fig-row-title">Exercise and Nutrition for Youth with T1D</div>
+          <div class="fig-row-tags">exercise · physical activity · nutrition · fuel · carbohydrate · energy · t1d</div>
           <span class="fig-view-btn"><i class="ti ti-zoom-in"></i> View full size</span>
         </div>
       </div>
-      <div class="fig-row" data-tags="hypoglycemia prevention t1d" data-title="hypoglycemia prevention" onclick="openLightbox('prevention')">
+      <div class="fig-row" data-tags="dka diabetic ketoacidosis pathophysiology therapy insulin fluid resuscitation ketone glucose" data-title="integrated pathophysiology–therapy link in pediatric dka" onclick="openLightbox('dka_path')">
         <div class="fig-preview">
-          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/prevention.png" alt="Strategies for Hypoglycemia Prevention" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
+          <img src="ispad/IntegratedPathophysiology.png" alt="Integrated Pathophysiology–Therapy Link in Pediatric DKA" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
         </div>
         <div class="fig-info">
-          <span class="fig-chapter-badge">Ch. 5 · Fig. 4</span>
-          <div class="fig-row-title">Strategies for Hypoglycemia Prevention</div>
-          <div class="fig-row-tags">hypoglycemia · prevention · t1d</div>
+          <span class="fig-chapter-badge">DKA · 2026</span>
+          <div class="fig-row-title">Integrated Pathophysiology–Therapy Link in Pediatric DKA</div>
+          <div class="fig-row-tags">dka · pathophysiology · therapy · insulin · fluid · ketone · glucose</div>
           <span class="fig-view-btn"><i class="ti ti-zoom-in"></i> View full size</span>
         </div>
       </div>
-      <div class="fig-row" data-tags="hypoglycemia levels classification level 1 level 2 level 3 cgm" data-title="hypoglycemia classification" onclick="openLightbox('table1')">
+      <div class="fig-row" data-tags="psychosocial psychological social biological spiritual wellbeing" data-title="psychosocial factors in youth with diabetes" onclick="openLightbox('psychosocial')">
         <div class="fig-preview">
-          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/table%201.png" alt="Hypoglycemia Classification Levels (Table 1)" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
+          <img src="ispad/Psychosocial.png" alt="Psychosocial Factors in Youth with Diabetes" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
         </div>
         <div class="fig-info">
-          <span class="fig-chapter-badge">Ch. 5 · Table 1</span>
-          <div class="fig-row-title">Hypoglycemia Classification Levels (Table 1)</div>
-          <div class="fig-row-tags">hypoglycemia · levels · classification · level · 1 · level · 2 · level · 3 · cgm</div>
-          <span class="fig-view-btn"><i class="ti ti-zoom-in"></i> View full size</span>
-        </div>
-      </div>
-      <div class="fig-row" data-tags="glucagon products table hypoglycemia treatment" data-title="glucagon products" onclick="openLightbox('glucagon')">
-        <div class="fig-preview">
-          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/glucagon%20table.png" alt="Available Glucagon Products for Hypoglycemia Treatment (Table 2)" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
-        </div>
-        <div class="fig-info">
-          <span class="fig-chapter-badge">Ch. 5 · Table 2</span>
-          <div class="fig-row-title">Available Glucagon Products for Hypoglycemia Treatment (Table 2)</div>
-          <div class="fig-row-tags">glucagon · products · table · hypoglycemia · treatment</div>
-          <span class="fig-view-btn"><i class="ti ti-zoom-in"></i> View full size</span>
-        </div>
-      </div>
-      <div class="fig-row" data-tags="dka diabetic ketoacidosis pathophysiology therapy insulin fluid resuscitation ketone glucose counterregulatory" data-title="dka integrated pathophysiology–therapy link" onclick="openLightbox('dka_path')">
-        <div class="fig-preview">
-          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/Pathophysiology.png" alt="Integrated Pathophysiology–Therapy Link in Pediatric Diabetic Ketoacidosis" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
-        </div>
-        <div class="fig-info">
-          <span class="fig-chapter-badge">Ch. 6 · Fig. 1</span>
-          <div class="fig-row-title">Integrated Pathophysiology–Therapy Link in Pediatric Diabetic Ketoacidosis</div>
-          <div class="fig-row-tags">dka · diabetic · ketoacidosis · pathophysiology · therapy · insulin · fluid · re</div>
-          <span class="fig-view-btn"><i class="ti ti-zoom-in"></i> View full size</span>
-        </div>
-      </div>
-      <div class="fig-row" data-tags="psychosocial psychological social biological spiritual" data-title="psychosocial factors in youth diabetes" onclick="openLightbox('psychosocial')">
-        <div class="fig-preview">
-          <img src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/Psychosocial.png" alt="Psychosocial Factors in Youth with Diabetes" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
-        </div>
-        <div class="fig-info">
-          <span class="fig-chapter-badge">Ch. 12 · Fig. 1</span>
+          <span class="fig-chapter-badge">Psychosocial · 2026</span>
           <div class="fig-row-title">Psychosocial Factors in Youth with Diabetes</div>
-          <div class="fig-row-tags">psychosocial · psychological · social · biological · spiritual</div>
+          <div class="fig-row-tags">psychosocial · psychological · social · biological · spiritual · wellbeing</div>
+          <span class="fig-view-btn"><i class="ti ti-zoom-in"></i> View full size</span>
+        </div>
+      </div>
+      <div class="fig-row" data-tags="dka hhs treatment protocol selection fluid insulin ketone osmolality" data-title="dka/hhs treatment protocol selection" onclick="openLightbox('protocol')">
+        <div class="fig-preview">
+          <img src="ispad/TreatmentProtocolSelection.png" alt="DKA/HHS Treatment Protocol Selection" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
+        </div>
+        <div class="fig-info">
+          <span class="fig-chapter-badge">DKA · 2026</span>
+          <div class="fig-row-title">DKA/HHS Treatment Protocol Selection</div>
+          <div class="fig-row-tags">dka · hhs · treatment · protocol · selection · fluid · insulin</div>
           <span class="fig-view-btn"><i class="ti ti-zoom-in"></i> View full size</span>
         </div>
       </div>
@@ -566,29 +607,23 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
         </div>
       </div>
       <div class="lb-body">
-    <div class="lb-item" id="lb-symptoms" style="display:none">
-      <img id="lb-img-symptoms" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/symptoms%20and%20signs.png" alt="Symptoms and Signs of Hypoglycemia" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
+    <div class="lb-item" id="lb-ages_stages" style="display:none">
+      <img id="lb-img-ages_stages" src="ispad/AgesAndStages.png" alt="Ages and Stages of Nutrition in Youth with T1D" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
     </div>
-    <div class="lb-item" id="lb-risk_factors" style="display:none">
-      <img id="lb-img-risk_factors" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/risk%20factors.png" alt="Risk Factors for Hypoglycemia in Youth with T1D" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
+    <div class="lb-item" id="lb-electrolytes" style="display:none">
+      <img id="lb-img-electrolytes" src="ispad/Electrolytes.png" alt="Electrolyte Management in DKA" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
     </div>
-    <div class="lb-item" id="lb-hypo_mgmt" style="display:none">
-      <img id="lb-img-hypo_mgmt" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/hypoglycemia%20management.png" alt="Algorithm for Hypoglycemia Management" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
-    </div>
-    <div class="lb-item" id="lb-prevention" style="display:none">
-      <img id="lb-img-prevention" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/prevention.png" alt="Strategies for Hypoglycemia Prevention" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
-    </div>
-    <div class="lb-item" id="lb-table1" style="display:none">
-      <img id="lb-img-table1" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/table%201.png" alt="Hypoglycemia Classification Levels (Table 1)" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
-    </div>
-    <div class="lb-item" id="lb-glucagon" style="display:none">
-      <img id="lb-img-glucagon" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/glucagon%20table.png" alt="Available Glucagon Products for Hypoglycemia Treatment (Table 2)" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
+    <div class="lb-item" id="lb-exercise" style="display:none">
+      <img id="lb-img-exercise" src="ispad/Exercise.png" alt="Exercise and Nutrition for Youth with T1D" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
     </div>
     <div class="lb-item" id="lb-dka_path" style="display:none">
-      <img id="lb-img-dka_path" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/Pathophysiology.png" alt="Integrated Pathophysiology–Therapy Link in Pediatric Diabetic Ketoacidosis" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
+      <img id="lb-img-dka_path" src="ispad/IntegratedPathophysiology.png" alt="Integrated Pathophysiology–Therapy Link in Pediatric DKA" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
     </div>
     <div class="lb-item" id="lb-psychosocial" style="display:none">
-      <img id="lb-img-psychosocial" src="https://raw.githubusercontent.com/xingcbrew/xingcbrew.github.io/main/ispad/Psychosocial.png" alt="Psychosocial Factors in Youth with Diabetes" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
+      <img id="lb-img-psychosocial" src="ispad/Psychosocial.png" alt="Psychosocial Factors in Youth with Diabetes" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
+    </div>
+    <div class="lb-item" id="lb-protocol" style="display:none">
+      <img id="lb-img-protocol" src="ispad/TreatmentProtocolSelection.png" alt="DKA/HHS Treatment Protocol Selection" style="max-width:100%;max-height:70vh;display:block;margin:0 auto">
     </div>
         
         </div>
@@ -877,11 +912,18 @@ function calcGCS() {
 }
 
 // ── Figures ──────────────────────────────────────────────────────────────────
-const FIGS_META = [{"id": "symptoms", "title": "Symptoms and Signs of Hypoglycemia", "chapter": "Ch. 5 · Fig. 1"}, {"id": "risk_factors", "title": "Risk Factors for Hypoglycemia in Youth with T1D", "chapter": "Ch. 5 · Fig. 2"}, {"id": "hypo_mgmt", "title": "Algorithm for Hypoglycemia Management", "chapter": "Ch. 5 · Fig. 3"}, {"id": "prevention", "title": "Strategies for Hypoglycemia Prevention", "chapter": "Ch. 5 · Fig. 4"}, {"id": "table1", "title": "Hypoglycemia Classification Levels (Table 1)", "chapter": "Ch. 5 · Table 1"}, {"id": "glucagon", "title": "Available Glucagon Products for Hypoglycemia Treatment (Table 2)", "chapter": "Ch. 5 · Table 2"}, {"id": "dka_path", "title": "Integrated Pathophysiology–Therapy Link in Pediatric Diabetic Ketoacidosis", "chapter": "Ch. 6 · Fig. 1"}, {"id": "psychosocial", "title": "Psychosocial Factors in Youth with Diabetes", "chapter": "Ch. 12 · Fig. 1"}];
+const FIGS_META = [
+  {"id": "ages_stages",  "title": "Ages and Stages of Nutrition in Youth with T1D",          "chapter": "Nutrition · 2026"},
+  {"id": "electrolytes", "title": "Electrolyte Management in DKA",                            "chapter": "DKA · 2026"},
+  {"id": "exercise",     "title": "Exercise and Nutrition for Youth with T1D",                 "chapter": "Nutrition · 2026"},
+  {"id": "dka_path",    "title": "Integrated Pathophysiology–Therapy Link in Pediatric DKA",  "chapter": "DKA · 2026"},
+  {"id": "psychosocial", "title": "Psychosocial Factors in Youth with Diabetes",               "chapter": "Psychosocial · 2026"},
+  {"id": "protocol",    "title": "DKA/HHS Treatment Protocol Selection",                      "chapter": "DKA · 2026"}
+];
 
 function filterFigs() {
   const q = document.getElementById('fig-search').value.toLowerCase().trim();
-  const cards = document.querySelectorAll('.fig-card');
+  const cards = document.querySelectorAll('.fig-row');
   let visible = 0;
   cards.forEach(card => {
     const match = !q || card.dataset.tags.includes(q) || card.dataset.title.includes(q);
@@ -983,6 +1025,116 @@ function clearDiag() {
   ['diag-trail-2','diag-trail-3','diag-trail-4'].forEach(id => {
     document.getElementById(id).textContent = '';
   });
+}
+
+// ── FUEL FOR MOVEMENT ─────────────────────────────────────────────────
+const FUEL_WEIGHTS = {
+  '3-5':  [14, 18],
+  '6-10': [20, 30],
+  '11-14':[35, 50],
+  '15-17':[52, 57]
+};
+
+// [intensity][duration][weightIndex] = {e, c, p}
+const FUEL_DATA = {
+  light: {
+    30:  [{e:1000,c:110,p:15},{e:1100,c:120,p:20},{e:1150,c:130,p:20},{e:1400,c:160,p:30},{e:1400,c:160,p:30},{e:1700,c:190,p:45},{e:1800,c:200,p:45},{e:1900,c:210,p:50}],
+    60:  [{e:1150,c:130,p:15},{e:1250,c:140,p:20},{e:1300,c:150,p:20},{e:1650,c:180,p:30},{e:1650,c:190,p:30},{e:1950,c:220,p:45},{e:2100,c:230,p:45},{e:2200,c:250,p:50}],
+    120: [{e:1200,c:140,p:15},{e:1450,c:160,p:20},{e:1500,c:170,p:20},{e:1850,c:210,p:30},{e:1900,c:210,p:30},{e:2250,c:250,p:45},{e:2350,c:270,p:45},{e:2550,c:290,p:50}]
+  },
+  moderate: {
+    30:  [{e:1050,c:120,p:15},{e:1150,c:130,p:20},{e:1250,c:140,p:20},{e:1500,c:170,p:30},{e:1550,c:170,p:30},{e:1850,c:210,p:45},{e:1950,c:220,p:45},{e:2050,c:230,p:50}],
+    60:  [{e:1150,c:140,p:15},{e:1350,c:170,p:20},{e:1400,c:180,p:20},{e:1750,c:220,p:30},{e:1800,c:220,p:30},{e:2100,c:260,p:45},{e:2250,c:280,p:45},{e:2400,c:300,p:50}],
+    120: [{e:1300,c:160,p:15},{e:1550,c:190,p:20},{e:1600,c:200,p:20},{e:1950,c:250,p:30},{e:2000,c:250,p:30},{e:2400,c:300,p:45},{e:2500,c:320,p:45},{e:2700,c:340,p:50}]
+  },
+  vigorous: {
+    30:  [{e:1150,c:140,p:15},{e:1250,c:160,p:20},{e:1300,c:170,p:20},{e:1650,c:200,p:30},{e:1650,c:210,p:30},{e:1950,c:250,p:45},{e:2100,c:260,p:45},{e:2200,c:280,p:50}],
+    60:  [{e:1300,c:180,p:20},{e:1550,c:210,p:25},{e:1600,c:220,p:30},{e:1950,c:270,p:40},{e:2000,c:280,p:50},{e:2400,c:330,p:70},{e:2500,c:350,p:75},{e:2700,c:370,p:80}],
+    120: [{e:1400,c:200,p:20},{e:1700,c:240,p:25},{e:1800,c:250,p:30},{e:2200,c:300,p:40},{e:2250,c:310,p:50},{e:2700,c:370,p:70},{e:2800,c:390,p:75},{e:3000,c:410,p:80}]
+  }
+};
+
+const FUEL_FAT = {
+  '3-5':  {total:'42–49',sat:'12–14'},
+  '6-10': {total:'49–64',sat:'14–18'},
+  '11-14':{total:'64–83',sat:'18–24'},
+  '15-17':{total:'75–97',sat:'21–28'}
+};
+
+// All 8 weight columns in order
+const ALL_WEIGHTS = [14,18,20,30,35,50,52,57];
+
+function updateFuelWeights() {
+  const age = document.getElementById('fuel-age').value;
+  const sel = document.getElementById('fuel-weight');
+  sel.innerHTML = '';
+  sel.disabled = !age;
+  if (!age) { sel.innerHTML = '<option value="">Select age group first</option>'; return; }
+  sel.innerHTML = '<option value="">Select weight</option>';
+  FUEL_WEIGHTS[age].forEach(w => {
+    const opt = document.createElement('option');
+    opt.value = w;
+    opt.textContent = w + ' kg';
+    sel.appendChild(opt);
+  });
+}
+
+function runFuel() {
+  const age = document.getElementById('fuel-age').value;
+  const wt  = parseInt(document.getElementById('fuel-weight').value);
+  const intensity = document.getElementById('fuel-intensity').value;
+  const dur = parseInt(document.getElementById('fuel-duration').value);
+  const el  = document.getElementById('fuel-result');
+
+  if (!age || !wt || !intensity || !dur) {
+    el.innerHTML = '<div class="result-flag flag-warn"><i class="ti ti-alert-triangle" style="font-size:15.5px;flex-shrink:0"></i><div>Please select all four fields before calculating.</div></div>';
+    return;
+  }
+
+  const wi = ALL_WEIGHTS.indexOf(wt);
+  const d  = FUEL_DATA[intensity][dur][wi];
+  const fat = FUEL_FAT[age];
+  const intLabel = {light:'Light',moderate:'Moderate',vigorous:'Vigorous'}[intensity];
+  const durLabel = dur + ' min';
+
+  el.innerHTML = `
+    <div style="background:var(--ispad-blue-light);border:1px solid #BFD0E8;border-radius:var(--radius-lg);padding:20px">
+      <div style="font-size:12.5px;font-weight:600;color:var(--ispad-blue);margin-bottom:14px;text-transform:uppercase;letter-spacing:.04em">${intLabel} intensity · ${durLabel} · ${wt} kg · ${age} years</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:12px">
+        <div style="background:var(--bg);border-radius:var(--radius);padding:14px;text-align:center">
+          <div style="font-size:13.5px;font-weight:600;color:var(--text2);margin-bottom:6px">Daily Energy</div>
+          <div style="font-size:28px;font-weight:700;color:var(--ispad-blue);line-height:1">${d.e.toLocaleString()}</div>
+          <div style="font-size:12.5px;color:var(--text3);margin-top:4px">kcal / day</div>
+        </div>
+        <div style="background:var(--bg);border-radius:var(--radius);padding:14px;text-align:center">
+          <div style="font-size:13.5px;font-weight:600;color:var(--text2);margin-bottom:6px">Carbohydrates</div>
+          <div style="font-size:28px;font-weight:700;color:var(--ispad-blue);line-height:1">${d.c}</div>
+          <div style="font-size:12.5px;color:var(--text3);margin-top:4px">g / day</div>
+        </div>
+        <div style="background:var(--bg);border-radius:var(--radius);padding:14px;text-align:center">
+          <div style="font-size:13.5px;font-weight:600;color:var(--text2);margin-bottom:6px">Protein</div>
+          <div style="font-size:28px;font-weight:700;color:var(--ispad-blue);line-height:1">${d.p}</div>
+          <div style="font-size:12.5px;color:var(--text3);margin-top:4px">g / day</div>
+        </div>
+        <div style="background:var(--bg);border-radius:var(--radius);padding:14px;text-align:center">
+          <div style="font-size:13.5px;font-weight:600;color:var(--text2);margin-bottom:6px">Daily Fat</div>
+          <div style="font-size:28px;font-weight:700;color:var(--ispad-blue);line-height:1">${fat.total}</div>
+          <div style="font-size:12.5px;color:var(--text3);margin-top:4px">g / day · saturated ≤${fat.sat} g</div>
+        </div>
+      </div>
+      <div style="font-size:12.5px;color:var(--ispad-blue);line-height:1.6">
+        Carbohydrate target = ${intensity === 'vigorous' && dur >= 60 ? '55%' : intensity === 'moderate' && dur >= 60 ? '50%' : '45%'} of total daily energy for ${intLabel.toLowerCase()}-intensity${dur > 30 ? ' &gt;1 h/day' : ' exercise'}.
+      </div>
+    </div>`;
+}
+
+function clearFuel() {
+  document.getElementById('fuel-age').value = '';
+  document.getElementById('fuel-weight').innerHTML = '<option value="">Select age group first</option>';
+  document.getElementById('fuel-weight').disabled = true;
+  document.getElementById('fuel-intensity').value = '';
+  document.getElementById('fuel-duration').value = '';
+  document.getElementById('fuel-result').innerHTML = '';
 }
 
 // ── CHAPTER SEARCH ────────────────────────────────────────────────────────────
