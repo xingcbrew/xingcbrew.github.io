@@ -26,6 +26,8 @@
     
       gtag('config', 'G-0Z0P1H4THS');
     </script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 	</head>
 	<body class="is-preload">
 		<!-- Wrapper -->
@@ -69,13 +71,87 @@
 							</header>
 	 <div class="container">
 	         <img class="title" src="images/name.png" alt="" />
-	         <h3>ASL Name Generator</h3>
+	         <h3>ASL Individual Name Generator</h3>
             <input type="text" id="nameInput" placeholder="Enter a name" oninput="checkInput()">
             <button onclick="generateASL()">Generate Name in ASL</button> 
             <button id="downloadButton" onclick="downloadASLImage()" style="display: none;">Download Image</button>
             <div id="additionalText" style="display: none;"><i>Note: Longer names that appear on multiple lines on the screen will be printed on one line in the downloaded image.</i></div>
             <div id="output"></div>
             <div id="textOutput"></div>
+			<div class="container" id="classListContainer">
+  <img class="title" src="images/name.png" alt="" />
+  <h3>ASL Class List Generator</h3>
+  <p>Paste your class list below — one name per line — and generate all names at once. Great for printing name tags or cut-out cards for the whole class.</p>
+  <textarea
+    id="classListInput"
+    placeholder="Alice&#10;Bob&#10;Charlie&#10;Diana"
+    rows="8"
+    oninput="onClassListInput()"
+    style="width:100%; padding:0.6em 0.75em; font-size:1em; font-family:inherit; border:1px solid #ccc; border-radius:4px; resize:vertical; box-sizing:border-box;"
+  ></textarea>
+  <br />
+  <button onclick="generateClassList()" style="margin-top:0.5em;">Generate All Names</button>
+
+  <div id="classListStatus" style="display:none; margin-top:0.75em; font-size:0.9em; color:#666;"></div>
+
+  <div id="classListPreview" style="margin-top:1.25em;"></div>
+
+  <div id="classListButtons" style="display:none; margin-top:1em; display:none;">
+    <button id="zipBtn" onclick="downloadClassListZip()">
+      Download as ZIP &nbsp;(individual transparent PNGs)
+    </button>
+    &nbsp;
+    <button id="pdfBtn" onclick="downloadClassListPDF()">
+      Download as PDF &nbsp;(3–4 names per page, cut-out format)
+    </button>
+  </div>
+</div>
+
+<!-- Inline styles for the batch preview cards -->
+<style>
+  .batch-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 10px 12px 8px;
+    margin-bottom: 10px;
+    background: #fafafa;
+    overflow-x: auto;
+  }
+  .batch-card-label {
+    font-size: 0.85em;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 6px;
+  }
+  .batch-card-letters {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 4px;
+    align-items: flex-end;
+  }
+  .batch-letter-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .batch-letter-slot img {
+    height: 72px;
+    width: auto;
+    display: block;
+  }
+  .batch-letter-slot span {
+    font-size: 13px;
+    margin-top: 3px;
+    color: #333;
+  }
+  #classListButtons {
+    display: none;
+  }
+</style>
+
     </div>
     
      <div class="container">
