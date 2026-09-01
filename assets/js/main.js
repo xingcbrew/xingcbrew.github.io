@@ -514,7 +514,6 @@ async function downloadClassListPDF() {
         const margin = 12;       // page margin (mm)
         const perPage = 4;       // names per page
         const slotH  = (pageH - margin * 2) / perPage;  // ≈ 63.85 mm per slot
-        const labelH = 10;       // mm reserved at top of each slot for the name text
 
         for (let i = 0; i < names.length; i++) {
             const name = names[i];
@@ -527,13 +526,7 @@ async function downloadClassListPDF() {
 
             const slotY  = margin + slotIndex * slotH;
             const maxImgW = pageW - margin * 2;
-            const maxImgH = slotH - labelH - 4;  // leave 4 mm padding below image
-
-            // Centered, bold name label
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(13);
-            doc.setTextColor(40);
-            doc.text(name, pageW / 2, slotY + 7, { align: 'center' });
+            const maxImgH = slotH - 6;  // 3 mm top + 3 mm bottom padding
 
             // Scale ASL image to fit the slot width and height
             const aspect = canvas.width / canvas.height;
@@ -544,7 +537,7 @@ async function downloadClassListPDF() {
                 drawW = drawH * aspect;
             }
             const imgX = (pageW - drawW) / 2;
-            doc.addImage(canvas.toDataURL('image/png'), 'PNG', imgX, slotY + labelH, drawW, drawH);
+            doc.addImage(canvas.toDataURL('image/png'), 'PNG', imgX, slotY + 3, drawW, drawH);
 
             // Dashed cut line between slots (not after the last name)
             const isLastName   = (i === names.length - 1);
