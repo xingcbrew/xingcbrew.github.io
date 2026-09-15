@@ -153,6 +153,13 @@ body{font-family:var(--ff-b);background:var(--bg);color:var(--text);overflow:hid
     <button class="mode-btn" id="free-btn"><span class="em">🎨</span>Free Build</button>
     <button class="mode-btn" id="math-btn"><span class="em" style="font-size:32px;letter-spacing:-1px;line-height:1">+×÷</span>Math Challenge</button>
   </div>
+  <div id="size-picker">
+    <h3>Choose grid size:</h3>
+    <div class="op-row">
+      <button class="op-btn" data-sz="10">10 × 10</button>
+      <button class="op-btn" data-sz="20">20 × 20</button>
+    </div>
+  </div>
   <div id="op-picker">
     <h3>Choose an operation:</h3>
     <div class="op-row">
@@ -161,6 +168,7 @@ body{font-family:var(--ff-b);background:var(--bg);color:var(--text);overflow:hid
       <button class="op-btn" data-op="multiply">× Multiply</button>
       <button class="op-btn" data-op="divide">÷ Divide</button>
       <button class="op-btn" data-op="mix">🎲 Mix</button>
+      <button class="op-btn" data-op="hard">🔥 Hard</button>
     </div>
     <button class="go-btn" id="go-btn">Let's Go! 🚀</button>
   </div>
@@ -232,7 +240,7 @@ body{font-family:var(--ff-b);background:var(--bg);color:var(--text);overflow:hid
 <div id="toast"></div>
 
 <script>
-const GS = 10;
+let GS = 10;
 
 const COLORS = [
   {n:'One · Red',      v:'#DE151D'},{n:'Two · Orange',   v:'#E89223'},
@@ -519,8 +527,6 @@ function interact(r,c,first){
       if(grid[r][c].color){push();grid[r][c]={color:null,eye:null,mouth:null};renderCell(r,c);updateLiveCount();}
     } else {
       if(!grid[r][c].color){
-        const any=grid.some(row=>row.some(cx=>cx.color));
-        if(any&&!adjColor(r,c)){if(first){shake(r,c);toast('Connect it to a block! 🧱');}return;}
         push();grid[r][c].color=selColor;renderCell(r,c);updateLiveCount();
       } else if(grid[r][c].color!==selColor){push();grid[r][c].color=selColor;renderCell(r,c);}
     }
@@ -560,12 +566,17 @@ function switchTab(t){activeTab=t;document.getElementById('t-color').classList.t
 // ── MATH ──
 function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
 function genProblem(op){
-  if(op==='mix')return genProblem(['add','subtract','multiply','divide'][rand(0,3)]);
+  if(op==='mix') return genProblem(['add','subtract','multiply','divide'][rand(0,3)]);
+  if(op==='hard') return genProblem(['chain','two-step','bracket','sub-mult'][rand(0,3)]);
   switch(op){
     case 'add':      {const ans=rand(2,50),a=rand(1,ans-1);return{display:`${a} + ${ans-a} = ?`,answer:ans};}
     case 'subtract': {const ans=rand(1,40),b=rand(1,20),a=ans+b;return{display:`${a} − ${b} = ?`,answer:ans};}
     case 'multiply': {const a=rand(1,9),b=rand(1,Math.min(10,Math.floor(50/a)));return{display:`${a} × ${b} = ?`,answer:a*b};}
     case 'divide':   {const d=rand(2,8),ans=rand(1,Math.floor(40/d));return{display:`${ans*d} ÷ ${d} = ?`,answer:ans};}
+    case 'chain':    {const a=rand(2,15),b=rand(2,15),c=rand(2,15);if(a+b+c>50)return genProblem('chain');return{display:`${a} + ${b} + ${c} = ?`,answer:a+b+c};}
+    case 'two-step': {const a=rand(2,6),b=rand(2,6),c=rand(1,10),ans=a*b+c;if(ans>50)return genProblem('two-step');return{display:`${a} × ${b} + ${c} = ?`,answer:ans};}
+    case 'bracket':  {const c=rand(2,5),a=rand(2,6),b=rand(2,6),ans=(a+b)*c;if(ans>50)return genProblem('bracket');return{display:`(${a} + ${b}) × ${c} = ?`,answer:ans};}
+    case 'sub-mult': {const a=rand(3,9),b=rand(2,6),c=rand(1,a*b-1),ans=a*b-c;if(ans<1)return genProblem('sub-mult');return{display:`${a} × ${b} − ${c} = ?`,answer:ans};}
   }
 }
 
@@ -656,16 +667,18 @@ function startGame(m){
 }
 function goHome(){
   document.getElementById('op-picker').style.display='none';
+  document.getElementById('size-picker').style.display='none';
   document.querySelectorAll('.op-btn').forEach(b=>b.classList.remove('sel'));
   selOp=null; math=null;
   showScreen('start');
 }
 
 // ── EVENTS ──
-document.getElementById('free-btn').addEventListener('click',()=>{math=null;selOp=null;startGame('free');});
+document.getElementById('free-btn').addEventListener('click',()=>{document.getElementById('size-picker').style.display='flex';});
+document.querySelectorAll('[data-sz]').forEach(b=>b.addEventListener('click',()=>{GS=parseInt(b.dataset.sz);document.getElementById('size-picker').style.display='none';math=null;selOp=null;startGame('free');}));
 document.getElementById('math-btn').addEventListener('click',()=>{document.getElementById('op-picker').style.display='flex';});
 document.querySelectorAll('.op-btn').forEach(b=>b.addEventListener('click',()=>{selOp=b.dataset.op;document.querySelectorAll('.op-btn').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');}));
-document.getElementById('go-btn').addEventListener('click',()=>{if(!selOp){toast('Pick an operation first!');return;}math=genProblem(selOp);startGame('math');});
+document.getElementById('go-btn').addEventListener('click',()=>{if(!selOp){toast('Pick an operation first!');return;}GS=10;math=genProblem(selOp);startGame('math');});
 document.getElementById('t-color').addEventListener('click',()=>switchTab('color'));
 document.getElementById('t-face').addEventListener('click',()=>switchTab('face'));
 document.getElementById('paint-btn').addEventListener('click',()=>{tool='paint';updTools();});
