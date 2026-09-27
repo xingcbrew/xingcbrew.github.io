@@ -221,6 +221,18 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
   </div>
   <p class="intro">ISPAD's Clinical Practice Consensus Guidelines are the only comprehensive set of clinical recommendations for children, adolescents, and young adults with diabetes worldwide. This tool allows you to explore the guidelines with ease and includes decision making tools for clinicians based on the 2024 and 2026 Guidelines.</p>
 
+  <!-- HCP notice -->
+  <div style="display:flex;align-items:flex-start;gap:10px;background:#FFF8E1;border:1px solid #FFE082;border-radius:var(--radius);padding:12px 16px;margin-bottom:16px;font-size:13.5px;color:#5D4037;line-height:1.6">
+    <i class="ti ti-user-check" style="font-size:17.5px;color:#F9A825;flex-shrink:0;margin-top:1px"></i>
+    <span><strong>For qualified healthcare professionals only.</strong> This tool is intended for use by trained clinicians. It is not designed for patients, caregivers, or the general public. Clinical decisions must always be made in conjunction with the full ISPAD guidelines, institutional protocols, and professional clinical judgement.</span>
+  </div>
+
+  <!-- Persistent disclaimer -->
+  <div style="display:flex;align-items:flex-start;gap:10px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:12px 16px;margin-bottom:20px;font-size:13.5px;color:var(--text2);line-height:1.6">
+    <i class="ti ti-info-circle" style="font-size:17.5px;color:var(--text3);flex-shrink:0;margin-top:1px"></i>
+    <span>This tool is a guideline aid for healthcare professionals only. It does not constitute a diagnosis or treatment recommendation. Always refer to the full ISPAD guidelines and apply clinical judgment.</span>
+  </div>
+
   <!-- Nav -->
   <div class="nav-btns">
     <button class="nav-btn active" onclick="showSection('search', this)">Guidelines Search</button>
@@ -231,10 +243,6 @@ h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; ma
   <!-- ── DECISION AIDS ───────────────────────────────────────────────── -->
   <div class="section" id="sec-aids">
 
-    <div style="display:flex;align-items:flex-start;gap:10px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:12px 16px;margin-bottom:20px;font-size:13.5px;color:var(--text2);line-height:1.6">
-      <i class="ti ti-info-circle" style="font-size:17.5px;color:var(--text3);flex-shrink:0;margin-top:1px"></i>
-      <span><strong style="color:var(--text)">For clinical decision support only.</strong> These tools are intended to assist clinicians in applying the ISPAD Clinical Practice Consensus Guidelines and do not replace clinical judgement, institutional protocols, or direct patient assessment. They are not diagnostic tools.</span>
-    </div>
 
     <!-- Accordion 1: DKA vs HHS -->
     <div class="accordion" id="acc-dka">
@@ -826,12 +834,23 @@ function classifyDKA(p, b, k, hasPH, hasB, hasK, cl, wt) {
 function summary(type, title, sub, recs, warns, wt, showGrid) {
   const badges = { mild:'badge-mild', mod:'badge-mod', sev:'badge-sev', hhs:'badge-hhs', 'hhs-dka':'badge-hhs-dka', ok:'badge-ok', pending:'badge-pending' };
   const labels = { mild:'Mild DKA', mod:'Moderate DKA', sev:'Severe DKA', hhs:'HHS', 'hhs-dka':'Hyperosmolar DKA', ok:'', pending:'Additional labs required' };
+  const refs = {
+    mild:    'These values may be consistent with Mild DKA — refer to ISPAD Ch. 6 for the full classification and management protocol.',
+    mod:     'These values may be consistent with Moderate DKA — refer to ISPAD Ch. 6 for the full classification and management protocol.',
+    sev:     'These values may be consistent with Severe DKA — refer to ISPAD Ch. 6 for the full classification and management protocol.',
+    hhs:     'These values may be consistent with HHS — refer to ISPAD Ch. 6 for the full classification and management protocol.',
+    'hhs-dka': 'These values may be consistent with Hyperosmolar DKA — refer to ISPAD Ch. 6 for the full classification and management protocol.',
+    ok:      ''
+  };
   let html = `<div class="result-label">Assessment</div>`;
   html += `<span class="result-badge ${badges[type]}">${labels[type]||title}</span>`;
   html += `<div class="result-title">${title}</div>`;
   html += `<div class="result-sub">${sub}</div>`;
   if (showGrid) {
     html += `<a class="pdf-link" href="#" onclick="return false" style="margin-top:14px;display:inline-flex"><i class="ti ti-file-text"></i>Link to protocol PDF</a>`;
+  }
+  if (refs[type]) {
+    html += `<div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border2);font-size:12.5px;color:var(--text3);line-height:1.6"><i class="ti ti-info-circle" style="margin-right:5px"></i>${refs[type]}</div>`;
   }
   return html;
 }
@@ -908,7 +927,8 @@ function calcGCS() {
   resEl.classList.add('visible');
   resEl.innerHTML = `<div class="result-label">Interpretation</div>
     <div style="font-size:14.5px;color:var(--text);line-height:1.6">${note}</div>
-    <div style="font-size:13.5px;color:var(--text3);margin-top:8px">E${eye} + V${verbal} + M${motor} = ${score}</div>`;
+    <div style="font-size:13.5px;color:var(--text3);margin-top:8px">E${eye} + V${verbal} + M${motor} = ${score}</div>
+    <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border2);font-size:12.5px;color:var(--text3);line-height:1.6"><i class="ti ti-info-circle" style="margin-right:5px"></i>GCS is a neurological assessment tool. This result does not constitute a clinical diagnosis — refer to ISPAD Ch. 6 and institutional protocols for full management guidance.</div>`;
 }
 
 // ── Figures ──────────────────────────────────────────────────────────────────
@@ -980,15 +1000,17 @@ function diagAnswer(q, ans) {
     if (type === 't1d') {
       document.getElementById('diag-result').innerHTML = `
         <div class="diag-result-t1d">
-          <div class="diag-result-title"><i class="ti ti-circle-check"></i> Treat as Type 1 Diabetes</div>
+          <div class="diag-result-title"><i class="ti ti-circle-check"></i> Clinical features more consistent with Type 1 Diabetes</div>
           <div style="font-size:14.5px;color:var(--blue-text);font-weight:600">Further considerations:</div>
           ${t1dNotes}
+          <div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(0,0,0,.08);font-size:12.5px;color:var(--blue-text);opacity:.8;line-height:1.6"><i class="ti ti-info-circle" style="margin-right:5px"></i>These findings may be consistent with T1D — refer to ISPAD Ch. 3 §3.3 for the full classification criteria and management pathway. This tool does not constitute a diagnosis.</div>
         </div>`;
     } else {
       document.getElementById('diag-result').innerHTML = `
         <div class="diag-result-t2d">
-          <div class="diag-result-title"><i class="ti ti-circle-check"></i> Treat as Type 2 Diabetes</div>
+          <div class="diag-result-title"><i class="ti ti-circle-check"></i> Clinical features more consistent with Type 2 Diabetes</div>
           <div style="font-size:14.5px;color:var(--amber-border)">Confirm with clinical review and autoantibody results. Initiate T2D management pathway per ISPAD Ch. 3.</div>
+          <div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(0,0,0,.08);font-size:12.5px;color:var(--amber-border);opacity:.8;line-height:1.6"><i class="ti ti-info-circle" style="margin-right:5px"></i>These findings may be consistent with T2D — refer to ISPAD Ch. 3 §3.3 for the full classification criteria and management pathway. This tool does not constitute a diagnosis.</div>
         </div>`;
     }
   };
