@@ -1,345 +1,108 @@
-<!DOCTYPE HTML>
-<!--
-	Phantom by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Name Creations</title>
-		 <meta name="description" content="Generate your name in American Sign Language (ASL) fingerspelling for free. Perfect for teachers, parents, and anyone interested in learning ASL.">
-		 <meta name="keywords" content="ASL, American Sign Language, name generator, fingerspelling, ASL alphabet, learn ASL">
-    <meta name="author" content="Xing Brew">
-    <meta name="robots" content="index, follow">
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<link rel="shortcut icon" type="image/x-icon" href="images/ASL.svg" />
-		
-		<!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0Z0P1H4THS"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-0Z0P1H4THS');
-    </script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-	</head>
-	<body class="is-preload">
-		<!-- Wrapper -->
-			<div id="wrapper">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Xing Brew · Things I've Made</title>
+  <meta name="description" content="Free learning tools and games by Xing Brew: Math Blocks, a block-building math game, and Name Creations, an ASL and Braille name generator.">
+  <meta name="author" content="Xing Brew">
+  <link rel="shortcut icon" type="image/x-icon" href="images/ASL.svg">
 
-				<!-- Header -->
-					<header id="header">
-						<div class="inner">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0Z0P1H4THS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0Z0P1H4THS');
+  </script>
 
-							<!-- Logo -->
-								<a href="index.html" class="logo">
-									<span class="symbol"><img src="images/ASL.svg" alt="" /></span><span class="title">Name Creations</span>
-								</a>
+  <style>
+    :root {
+      --bg:#EEF0FF; --surface:#FFFFFF; --border:#C8CEFF;
+      --text:#1A1A3E; --muted:#5A5E96; --accent:#5B52E8; --accent-h:#4840D6;
+      --on-accent:#FFFFFF; --shadow:0 2px 12px rgba(91,82,232,.14);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:#0D0F2A; --surface:#161937; --border:#2E3370;
+        --text:#E6E9FF; --muted:#A3A8DC; --accent:#8A83FF; --accent-h:#9C96FF;
+        --on-accent:#0D0F2A; --shadow:0 2px 12px rgba(0,0,0,.4);
+      }
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 17px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 32px 16px 48px; }
+    h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 6px; }
+    .lede { color: var(--muted); margin: 0 0 24px; }
 
-							<!-- Nav -->
-								<nav>
-									<ul>
-										<li><a href="#menu">Menu</a></li>
-									</ul>
-								</nav>
+    .banner {
+      display: block; padding: 12px 16px; margin-bottom: 24px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      color: var(--text); text-decoration: none;
+    }
+    .banner strong { color: var(--accent); }
+    .banner:hover { border-color: var(--accent); }
 
-						</div>
-					</header>
+    .cards { display: grid; gap: 16px; grid-template-columns: 1fr; }
+    @media (min-width: 640px) { .cards { grid-template-columns: 1fr 1fr; } }
+    .card {
+      display: flex; flex-direction: column; padding: 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; box-shadow: var(--shadow);
+    }
+    .card h2 { margin: 0 0 4px; font-size: 1.3rem; }
+    .tag { color: var(--muted); font-size: .85rem; margin: 0 0 10px; }
+    .card p { margin: 0 0 16px; flex: 1; }
+    .btn {
+      align-self: flex-start; padding: 10px 18px; border-radius: 10px;
+      background: var(--accent); color: var(--on-accent);
+      font-weight: 700; text-decoration: none;
+    }
+    .btn:hover { background: var(--accent-h); }
+    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
-				<!-- Menu -->
-					<nav id="menu">
-						<h2>Menu</h2>
-						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">About</a></li>
-						</ul>
-					</nav>
+    footer { margin-top: 36px; color: var(--muted); font-size: .9rem; }
+    footer a { color: var(--accent); }
+    footer .links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Things I've made</h1>
+    <p class="lede">Free learning tools and games, built by Xing Brew.</p>
 
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
-							<header>
-								<h1>Welcome to Name Creations</h1>
-  							 <p>This website allows you to generate and download images of names and words in American Sign Language (ASL) fingerspelling and non-tactile Braille letters. You are welcome to create and download as many images as you like!</p>
+    <a class="banner" href="name-creations/">
+      Looking for the ASL and Braille name generator? <strong>Go to Name Creations →</strong>
+    </a>
 
-							</header>
-	 <div class="container">
-	         <img class="title" src="images/name.png" alt="" />
-	         <h3>ASL Individual Name Generator</h3>
-            <input type="text" id="nameInput" placeholder="Enter a name" oninput="checkInput()">
-            <button onclick="generateASL()">Generate Name in ASL</button> 
-            <button id="downloadButton" onclick="downloadASLImage()" style="display: none;">Download Image</button>
-            <div id="additionalText" style="display: none;"><i>Note: Longer names that appear on multiple lines on the screen will be printed on one line in the downloaded image.</i></div>
-            <div id="output"></div>
-            <div id="textOutput"></div>
-			<div class="container" id="classListContainer">
-  <img class="title" src="images/name.png" alt="" />
-  <h3>ASL Class List Generator</h3>
-  <p>Paste your class list below — one name per line — and generate all names at once. Great for printing name tags or cut-out cards for the whole class.</p>
-  <textarea
-    id="classListInput"
-    placeholder="Alice&#10;Bob&#10;Charlie&#10;Diana"
-    rows="8"
-    oninput="onClassListInput()"
-    style="width:100%; padding:0.6em 0.75em; font-size:1em; font-family:inherit; border:1px solid #ccc; border-radius:4px; resize:vertical; box-sizing:border-box;"
-  ></textarea>
-  <br />
-  <button onclick="generateClassList()" style="margin-top:0.5em;">Generate All Names</button>
+    <div class="cards">
+      <section class="card">
+        <h2>Math Blocks</h2>
+        <p class="tag">Game · best for ages 6–8</p>
+        <p>A block-building game with two sides: a free playground for making patterns, and a math challenge where kids choose addition, subtraction, multiplication or division.</p>
+        <a class="btn" href="mathblocks.html">Play Math Blocks</a>
+      </section>
 
-  <div id="classListStatus" style="display:none; margin-top:0.75em; font-size:0.9em; color:#666;"></div>
+      <section class="card">
+        <h2>Name Creations</h2>
+        <p class="tag">Tool · ASL and Braille</p>
+        <p>Type a name or paste a whole class list and get it in American Sign Language fingerspelling or Braille, ready to download and print.</p>
+        <a class="btn" href="name-creations/">Make a name</a>
+      </section>
+    </div>
 
-  <div id="classListPreview" style="margin-top:1.25em;"></div>
-
-  <div id="classListButtons" style="display:none; margin-top:1em; display:none;">
-    <button id="zipBtn" onclick="downloadClassListZip()">
-      Download as ZIP &nbsp;(individual transparent PNGs)
-    </button>
-    &nbsp;
-    <button id="pdfBtn" onclick="downloadClassListPDF()">
-      Download as PDF &nbsp;(3–4 names per page, cut-out format)
-    </button>
+    <footer>
+      <div class="links">
+        <a href="https://www.etsy.com/ca/shop/DoGoodByDesign" target="_blank" rel="noopener">Etsy shop</a>
+        <a href="https://xingbrew.carrd.co/" target="_blank" rel="noopener">Personal website</a>
+        <a href="https://github.com/xingcbrew/" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      &copy; Xing Brew 2025. All rights reserved.
+    </footer>
   </div>
-</div>
-
-<!-- Inline styles for the batch preview cards -->
-<style>
-  .batch-card {
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    padding: 10px 12px 8px;
-    margin-bottom: 10px;
-    background: #fafafa;
-    overflow-x: auto;
-  }
-  .batch-card-label {
-    font-size: 0.85em;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: #555;
-    margin-bottom: 6px;
-  }
-  .batch-card-letters {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 4px;
-    align-items: flex-end;
-  }
-  .batch-letter-slot {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
-  }
-  .batch-letter-slot img {
-    height: 72px;
-    width: auto;
-    display: block;
-  }
-  .batch-letter-slot span {
-    font-size: 13px;
-    margin-top: 3px;
-    color: #333;
-  }
-  #classListButtons {
-    display: none;
-  }
-</style>
-
-    </div>
-    
-     <div class="container">
-       <img class="title"  src="images/braille.png" alt="" />
-        <h3>Braille Name Generator</h3>
-        <input type="text" id="brailleNameInput" placeholder="Enter a name" oninput="checkBrailleInput()">
-        <button onclick="generateBraille()">Generate Name in Braille</button>
-        <button id="downloadBrailleButton" onclick="downloadBrailleImage()" style="display: none;">Download Image</button>
-        <div id="brailleAdditionalText" style="display: none;">Note: Longer names that appear on multiple lines on the screen will be printed on one line in the downloaded image.</div>
-    </div>
-        <div id="brailleOutput"></div>
-        <div id="brailleTextOutput"></div> <!-- Container for text output -->
-        
-        
-  <!--   
-   <div class="containerSmall">
-      <h4>Looking for more customized ASL name products?</h4>
-    </div>
-  
-							<section class="tiles">
-								<article class="style1">
-									<span class="image">
-										<img src="images/pic01.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Wall Art</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style2">
-									<span class="image">
-										<img src="images/pic02.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Print Outs</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style3">
-									<span class="image">
-										<img src="images/pic03.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>T-Shirts</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style4">
-									<span class="image">
-										<img src="images/pic04.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Stickers</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style5">
-									<span class="image">
-										<img src="images/pic05.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Jewellery</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style6">
-									<span class="image">
-										<img src="images/pic06.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Other</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								
-			-->					
-			<!--					
-								<article class="style2">
-									<span class="image">
-										<img src="images/pic07.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Ipsum</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style3">
-									<span class="image">
-										<img src="images/pic08.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Dolor</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style1">
-									<span class="image">
-										<img src="images/pic09.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Nullam</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style5">
-									<span class="image">
-										<img src="images/pic10.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Ultricies</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style6">
-									<span class="image">
-										<img src="images/pic11.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Dictum</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style4">
-									<span class="image">
-										<img src="images/pic12.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Pretium</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-									-->		
-							</section>
-						</div>
-					</div>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<div class="inner">
-
-							<section>
-								<h2>Find me Online</h2>
-								<ul class="icons">
-									<li><a href="https://www.etsy.com/ca/shop/DoGoodByDesign" class="icon brands style2 fa-etsy"  target="_blank"><span class="label">Etsy</span></a></li>
-										<li><a href="https://xingbrew.carrd.co/" class="icon solid style2 fa-globe" target="_blank"><span class="label">Personal Website</span></a></li>
-									<li><a href="https://github.com/xingcbrew/" class="icon brands style2 fa-github" target="_blank"><span class="label">GitHub</span></a></li>
-								
-								</ul>
-							</section>
-							<ul class="copyright">
-								<li>&copy; Xing Brew 2025. All rights reserved.</li>
-							</ul>
-						</div>
-					</footer>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-
-	</body>
+</body>
 </html>
