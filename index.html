@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Xing Brew · Things I've Made</title>
+  <title>Xing Brew · My Projects</title>
   <meta name="description" content="Free learning tools and games by Xing Brew: Math Blocks, a block-building math game, and Name Creations, an ASL and Braille name generator.">
   <meta name="author" content="Xing Brew">
   <link rel="shortcut icon" type="image/x-icon" href="images/ASL.svg">
@@ -19,90 +19,143 @@
 
   <style>
     :root {
-      --bg:#EEF0FF; --surface:#FFFFFF; --border:#C8CEFF;
-      --text:#1A1A3E; --muted:#5A5E96; --accent:#5B52E8; --accent-h:#4840D6;
-      --on-accent:#FFFFFF; --shadow:0 2px 12px rgba(91,82,232,.14);
+      --bg:#FBFAFF; --dot:rgba(94,42,168,.13);
+      --text:#231F3A; --muted:#5D5A78; --link:#5E2AA8;
+
+      /* Math Blocks: purple */
+      --purple-bg:#EFE6FB; --purple-title:#8B3FDB; --purple-text:#5E2AA8;
+      /* Name Creations: teal */
+      --teal-bg:#D6F6FC;   --teal-title:#2B7A9B;   --teal-text:#1F6684;
+      --banner-bg:#1F6684; --banner-fg:#FFFFFF; --banner-pill-bg:#FFFFFF; --banner-pill-fg:#1F6684;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg:#0D0F2A; --surface:#161937; --border:#2E3370;
-        --text:#E6E9FF; --muted:#A3A8DC; --accent:#8A83FF; --accent-h:#9C96FF;
-        --on-accent:#0D0F2A; --shadow:0 2px 12px rgba(0,0,0,.4);
+        --bg:#12111F; --dot:rgba(255,255,255,.08);
+        --text:#ECEAFB; --muted:#A9A6C7; --link:#C9A2FF;
+
+        --purple-bg:#2A1F45; --purple-title:#C9A2FF; --purple-text:#DCC5FF;
+        --teal-bg:#14323D;   --teal-title:#7FD3EE;   --teal-text:#A8E3F5;
+        --banner-bg:#7FD3EE; --banner-fg:#0E2A35; --banner-pill-bg:#0E2A35; --banner-pill-fg:#7FD3EE;
       }
     }
+
     *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
     body {
-      margin: 0; background: var(--bg); color: var(--text);
+      margin: 0; min-height: 100vh; min-height: 100dvh;
+      display: flex; flex-direction: column;
+      background-color: var(--bg);
+      background-image: radial-gradient(circle, var(--dot) 1.2px, transparent 1.6px);
+      background-size: 24px 24px;
+      color: var(--text);
       font: 17px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
-    .wrap { max-width: 760px; margin: 0 auto; padding: 32px 16px 48px; }
-    h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 6px; }
-    .lede { color: var(--muted); margin: 0 0 24px; }
-
-    .banner {
-      display: block; padding: 12px 16px; margin-bottom: 24px;
-      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
-      color: var(--text); text-decoration: none;
+    .wrap {
+      flex: 1; width: 100%; max-width: 860px; margin: 0 auto;
+      padding: clamp(40px, 9vh, 96px) 16px 32px;
     }
-    .banner strong { color: var(--accent); }
-    .banner:hover { border-color: var(--accent); }
 
-    .cards { display: grid; gap: 16px; grid-template-columns: 1fr; }
+    h1 {
+      font-size: clamp(2.8rem, 8vw, 4.25rem); line-height: 1.05;
+      letter-spacing: -0.03em; font-weight: 800; margin: 0 0 10px;
+    }
+    .lede { font-size: 1.15rem; color: var(--muted); margin: 0 0 28px; }
+
+    /* Banner to Name Creations */
+    .banner {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px;
+      padding: 16px 20px; margin-bottom: 28px; border-radius: 16px;
+      background: var(--banner-bg); color: var(--banner-fg);
+      font-size: 1.1rem; font-weight: 600; text-decoration: none;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .banner .go {
+      padding: 8px 16px; border-radius: 999px; white-space: nowrap;
+      background: var(--banner-pill-bg); color: var(--banner-pill-fg); font-weight: 800;
+    }
+    .banner:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(31,102,132,.28); }
+
+    /* Cards */
+    .cards { display: grid; gap: 20px; grid-template-columns: 1fr; }
     @media (min-width: 640px) { .cards { grid-template-columns: 1fr 1fr; } }
     .card {
-      display: flex; flex-direction: column; padding: 20px;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 16px; box-shadow: var(--shadow);
+      position: relative; display: flex; flex-direction: column;
+      padding: 28px 28px 24px; border-radius: 20px;
+      background: var(--card-bg); color: var(--card-text);
+      transition: transform .15s ease, box-shadow .15s ease;
     }
-    .card h2 { margin: 0 0 4px; font-size: 1.3rem; }
-    .tag { color: var(--muted); font-size: .85rem; margin: 0 0 10px; }
-    .card p { margin: 0 0 16px; flex: 1; }
-    .btn {
-      align-self: flex-start; padding: 10px 18px; border-radius: 10px;
-      background: var(--accent); color: var(--on-accent);
-      font-weight: 700; text-decoration: none;
-    }
-    .btn:hover { background: var(--accent-h); }
-    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.10); }
+    .card.purple { --card-bg: var(--purple-bg); --card-title: var(--purple-title); --card-text: var(--purple-text); }
+    .card.teal   { --card-bg: var(--teal-bg);   --card-title: var(--teal-title);   --card-text: var(--teal-text); }
 
-    footer { margin-top: 36px; color: var(--muted); font-size: .9rem; }
-    footer a { color: var(--accent); }
-    footer .links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 8px; }
+    .card h2 {
+      margin: 0 0 8px; color: var(--card-title);
+      font-size: clamp(2rem, 5vw, 2.5rem); line-height: 1.1; letter-spacing: -0.02em; font-weight: 800;
+    }
+    .card .tag  { margin: 0 0 14px; font-size: 1.2rem; font-weight: 700; }
+    .card .desc { margin: 0 0 24px; flex: 1; font-size: 1.05rem; }
+
+    .cta {
+      display: flex; align-items: center; justify-content: space-between;
+      color: var(--card-text); text-decoration: none;
+      font-size: .9rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+    }
+    .cta .arrow { font-size: 1.4rem; letter-spacing: 0; transition: transform .15s ease; }
+    .card:hover .arrow { transform: translateX(4px); }
+    /* whole card is the tap target */
+    .cta::after { content: ""; position: absolute; inset: 0; border-radius: 20px; }
+    .cta:focus-visible { outline: none; }
+    .cta:focus-visible::after { outline: 3px solid var(--card-title); outline-offset: 3px; }
+    .banner:focus-visible { outline: 3px solid var(--banner-bg); outline-offset: 3px; }
+
+    footer { padding: 0 0 28px; color: var(--muted); font-size: .95rem; }
+    footer .inner { max-width: 860px; margin: 0 auto; padding: 0 16px; }
+    footer .links { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-bottom: 8px; }
+    footer a { color: var(--link); }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+      .card:hover, .banner:hover { transform: none; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Things I've made</h1>
+  <main class="wrap">
+    <h1>My Projects</h1>
     <p class="lede">Free learning tools and games, built by Xing Brew.</p>
 
     <a class="banner" href="name-creations/">
-      Looking for the ASL and Braille name generator? <strong>Go to Name Creations →</strong>
+      <span>Looking for the ASL and Braille name generator?</span>
+      <span class="go">Go to Name Creations →</span>
     </a>
 
     <div class="cards">
-      <section class="card">
+      <section class="card purple">
         <h2>Math Blocks</h2>
-        <p class="tag">Game · best for ages 6–8</p>
-        <p>A block-building game with two sides: a free playground for making patterns, and a math challenge where kids choose addition, subtraction, multiplication or division.</p>
-        <a class="btn" href="mathblocks.html">Play Math Blocks</a>
+        <p class="tag">Math game for 6–8 year olds</p>
+        <p class="desc">A block-building game with two sides: a free playground for making patterns, and a math challenge where kids choose addition, subtraction, multiplication or division.</p>
+        <a class="cta" href="mathblocks.html"><span>Play Math Blocks</span><span class="arrow" aria-hidden="true">→</span></a>
       </section>
 
-      <section class="card">
+      <section class="card teal">
         <h2>Name Creations</h2>
-        <p class="tag">Tool · ASL and Braille</p>
-        <p>Type a name or paste a whole class list and get it in American Sign Language fingerspelling or Braille, ready to download and print.</p>
-        <a class="btn" href="name-creations/">Make a name</a>
+        <p class="tag">ASL and Braille name tool</p>
+        <p class="desc">Type a name or paste a whole class list and get it in American Sign Language fingerspelling or Braille, ready to download and print.</p>
+        <a class="cta" href="name-creations/"><span>Make a name</span><span class="arrow" aria-hidden="true">→</span></a>
       </section>
     </div>
+  </main>
 
-    <footer>
+  <footer>
+    <div class="inner">
       <div class="links">
         <a href="https://www.etsy.com/ca/shop/DoGoodByDesign" target="_blank" rel="noopener">Etsy shop</a>
+        <a href="https://www.teacherspayteachers.com/store/xing-brew" target="_blank" rel="noopener">Teachers Pay Teachers</a>
         <a href="https://xingbrew.carrd.co/" target="_blank" rel="noopener">Personal website</a>
         <a href="https://github.com/xingcbrew/" target="_blank" rel="noopener">GitHub</a>
       </div>
-      &copy; Xing Brew 2025. All rights reserved.
-    </footer>
-  </div>
+      &copy; Xing Brew 2026. All rights reserved.
+    </div>
+  </footer>
 </body>
 </html>
