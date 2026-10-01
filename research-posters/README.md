@@ -3,7 +3,7 @@
 Single-page site for academic poster templates and a done-for-you poster design service.
 Plain HTML, CSS and JS. No framework, no build step.
 
-**Live URL:** https://xingcbrew.github.io/research-posters/
+**Live URL:** https://xingbrew.ca/research-posters/
 
 ```
 index.html        page content
@@ -22,14 +22,21 @@ python3 -m http.server 8000
 
 Open http://localhost:8000. Opening `index.html` directly also mostly works, but the local server is closer to how GitHub Pages serves the site.
 
-## Deploy on GitHub Pages
+## Deploy
 
-1. Create a public repo named `research-posters` under the `xingcbrew` account and push these files to the `main` branch, with `index.html` at the repo root.
-2. In the repo, go to **Settings → Pages**.
-3. Under **Build and deployment**, set Source to **Deploy from a branch**, Branch to **main**, and folder to **/ (root)**. Click Save.
-4. After a minute or two the site is live at https://xingcbrew.github.io/research-posters/
+This folder lives inside the `xingcbrew.github.io` repo, which GitHub Pages publishes on the custom domain `xingbrew.ca` (set by the `CNAME` file at the repo root). To publish changes, commit and push from the repo root:
 
-Every asset path is relative, so the site works under the `/research-posters/` subfolder. The only absolute URLs are the canonical link and Open Graph tags in `<head>`. Update those if the URL ever changes, for example with a custom domain.
+```bash
+cd ~/Documents/xingcbrew.github.io
+git pull
+git add research-posters
+git commit -m "Update research posters site"
+git push
+```
+
+After a minute or two the changes are live at https://xingbrew.ca/research-posters/. Old `xingcbrew.github.io/research-posters/` links redirect there automatically, keeping any `?utm_source=`.
+
+Every asset path is relative, so the site works under the `/research-posters/` subfolder. The only absolute URLs are the canonical link and Open Graph tags in `<head>`, plus `BASE_URL` in `tools/qr-urls.py`. Update those if the domain ever changes.
 
 ## Replace placeholder images
 
@@ -79,7 +86,7 @@ Add the preview image to `assets/`. On desktop, the first 3 cards sit in a row o
 Both options below are privacy-friendly, cookie-free, and need no consent banner.
 
 **Plausible** (paid, plausible.io):
-1. Add the site in Plausible with the domain `xingcbrew.github.io/research-posters`.
+1. Add the site in Plausible with the domain `xingbrew.ca`. To see only poster-site visits, filter by the page path `/research-posters/`.
 2. In `index.html`, find the `ANALYTICS` comment in `<head>` and move the Plausible `<script>` line out of the comment.
 
 **Umami** (free tier on cloud.umami.is, or self-hosted):
@@ -93,7 +100,7 @@ Use only one of the two.
 Give each printed poster its own URL so analytics can show which one people scanned. Add `utm_source` with a short location name:
 
 ```
-https://xingcbrew.github.io/research-posters/?utm_source=uoft-medsci&utm_medium=qr
+https://xingbrew.ca/research-posters/?utm_source=uoft-medsci&utm_medium=qr
 ```
 
 Plausible and Umami both capture `utm_source` automatically. It appears under **Sources** (Plausible) or **UTM** (Umami). The page itself ignores the parameter.
@@ -113,14 +120,14 @@ python3 tools/qr-urls.py uoft-robarts sickkids-atrium
 Example output:
 
 ```
-https://xingcbrew.github.io/research-posters/?utm_source=uoft-medsci&utm_medium=qr
-https://xingcbrew.github.io/research-posters/?utm_source=uoft-robarts&utm_medium=qr
-https://xingcbrew.github.io/research-posters/?utm_source=uoft-dlsph&utm_medium=qr
-https://xingcbrew.github.io/research-posters/?utm_source=uoft-sgs&utm_medium=qr
-https://xingcbrew.github.io/research-posters/?utm_source=tgh&utm_medium=qr
-https://xingcbrew.github.io/research-posters/?utm_source=sickkids&utm_medium=qr
-https://xingcbrew.github.io/research-posters/?utm_source=mount-sinai&utm_medium=qr
-https://xingcbrew.github.io/research-posters/?utm_source=mars&utm_medium=qr
+https://xingbrew.ca/research-posters/?utm_source=uoft-medsci&utm_medium=qr
+https://xingbrew.ca/research-posters/?utm_source=uoft-robarts&utm_medium=qr
+https://xingbrew.ca/research-posters/?utm_source=uoft-dlsph&utm_medium=qr
+https://xingbrew.ca/research-posters/?utm_source=uoft-sgs&utm_medium=qr
+https://xingbrew.ca/research-posters/?utm_source=tgh&utm_medium=qr
+https://xingbrew.ca/research-posters/?utm_source=sickkids&utm_medium=qr
+https://xingbrew.ca/research-posters/?utm_source=mount-sinai&utm_medium=qr
+https://xingbrew.ca/research-posters/?utm_source=mars&utm_medium=qr
 ```
 
 Paste each URL into any QR code generator. Use lowercase, hyphenated names and keep a list of where each poster went. Test-scan every QR code from a printout before putting it up.

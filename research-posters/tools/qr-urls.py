@@ -12,7 +12,7 @@ Paste each URL into any QR generator.
 import sys
 from urllib.parse import urlencode
 
-BASE_URL = "https://xingcbrew.github.io/research-posters/"
+BASE_URL = "https://xingbrew.ca/research-posters/"
 
 EXAMPLES = [
     "uoft-medsci",        # Medical Sciences Building, UofT
