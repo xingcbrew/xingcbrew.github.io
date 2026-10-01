@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Xing Brew · My Projects</title>
-  <meta name="description" content="Free learning tools and games by Xing Brew: Math Blocks, a block-building math game, and Name Creations, an ASL and Braille name generator.">
+  <meta name="description" content="Free learning tools and games by Xing Brew: Math Blocks, a block-building math game, and Name Creations, an ASL and Braille name generator. Plus academic research poster templates and design.">
   <meta name="author" content="Xing Brew">
   <link rel="shortcut icon" type="image/x-icon" href="images/ASL.svg">
 
@@ -27,6 +27,8 @@
       /* Name Creations: teal */
       --teal-bg:#D6F6FC;   --teal-title:#2B7A9B;   --teal-text:#1F6684;
       --banner-bg:#1F6684; --banner-fg:#FFFFFF; --banner-pill-bg:#FFFFFF; --banner-pill-fg:#1F6684;
+      /* Research Posters: pink */
+      --pink-bg:#F8E6F0;   --pink-title:#CC3A75;   --pink-text:#9C2857;
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -36,6 +38,7 @@
         --purple-bg:#2A1F45; --purple-title:#C9A2FF; --purple-text:#DCC5FF;
         --teal-bg:#14323D;   --teal-title:#7FD3EE;   --teal-text:#A8E3F5;
         --banner-bg:#7FD3EE; --banner-fg:#0E2A35; --banner-pill-bg:#0E2A35; --banner-pill-fg:#7FD3EE;
+        --pink-bg:#3A1A2C;   --pink-title:#FF9EC4;   --pink-text:#FFC9DE;
       }
     }
 
@@ -87,6 +90,8 @@
     .card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.10); }
     .card.purple { --card-bg: var(--purple-bg); --card-title: var(--purple-title); --card-text: var(--purple-text); }
     .card.teal   { --card-bg: var(--teal-bg);   --card-title: var(--teal-title);   --card-text: var(--teal-text); }
+    .card.pink   { --card-bg: var(--pink-bg);   --card-title: var(--pink-title);   --card-text: var(--pink-text); }
+    @media (min-width: 640px) { .card.wide { grid-column: 1 / -1; } }
 
     .card h2 {
       margin: 0 0 8px; color: var(--card-title);
@@ -142,6 +147,13 @@
         <p class="tag">ASL and Braille name tool</p>
         <p class="desc">Type a name or paste a whole class list and get it in American Sign Language fingerspelling or Braille, ready to download and print.</p>
         <a class="cta" href="name-creations/"><span>Make a name</span><span class="arrow" aria-hidden="true">→</span></a>
+      </section>
+
+      <section class="card pink wide">
+        <h2>Research Posters</h2>
+        <p class="tag">Academic conference poster design</p>
+        <p class="desc">Ready-made poster templates for PowerPoint and Canva, plus a done-for-you design service for researchers, trainees and clinicians.</p>
+        <a class="cta" href="research-posters/"><span>See poster templates</span><span class="arrow" aria-hidden="true">→</span></a>
       </section>
     </div>
   </main>
