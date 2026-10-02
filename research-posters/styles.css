@@ -195,6 +195,8 @@ ol.steps { display: grid; gap: 16px; margin: 32px 0 40px; }
 .service__foot { display: grid; gap: 24px; align-items: end; }
 .included { margin: 0; padding-left: 1.2em; }
 .included li { margin-bottom: .4em; }
+.rush-note { margin: 1rem 0 0; font-size: .9375rem; line-height: 1.5; max-width: 34em; }
+.rush-note a { font-weight: 700; }
 .price { font-size: clamp(2rem, 5vw, 2.75rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--fg); margin-bottom: 16px; }
 .price-box .btn { width: 100%; }
 @media (min-width: 768px) {
