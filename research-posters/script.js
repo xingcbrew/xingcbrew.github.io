@@ -16,10 +16,10 @@ const CONFIG = {
   // url:         optional. Link to the specific Etsy listing; falls back to etsyUrl.
   templates: [
     {
-      name: "Classic Sientific Layout",
+      name: "Classic Scientific Layout",
       url: "https://dogoodxdesign.etsy.com/listing/4554543793",
       size: "A0 portrait",
-      software: "PowerPoint + Canva",
+      software: "Canva",
       description: "Classic clinical layout with built-in CONSORT flow diagram",
       image: "assets/Blue.jpg",
       color: "cyan",
@@ -36,11 +36,10 @@ const CONFIG = {
     {
       name: "Clinical Case Study",
       url: "https://dogoodxdesign.etsy.com/listing/4497281837",
-      size: "A0 landscape",
+      size: "A0 portrait",
       software: "PowerPoint + Canva",
       description: "Clean, modern layout for STEM or social sciences.",
       image: "assets/Navy.jpg",
-      orientation: "landscape",
       color: "cyan",
     },
     {
@@ -54,7 +53,7 @@ const CONFIG = {
       color: "cyan",
     },
     {
-      name: "Eye-catching Poster 2.0",
+      name: "Eye-catching and bold",
       url: "https://dogoodxdesign.etsy.com/ca/listing/4586478276/academic-research-poster-editable-canva",
       size: "A0 landscape",
       software: "Canva",
@@ -121,7 +120,7 @@ const CONFIG = {
         img.height = landscape ? 600 : 800;
         img.loading = "lazy";
         img.decoding = "async";
-        img.alt = "Preview of the " + t.name.replace(/\s*\[placeholder\]/i, "") + " poster template";
+        img.alt = "Preview of the " + t.name.replace(/\s*\[placeholder\]/i, "") + " research poster template (" + t.size + ", " + t.software + ")";
 
         const h3 = document.createElement("h3");
         h3.textContent = t.name;
@@ -143,6 +142,10 @@ const CONFIG = {
         a.href = t.url || CONFIG.etsyUrl;
         a.target = "_blank";
         a.rel = "noopener";
+        // Umami custom event: which template card was clicked
+        a.dataset.umamiEvent = "etsy-click";
+        a.dataset.umamiEventTemplate = t.name;
+        a.dataset.umamiEventLocation = "template-card";
         // Screen readers hear "Buy this template: <name> (opens in a new tab)"
         const label = document.createElement("span");
         const hidden = document.createElement("span");

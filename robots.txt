@@ -1,0 +1,5 @@
+# Allow all crawlers on the whole site.
+User-agent: *
+Allow: /
+
+Sitemap: https://xingbrew.ca/research-posters/sitemap.xml

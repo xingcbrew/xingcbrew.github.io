@@ -3,22 +3,48 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Xing Brew Design Co. · Academic &amp; Conference Poster Design, Toronto</title>
-  <meta name="description" content="Xing Brew Design Co.: clear, research-ready conference poster design for academics, trainees and clinicians. Poster templates, plus a done-for-you poster service from $120. Based in Toronto.">
+  <title>Research Poster Templates &amp; Custom Poster Design | Xing Brew Design Co.</title>
+  <meta name="description" content="Research poster templates and custom poster design by Xing Brew Design Co. for academics, trainees and clinicians in Toronto and beyond. Done-for-you posters from $120 CAD.">
   <meta name="theme-color" content="#FFFFFF">
+
+  <!-- BASE URL: https://xingbrew.ca/research-posters/
+       It also appears in og:url, og:image, twitter:image, the JSON-LD below, sitemap.xml and ../robots.txt.
+       To change it everywhere at once: python3 tools/set-base-url.py https://new-domain.example/research-posters/ -->
   <link rel="canonical" href="https://xingbrew.ca/research-posters/">
 
-  <!-- Open Graph (what shows up when the link is shared). og:image must be an absolute URL.
-       PLACEHOLDER: replace assets/og-image.svg with a 1200×630 PNG or JPG (most social sites don't render SVG) and update the path below. -->
+  <!-- Open Graph + Twitter cards (link previews). Image URLs must be absolute.
+       PLACEHOLDER: many platforms don't show SVG previews. Export a 1200×630 PNG or JPG and update the 2 image URLs below. -->
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_CA">
   <meta property="og:site_name" content="Xing Brew Design Co.">
   <meta property="og:title" content="Research posters, made easy · Xing Brew Design Co.">
-  <meta property="og:description" content="Xing Brew Design Co.: clear, research-ready poster design for academics and clinicians. Templates and a done-for-you service.">
+  <meta property="og:description" content="Research poster templates and custom poster design for academics, trainees and clinicians in Toronto and beyond.">
   <meta property="og:url" content="https://xingbrew.ca/research-posters/">
   <meta property="og:image" content="https://xingbrew.ca/research-posters/assets/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Research posters, made easy. Xing Brew Design Co.">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Research posters, made easy · Xing Brew Design Co.">
+  <meta name="twitter:description" content="Research poster templates and custom poster design for academics, trainees and clinicians in Toronto and beyond.">
+  <meta name="twitter:image" content="https://xingbrew.ca/research-posters/assets/og-image.svg">
+  <meta name="twitter:image:alt" content="Research posters, made easy. Xing Brew Design Co.">
+
+  <!-- Structured data for search engines. Only facts that are true: no address, phone, ratings or reviews. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Xing Brew Design Co.",
+    "description": "Research poster templates and custom academic conference poster design for researchers, trainees and clinicians.",
+    "url": "https://xingbrew.ca/research-posters/",
+    "image": "https://xingbrew.ca/research-posters/assets/og-image.svg",
+    "email": "mailto:xingbrew@gmail.com",
+    "areaServed": { "@type": "City", "name": "Toronto" },
+    "founder": { "@type": "Person", "name": "Xing Brew" },
+    "sameAs": ["https://www.etsy.com/ca/shop/DoGoodxDesign"]
+  }
+  </script>
 
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
@@ -27,15 +53,9 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&amp;display=swap">
   <link rel="stylesheet" href="styles.css">
 
-  <!-- ANALYTICS (optional, off by default). Privacy-friendly and cookie-free, so no consent banner is needed.
-       Both tools record ?utm_source=... automatically. Uncomment ONE of the two lines below. See README → "Analytics".
-
-       Plausible (plausible.io): add the site in Plausible as "xingbrew.ca"
-  <script defer data-domain="xingbrew.ca" src="https://plausible.io/js/script.js"></script>
-
-       Umami (umami.is): paste the website ID from your Umami dashboard
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="YOUR-WEBSITE-ID"></script>
-  -->
+  <!-- Umami Cloud analytics: cookie-free, no personal data, so no cookie banner needed.
+       Website ID is also noted in README → "Analytics". Custom events use data-umami-event="..." attributes. -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="54f23134-623e-4910-9ac0-b61ccb65dc2d"></script>
 
   <script src="script.js" defer></script>
 </head>
@@ -58,16 +78,16 @@
     <!-- 1. HERO -->
     <section class="hero wrap" id="top" aria-labelledby="hero-title">
       <div class="hero__text">
-        <h1 id="hero-title">Research posters, made easy.</h1>
+        <h1 id="hero-title">Research posters, <span class="hl">made easy.</span></h1>
         <p class="hero__sub">You've done the research. I'll turn it into a poster people understand and remember.</p>
         <div class="hero__actions">
-          <a class="btn btn--dark" href="#templates">Browse templates</a>
-          <a class="btn btn--outline" href="#service">Get a poster made for you</a>
+          <a class="btn btn--dark" href="#templates" data-umami-event="hero-browse-templates">Browse templates</a>
+          <a class="btn btn--outline" href="#service" data-umami-event="hero-get-poster">Get a poster made for you</a>
         </div>
       </div>
       <div class="hero__media">
-        <!-- PLACEHOLDER: assets/hero-mockup.svg (3:4 portrait, 900×1200) -->
-        <img src="assets/Multi.jpg" width="1000" height="1413" alt="Mockup of a clean, better poster academic research poster" fetchpriority="high">
+        <!-- Hero image: assets/Multi.jpg (portrait, 1000×1413). See README → Images. -->
+        <img src="assets/Multi.jpg" width="1000" height="1413" alt="Example academic research poster with a bold plain-language main finding at the top, made with a Xing Brew Design Co. template" fetchpriority="high">
       </div>
     </section>
 
@@ -81,21 +101,21 @@
         <!-- Filled by script.js. Fallback shown if JavaScript is off: -->
         <li class="card card--cyan">
           <h3>Templates are in the Etsy shop</h3>
-          <a class="card__cta" href="https://www.etsy.com/ca/shop/DoGoodxDesign?section_id=58266976" target="_blank" rel="noopener">Buy this template <span aria-hidden="true">→</span></a>
+          <a class="card__cta" href="https://www.etsy.com/ca/shop/DoGoodxDesign?section_id=58266976" target="_blank" rel="noopener" data-umami-event="etsy-click" data-umami-event-location="no-js-fallback">Buy this template <span aria-hidden="true">→</span></a>
         </li>
       </ul>
-      <p class="more-link"><a class="btn btn--dark btn--lg" href="https://www.etsy.com/ca/shop/DoGoodxDesign?section_id=58266976" target="_blank" rel="noopener" data-etsy>Shop more templates<span class="visually-hidden"> (opens in a new tab)</span> <span aria-hidden="true">→</span></a></p>
+      <p class="more-link"><a class="btn btn--dark btn--lg" href="https://www.etsy.com/ca/shop/DoGoodxDesign?section_id=58266976" target="_blank" rel="noopener" data-etsy data-umami-event="etsy-click" data-umami-event-location="shop-more-button">Shop more templates<span class="visually-hidden"> (opens in a new tab)</span> <span aria-hidden="true">→</span></a></p>
     </section>
 
     <!-- 3. DONE-FOR-YOU SERVICE -->
     <section class="section wrap" id="service" aria-labelledby="service-title">
       <div class="card card--periwinkle card--xl">
         <h2 id="service-title">Done-for-you poster design</h2>
-        <p class="lead">Send me your content, figures, and deadline. I'll turn them into a poster that's easy to read from across the room and print-ready on time.</p>
+        <p class="lead">Send me your content, figures, and deadline. I'll turn them into a poster that's easy to read from across the room and print-ready on time. You can choose a layout from my templates, or we'll decide together on one that works best.</p>
 
         <ol class="steps" role="list">
-          <li><span class="steps__n" aria-hidden="true">1</span><h3><span class="visually-hidden">Step 1: </span>Send your content</h3><p>Abstract, text, figures, logos and your conference's size requirements. A rough draft is great too.</p></li>
-          <li><span class="steps__n" aria-hidden="true">2</span><h3><span class="visually-hidden">Step 2: </span>I design and revise</h3><p>You get a first draft, then we refine it together until it reads well.</p></li>
+          <li><span class="steps__n" aria-hidden="true">1</span><h3><span class="visually-hidden">Step 1: </span>Send your content</h3><p>Text, figures, logos, and details on specific formatting requirements.</p></li>
+          <li><span class="steps__n" aria-hidden="true">2</span><h3><span class="visually-hidden">Step 2: </span>I design and revise</h3><p>I'll send over a quote, and once agreed, I prepare a first draft for your review. We refine it together until it reads well.</p></li>
           <li><span class="steps__n" aria-hidden="true">3</span><h3><span class="visually-hidden">Step 3: </span>Get print-ready files</h3><p>Files sized for your printer, plus an editable copy for future updates.</p></li>
         </ol>
 
@@ -107,13 +127,14 @@
               <li><strong>Revisions:</strong> 2 rounds</li>
               <li><strong>Turnaround:</strong> 5 business days</li>
               <li><strong>Files:</strong> Print-ready PDF + Editable template (PowerPoint and/or Canva)</li>
+              <li><strong>Extras:</strong> data analysis/visualization, table reformatting, etc., to match your chosen layout.</li>
             </ul>
-            <p class="rush-note"><strong>Need it fast?</strong> Rush jobs are available with a 24–48 hour turnaround. <a href="mailto:xingbrew@gmail.com?subject=Rush%20poster%20request&amp;body=Hi%20Xing%2C%0D%0A%0D%0AI%20need%20a%20poster%20on%20a%20rush%20timeline%20%2824%E2%80%9348%20hours%29.%20Here%20are%20the%20details%3A%0D%0A%0D%0AEvent%20%2F%20conference%20name%3A%0D%0APoster%20size%20%28e.g.%2036x48%20in%2C%20A0%29%3A%0D%0ADeadline%3A%0D%0A%0D%0AThanks%21">Email me for pricing</a>.</p>
+            <p class="rush-note"><strong>Need it fast?</strong> Rush jobs are available with a 24–48 hour turnaround. <a data-umami-event="request-rush" href="mailto:xingbrew@gmail.com?subject=Rush%20poster%20request&amp;body=Hi%20Xing%2C%0D%0A%0D%0AI%20need%20a%20poster%20on%20a%20rush%20timeline%20%2824%E2%80%9348%20hours%29.%20Here%20are%20the%20details%3A%0D%0A%0D%0AEvent%20%2F%20conference%20name%3A%0D%0APoster%20size%20%28e.g.%2036x48%20in%2C%20A0%29%3A%0D%0ADeadline%3A%0D%0A%0D%0AThanks%21">Email me for pricing</a>.</p>
           </div>
           <div class="price-box">
             <p class="price">From $120 CAD</p>
             <!-- Mailto href is rebuilt from CONFIG in script.js; this static copy is the no-JS fallback. -->
-            <a class="btn btn--ink" id="request-link" href="mailto:xingbrew@gmail.com?subject=Poster%20request&amp;body=Hi%20Xing%2C%0D%0A%0D%0AI%27d%20like%20a%20poster%20designed.%20Here%20are%20the%20details%3A%0D%0A%0D%0AEvent%20%2F%20conference%20name%3A%0D%0APoster%20size%20(e.g.%2036x48%20in%2C%20A0)%3A%0D%0ADeadline%3A%0D%0ADo%20you%20have%20a%20draft%20or%20abstract%3F%20(yes%20%2F%20no%3B%20attach%20if%20yes)%3A%0D%0AAnything%20else%20I%20should%20know%3A%0D%0A%0D%0AThanks!">Request a poster <span aria-hidden="true">→</span></a>
+            <a class="btn btn--ink" id="request-link" data-umami-event="request-poster" href="mailto:xingbrew@gmail.com?subject=Poster%20request&amp;body=Hi%20Xing%2C%0D%0A%0D%0AI%27d%20like%20a%20poster%20designed.%20Here%20are%20the%20details%3A%0D%0A%0D%0AEvent%20%2F%20conference%20name%3A%0D%0APoster%20size%20(e.g.%2036x48%20in%2C%20A0)%3A%0D%0ADeadline%3A%0D%0ADo%20you%20have%20a%20draft%20or%20abstract%3F%20(yes%20%2F%20no%3B%20attach%20if%20yes)%3A%0D%0AAnything%20else%20I%20should%20know%3A%0D%0A%0D%0AThanks!">Request a poster <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </div>
@@ -162,8 +183,8 @@
     <!-- 5. ABOUT -->
     <section class="section wrap" id="about" aria-labelledby="about-title">
       <div class="card card--peach card--xl about">
-        <!-- PLACEHOLDER: assets/headshot.svg (square, 400×400) -->
-        <img class="about__photo" src="assets/xing.png" width="400" height="400" loading="lazy" decoding="async" alt="Portrait of Xing">
+        <!-- About photo: assets/xing.png (square). -->
+        <img class="about__photo" src="assets/xing.png" width="400" height="400" loading="lazy" decoding="async" alt="Portrait of Xing Brew, designer at Xing Brew Design Co.">
         <div>
           <h2 id="about-title">Hi, I'm Xing.</h2>
           <!-- PLACEHOLDER bio: edit freely -->
@@ -176,7 +197,7 @@
           </ul>
           <!-- TRUST LINE: TO CONFIRM BEFORE PUBLISHING. Only list organisations you have permission to name.
                Remove the "hidden" attribute once confirmed. -->
-          <p class="trust">Worked with teams at: SickKids Hospital · UHN · World Health Organization · ISPAD · York University</p>
+          <p class="trust">Worked with teams at: SickKids Hospital · UHN · World Health Organization · ISPAD · University of Toronto · York University</p>
         </div>
       </div>
     </section>
@@ -238,8 +259,9 @@
 
   <footer class="site-footer">
     <div class="wrap footer__inner">
-      <p><strong data-brand>Xing Brew Design Co.</strong> · <a href="https://www.etsy.com/ca/shop/DoGoodxDesign?section_id=58266976" target="_blank" rel="noopener" data-etsy>Shop</a></p>
+      <p><strong data-brand>Xing Brew Design Co.</strong> · <a href="https://www.etsy.com/ca/shop/DoGoodxDesign?section_id=58266976" target="_blank" rel="noopener" data-etsy data-umami-event="etsy-click" data-umami-event-location="footer">Shop</a></p>
       <p>© <span id="year">2026</span> <span data-brand>Xing Brew Design Co.</span> Designed in Toronto, Canada.</p>
+      <p class="footer__note">This site uses privacy-friendly analytics. No cookies.</p>
     </div>
   </footer>
 </body>

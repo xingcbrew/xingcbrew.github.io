@@ -39,7 +39,7 @@ body {
 }
 img { display: block; max-width: 100%; height: auto; }
 h1, h2, h3 { margin: 0 0 .5em; font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; }
-h1 { font-size: clamp(2.5rem, 7vw, 4.5rem); }
+h1 { font-size: clamp(2rem, 9.6vw, 4.5rem); }
 h2 { font-size: clamp(2rem, 5vw, 3.25rem); }
 h3 { font-size: 1.375rem; letter-spacing: -0.02em; line-height: 1.2; }
 p { margin: 0 0 1em; }
@@ -162,6 +162,23 @@ section[id] { scroll-margin-top: 72px; }
 
 /* ---------- Hero ---------- */
 .hero { display: grid; gap: 32px; padding-top: 40px; padding-bottom: 24px; align-items: center; }
+/* "made easy." — kept on one line, periwinkle, with a hand-drawn highlighter stroke behind
+   the lower half of the letters. The stroke is an inline SVG sized in em, so it scales with the font. */
+.hl {
+  position: relative; z-index: 0; white-space: nowrap;
+  color: var(--periwinkle-fg);
+}
+.hl::after {
+  content: ""; position: absolute; z-index: -1;
+  left: -0.12em; right: -0.1em; bottom: 0.1em; height: 0.44em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'%3E%3Cpath fill='%23FFE27A' d='M2 12.5C40 8.5 90 6 140 6.8c25 .4 45 .7 58 1.8 1.5 1 .5 2.2-2 2.6-26 2.3-66 4.3-106 5-40 .8-70-.4-86-1.6-2.5-.4-3.2-1.4-2-2.1Z'/%3E%3Cpath fill='%23FFE27A' fill-opacity='.55' d='M8 15.2c30 1.2 70 1.6 110 .6 30-.8 55-2.4 74-4.2-18 3.4-48 5.6-80 6.2-40 .7-80-.6-104-2.6Z'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+}
+/* Size the headline from its own column, so "Research posters," always fits on one line
+   ("Research posters," is ~8.5em wide; 11cqi leaves a little slack). */
+@supports (font-size: 1cqi) {
+  .hero__text { container-type: inline-size; }
+  .hero h1 { font-size: clamp(1.75rem, 11cqi, 4.5rem); }
+}
 .hero__sub { font-size: 1.1875rem; color: var(--muted); max-width: 34em; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 .hero__media img { width: 100%; max-width: 480px; margin-inline: auto; border-radius: 18px; background: var(--periwinkle-bg); }
@@ -265,6 +282,7 @@ ul.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
 .site-footer { border-top: 1px solid var(--line); margin-top: 24px; padding-block: 32px; font-size: .9375rem; }
 .footer__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
 .footer__inner p { margin: 0; }
+.footer__note { flex-basis: 100%; color: var(--muted); font-size: .875rem; }
 .site-footer, .site-footer a { color: var(--text); }
 
 /* ---------- Reduced motion ---------- */
