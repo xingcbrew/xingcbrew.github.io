@@ -4,9 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Xing Brew · My Projects</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta name="description" content="Free learning tools and games by Xing Brew: Math Blocks, a block-building math game, and Name Creations, an ASL and Braille name generator. Plus academic research poster templates and design.">
   <meta name="author" content="Xing Brew">
-  <link rel="shortcut icon" type="image/x-icon" href="images/ASL.svg">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0Z0P1H4THS"></script>
@@ -29,6 +31,9 @@
       --banner-bg:#1F6684; --banner-fg:#FFFFFF; --banner-pill-bg:#FFFFFF; --banner-pill-fg:#1F6684;
       /* Research Posters: pink */
       --pink-bg:#F8E6F0;   --pink-title:#CC3A75;   --pink-text:#9C2857;
+      /* Header and About dialog */
+      --header-bg:rgba(251,250,255,.86); --line:rgba(94,42,168,.14);
+      --surface:#FFFFFF; --scrim:rgba(35,31,58,.55);
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -39,11 +44,13 @@
         --teal-bg:#14323D;   --teal-title:#7FD3EE;   --teal-text:#A8E3F5;
         --banner-bg:#7FD3EE; --banner-fg:#0E2A35; --banner-pill-bg:#0E2A35; --banner-pill-fg:#7FD3EE;
         --pink-bg:#3A1A2C;   --pink-title:#FF9EC4;   --pink-text:#FFC9DE;
+        --header-bg:rgba(18,17,31,.86); --line:rgba(255,255,255,.10);
+        --surface:#1D1B30; --scrim:rgba(0,0,0,.65);
       }
     }
 
     *, *::before, *::after { box-sizing: border-box; }
-    html { -webkit-text-size-adjust: 100%; }
+    html { -webkit-text-size-adjust: 100%; scroll-padding-top: 72px; }
     body {
       margin: 0; min-height: 100vh; min-height: 100dvh;
       display: flex; flex-direction: column;
@@ -113,6 +120,74 @@
     .cta:focus-visible::after { outline: 3px solid var(--card-title); outline-offset: 3px; }
     .banner:focus-visible { outline: 3px solid var(--banner-bg); outline-offset: 3px; }
 
+    /* Header nav */
+    .site-header {
+      position: sticky; top: 0; z-index: 10;
+      background: var(--header-bg);
+      -webkit-backdrop-filter: saturate(160%) blur(10px); backdrop-filter: saturate(160%) blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .site-header .inner {
+      max-width: 860px; margin: 0 auto; padding: 14px 16px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .site-name {
+      min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      color: var(--text); text-decoration: none;
+      font-size: 1.05rem; font-weight: 800; letter-spacing: -0.01em;
+    }
+    .site-nav ul { display: flex; gap: 4px; margin: 0; padding: 0; list-style: none; }
+    .site-nav a {
+      display: block; padding: 6px 12px; border-radius: 999px; white-space: nowrap;
+      color: var(--link); text-decoration: none; font-size: .95rem; font-weight: 700;
+      transition: background-color .15s ease;
+    }
+    .site-nav a:hover { background: var(--purple-bg); }
+    .site-name:focus-visible, .site-nav a:focus-visible { outline: 3px solid var(--link); outline-offset: 2px; border-radius: 8px; }
+    @media (max-width: 360px) {
+      .site-header .inner { gap: 8px; }
+      .site-name { font-size: .95rem; }
+      .site-nav a { padding: 6px 8px; }
+    }
+
+    /* About lightbox */
+    .modal {
+      position: fixed; inset: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: center;
+      padding: 16px; background: var(--scrim);
+      opacity: 0; transition: opacity .2s ease;
+    }
+    .modal[hidden] { display: none; }
+    .modal.is-open { opacity: 1; }
+    .modal-card {
+      position: relative; display: flex; flex-direction: column;
+      width: 100%; max-width: 600px; max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px);
+      background: var(--surface); color: var(--text);
+      border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,.25);
+      transform: scale(.96); transition: transform .2s ease;
+    }
+    .modal.is-open .modal-card { transform: scale(1); }
+    .modal-card:focus { outline: none; }
+    .modal-body { overflow-y: auto; overscroll-behavior: contain; padding: 32px 28px 28px; border-radius: inherit; }
+    .modal-body h2 {
+      margin: 0 48px 16px 0; color: var(--purple-title);
+      font-size: clamp(2rem, 5vw, 2.5rem); line-height: 1.1; letter-spacing: -0.02em; font-weight: 800;
+    }
+    .modal-body p { margin: 0 0 14px; font-size: 1.05rem; }
+    .modal-body p:last-child { margin-bottom: 0; }
+    .modal-body a { color: var(--link); font-weight: 700; }
+    .modal-close {
+      position: absolute; top: 14px; right: 14px; z-index: 1;
+      width: 44px; height: 44px; border: 0; border-radius: 999px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--purple-bg); color: var(--purple-text);
+      font-family: inherit; font-size: 1.75rem; font-weight: 700; line-height: 1;
+      transition: background-color .15s ease;
+    }
+    .modal-close:hover { background: var(--line); }
+    .modal-close:focus-visible { outline: 3px solid var(--link); outline-offset: 2px; }
+    @media (max-width: 480px) { .modal-body { padding: 28px 20px 24px; } }
+
     footer { padding: 0 0 28px; color: var(--muted); font-size: .95rem; }
     footer .inner { max-width: 860px; margin: 0 auto; padding: 0 16px; }
     footer .links { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-bottom: 8px; }
@@ -121,13 +196,26 @@
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; }
       .card:hover, .banner:hover { transform: none; }
+      .modal-card { transform: none !important; }
     }
   </style>
 </head>
-<body>
+<body id="top">
+  <header class="site-header">
+    <div class="inner">
+      <a class="site-name" href="#top">Xing Brew Design Co.</a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#about" id="about-link" aria-haspopup="dialog">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
   <main class="wrap">
     <h1>My Projects</h1>
-    <p class="lede">Free learning tools and games, built by Xing Brew.</p>
+    <p class="lede">Digital Tools and Products Portfolio</p>
 
     <a class="banner" href="name-creations/">
       <span>Looking for the ASL and Braille name generator?</span>
@@ -169,5 +257,89 @@
       &copy; Xing Brew 2026. All rights reserved.
     </div>
   </footer>
+
+  <div class="modal" id="about" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="about-title" tabindex="-1">
+      <button type="button" class="modal-close" aria-label="Close About">&times;</button>
+      <div class="modal-body">
+        <h2 id="about-title">About Me</h2>
+        <p>Hi, I'm Xing, the designer and data nerd behind Xing Brew Design Co. I'm based in downtown Toronto, where I work as a freelance knowledge translation specialist and scientific and medical data visualizer. My background is in data science and graphic design, and I've co-founded a data science consultancy and consulted for organizations including WHO, the World Bank, UNICEF, and ISGlobal.</p>
+        <p>This site is my corner of the internet for design and digital products. Some are just for fun, like games and creative tools that make learning feel like play. Others solve real problems, like poster templates that save researchers hours, planners that keep busy households on track, and apps that make everyday handoffs a little easier.</p>
+        <p>Most of what's here started with something I needed myself, as a parent of three young kids or as someone who's spent years making complicated information easier to understand. I believe good design should make the complicated feel simple, whether it's a clinical guideline figure, a math game, or a handoff card for a babysitter.</p>
+        <p>Curious about what I'm building, or want to work together? <a href="mailto:xingbrew@gmail.com">Say hello</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var modal = document.getElementById('about');
+      var card = modal.querySelector('.modal-card');
+      var closeBtn = modal.querySelector('.modal-close');
+      var aboutLink = document.getElementById('about-link');
+      var page = document.querySelectorAll('body > header, body > main, body > footer');
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var lastFocus = null, hideTimer = null;
+
+      function focusables() {
+        return Array.prototype.filter.call(
+          card.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+          function (el) { return el.offsetParent !== null; });
+      }
+
+      function setHash(on) {
+        var url = location.pathname + location.search + (on ? '#about' : '');
+        if ((location.hash === '#about') !== on) history.replaceState(null, '', url);
+      }
+
+      function open(trigger) {
+        if (!modal.hidden && modal.classList.contains('is-open')) return;
+        clearTimeout(hideTimer);
+        lastFocus = trigger || aboutLink;
+        var sbw = window.innerWidth - document.documentElement.clientWidth;
+        document.body.style.overflow = 'hidden';
+        if (sbw > 0) document.body.style.paddingRight = sbw + 'px';
+        page.forEach(function (el) { el.inert = true; });
+        modal.hidden = false;
+        void modal.offsetWidth; // start the fade from opacity 0
+        modal.classList.add('is-open');
+        card.focus();
+        setHash(true);
+      }
+
+      function close() {
+        if (modal.hidden) return;
+        modal.classList.remove('is-open');
+        page.forEach(function (el) { el.inert = false; });
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+        hideTimer = setTimeout(function () { modal.hidden = true; }, reduceMotion.matches ? 0 : 200);
+        setHash(false);
+        if (lastFocus) lastFocus.focus();
+      }
+
+      aboutLink.addEventListener('click', function (e) { e.preventDefault(); open(aboutLink); });
+      closeBtn.addEventListener('click', close);
+      modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+
+      document.addEventListener('keydown', function (e) {
+        if (modal.hidden) return;
+        if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+        if (e.key !== 'Tab') return;
+        var items = focusables();
+        var first = items[0], last = items[items.length - 1];
+        if (e.shiftKey && (document.activeElement === first || document.activeElement === card)) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault(); first.focus();
+        }
+      });
+
+      window.addEventListener('hashchange', function () {
+        if (location.hash === '#about') open(aboutLink); else close();
+      });
+      if (location.hash === '#about') open(aboutLink);
+    })();
+  </script>
 </body>
 </html>
