@@ -5,7 +5,7 @@
 const CONFIG = {
   brandName: "Xing Brew Design Co.",
   email: "xingbrew@gmail.com",
-  etsyUrl: "https://www.etsy.com/ca/shop/DoGoodxDesign?section_id=58266976",
+  shopUrl: "https://payhip.com/XingBrewDesignCo",  // Payhip store (all templates)
 
   // Template cards, shown in this order. Add or remove objects to add or remove cards.
   // Layout on desktop: the first 3 cards sit in a row of three (portrait frames),
@@ -13,11 +13,11 @@ const CONFIG = {
   // color:       cyan | periwinkle | lavender | pink | red | peach
   // image:       a file in assets/
   // orientation: "landscape" for landscape images (default is portrait)
-  // url:         optional. Link to the specific Etsy listing; falls back to etsyUrl.
+  // url:         optional. Link to the template's Payhip product page; falls back to shopUrl.
   templates: [
     {
       name: "Classic Scientific Layout",
-      url: "https://dogoodxdesign.etsy.com/listing/4554543793",
+      url: "https://payhip.com/b/Sh0YM",
       size: "A0 portrait",
       software: "Canva",
       description: "Classic clinical layout with built-in CONSORT flow diagram",
@@ -26,7 +26,7 @@ const CONFIG = {
     },
     {
       name: "#BetterPoster Big Finding",
-      url: "https://dogoodxdesign.etsy.com/listing/4496748762",
+      url: "https://payhip.com/b/CZFfE",
       size: "A0 portrait",
       software: "PowerPoint + Canva",
       description: "Billboard-style poster to show your main result, huge, front and centre.",
@@ -35,7 +35,7 @@ const CONFIG = {
     },
     {
       name: "Clinical Case Study",
-      url: "https://dogoodxdesign.etsy.com/listing/4497281837",
+      url: "https://payhip.com/b/FME4y",
       size: "A0 portrait",
       software: "PowerPoint + Canva",
       description: "Clean, modern layout for STEM or social sciences.",
@@ -44,7 +44,7 @@ const CONFIG = {
     },
     {
       name: "Simple, Clear, Modern",
-      url: "https://dogoodxdesign.etsy.com/listing/4496426095",
+      url: "https://payhip.com/b/bZK7m",
       size: "A0 landscape",
       software: "PowerPoint + Canva",
       description: "Modern clinical billboard-style poster to highlight your key findings.",
@@ -54,7 +54,7 @@ const CONFIG = {
     },
     {
       name: "Eye-catching and bold",
-      url: "https://dogoodxdesign.etsy.com/ca/listing/4586478276/academic-research-poster-editable-canva",
+      url: "https://payhip.com/b/z6XPr",
       size: "A0 landscape",
       software: "Canva",
       description: "Bright and vibrant billboard-style poster for all disciplines.",
@@ -89,7 +89,7 @@ const CONFIG = {
 
   // Brand name, email, shop links
   $$("[data-brand]").forEach((el) => (el.textContent = CONFIG.brandName));
-  $$("[data-etsy]").forEach((el) => (el.href = CONFIG.etsyUrl));
+  $$("[data-shop]").forEach((el) => (el.href = CONFIG.shopUrl));
   $$("[data-email]").forEach((el) => {
     el.href = "mailto:" + CONFIG.email;
     el.setAttribute("aria-label", "Email " + CONFIG.email);
@@ -139,19 +139,19 @@ const CONFIG = {
 
         const a = document.createElement("a");
         a.className = "card__cta";
-        a.href = t.url || CONFIG.etsyUrl;
+        a.href = t.url || CONFIG.shopUrl;
         a.target = "_blank";
         a.rel = "noopener";
         // Umami custom event: which template card was clicked
-        a.dataset.umamiEvent = "etsy-click";
+        a.dataset.umamiEvent = "shop-click";
         a.dataset.umamiEventTemplate = t.name;
         a.dataset.umamiEventLocation = "template-card";
-        // Screen readers hear "Buy this template: <name> (opens in a new tab)"
+        // Screen readers hear "Buy template: <name> (opens in a new tab)"
         const label = document.createElement("span");
         const hidden = document.createElement("span");
         hidden.className = "visually-hidden";
         hidden.textContent = ": " + t.name + " (opens in a new tab)";
-        label.append("Buy this template", hidden);
+        label.append("Buy template", hidden);
         const arrow = document.createElement("span");
         arrow.setAttribute("aria-hidden", "true");
         arrow.textContent = "→";

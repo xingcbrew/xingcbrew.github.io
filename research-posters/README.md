@@ -8,7 +8,7 @@ Plain HTML, CSS and JS. No framework, no build step.
 ```
 index.html              page content, SEO tags, Umami script
 styles.css              all styles; palette is at the top
-script.js               CONFIG block: brand name, email, Etsy link, template cards
+script.js               CONFIG block: brand name, email, Payhip store link, template cards
 sitemap.xml             sitemap for search engines
 assets/                 images and favicon
 tools/qr-urls.py        prints QR-tagged URLs
@@ -95,7 +95,7 @@ In `script.js`, copy one object inside `CONFIG.templates` and edit it:
   image: "assets/template-4.jpg",
   orientation: "landscape",   // only for landscape images; leave out for portrait
   color: "peach",   // cyan | periwinkle | lavender | pink | red | peach
-  url: "https://www.etsy.com/ca/listing/…",   // optional; defaults to the shop section
+  url: "https://payhip.com/b/…",   // optional; the template's Payhip product page. Defaults to the store (shopUrl)
 },
 ```
 
@@ -103,7 +103,7 @@ Add the preview image to `assets/` (see "Images" above for sizing).
 
 **Layout:** on desktop, the first 3 cards sit in a row of three with portrait image frames. Every card after that sits in rows of two with landscape frames. Keep portrait templates first and landscape ones after, and set `orientation: "landscape"` on the landscape ones. The current order is 3 portrait, then 2 landscape. To change the split, edit the `.grid--templates` rules in `styles.css`. Images are scaled to fit their frame and never cropped.
 
-Each template card's Etsy link sends an `etsy-click` event to Umami with the template's `name`. If you rename a template, its clicks show under the new name from then on.
+Each template card's "Buy template" link sends a `shop-click` event to Umami with the template's `name`. If you rename a template, its clicks show under the new name from then on.
 
 ## Analytics (Umami Cloud)
 
@@ -119,11 +119,13 @@ Clicks are tracked with `data-umami-event` attributes. No personal data is recor
 
 | Event | Where | Extra properties |
 |---|---|---|
-| `etsy-click` | Every Etsy link | `location`: `template-card`, `shop-more-button`, `footer`, `no-js-fallback`. Template cards also send `template` (the template name). |
+| `shop-click` | Every Payhip store link | `location`: `template-card`, `shop-more-button`, `footer`, `no-js-fallback`. Template cards also send `template` (the template name). |
 | `request-poster` | "Request a poster" email button | |
 | `request-rush` | "Email me for pricing" rush link | |
 | `hero-browse-templates` | Hero "Browse templates" button | |
 | `hero-get-poster` | Hero "Get a poster made for you" button | |
+
+The templates moved from Etsy to Payhip in October 2026. Clicks before then were recorded as `etsy-click`.
 
 Template card events are set in `script.js` (search for `umamiEvent`). The others are attributes in `index.html`. To track another link, add `data-umami-event="your-event-name"` to it.
 
@@ -132,7 +134,7 @@ Template card events are set in `script.js` (search for `umamiEvent`). The other
 In Umami, open the website from the dashboard. Menu names shift a little between Umami versions.
 
 - **Visits from each QR code:** QR URLs carry `?utm_source=…` (see below). Open the **UTM** report (under Reports), or the **Sources**/**Query parameters** panel on the website page. Each printed location appears as its own `utm_source` value.
-- **Clicks:** the **Events** panel lists each event by name with counts. Click `etsy-click` to break it down by `template` or `location` and see which template gets clicked most.
+- **Clicks:** the **Events** panel lists each event by name with counts. Click `shop-click` to break it down by `template` or `location` and see which template gets clicked most.
 - **Pages:** this site and your homepage share the domain. To see only this site, filter by the page path `/research-posters/`.
 
 ## Search engines
