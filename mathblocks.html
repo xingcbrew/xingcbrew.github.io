@@ -1,22 +1,22 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" href="favicon.png"><link rel="apple-touch-icon" href="apple-touch-icon.png"></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Math Blocks</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg:#EEF0FF;--surface:#FFFFFF;--surface2:#E4E7FF;--border:#C8CEFF;
-  --text:#1A1A3E;--text-muted:#6B6FA8;--accent:#5B52E8;--accent-h:#4840D6;
+  --text:#1A1A3E;--text-muted:#6B6FA8;--accent:#6C67CC;--accent-h:#5A56B8;
   --success:#10B981;--warn:#F59E0B;--danger:#EF4444;
-  --cell-empty:#E8EBFF;--cell-line:#CDD1F5;--shadow:0 2px 10px rgba(91,82,232,.13);
+  --cell-empty:#E8EBFF;--cell-line:#CDD1F5;--shadow:0 2px 10px rgba(108,103,204,.13);
   --ff-d:'Fredoka','Nunito',sans-serif;--ff-b:'Nunito',sans-serif;
 }
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#0D0F2A;--surface:#161937;--surface2:#1F2452;--border:#2E3370;
-  --text:#E6E9FF;--text-muted:#8B90C8;--accent:#7870F8;--accent-h:#6C64F0;
+  --text:#E6E9FF;--text-muted:#8B90C8;--accent:#8880E0;--accent-h:#7870CC;
   --cell-empty:#181B40;--cell-line:#252860;--shadow:0 2px 10px rgba(0,0,0,.35);
 }}
 :root[data-theme="dark"]{
   --bg:#0D0F2A;--surface:#161937;--surface2:#1F2452;--border:#2E3370;
-  --text:#E6E9FF;--text-muted:#8B90C8;--accent:#7870F8;--accent-h:#6C64F0;
+  --text:#E6E9FF;--text-muted:#8B90C8;--accent:#8880E0;--accent-h:#7870CC;
   --cell-empty:#181B40;--cell-line:#252860;--shadow:0 2px 10px rgba(0,0,0,.35);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -28,67 +28,95 @@ body{font-family:var(--ff-b);background:var(--bg);color:var(--text);overflow:hid
 /* ── START SCREEN ── */
 #start-screen{
   flex-direction:column;align-items:center;justify-content:center;
-  gap:16px;padding:20px 16px;overflow-y:auto;text-align:center;
-  background:linear-gradient(155deg,#6EC6E8 0%,#9FDAF3 30%,#C4ECFA 65%,#E2F8FF 100%);
+  gap:14px;padding:20px 16px 32px;overflow-y:auto;text-align:center;
+  background:#FAF7F0;
   position:relative;
 }
-.deco{position:absolute;border-radius:10px;opacity:.5;pointer-events:none;box-shadow:0 4px 8px rgba(0,0,0,.15);}
 
-/* Title letter blocks */
+/* Blob decorations */
+.blob{position:absolute;pointer-events:none;border-radius:50%;opacity:1;}
+.sq-deco{position:absolute;pointer-events:none;border-radius:10px;box-shadow:0 3px 8px rgba(0,0,0,.10);}
+.dot-grid{position:absolute;pointer-events:none;background-image:radial-gradient(circle,#C4B5F4 1.2px,transparent 1.2px);background-size:12px 12px;opacity:.45;}
+
+/* Hand-drawn accent: simple SVG marks */
+.hd-accent{position:absolute;pointer-events:none;}
+
+/* Logo lockup — plain text with floating accent shapes */
 .start-header{display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1;}
-.title-word{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;}
-.tl{
-  width:clamp(36px,6vw,54px);height:clamp(36px,6vw,54px);
-  border-radius:9px;display:flex;align-items:center;justify-content:center;
-  font-family:var(--ff-d);font-size:clamp(18px,3.2vw,28px);color:#fff;
-  box-shadow:0 4px 0 rgba(0,0,0,.3),0 2px 6px rgba(0,0,0,.2);
+.logo-lockup{position:relative;display:inline-block;padding:6px 22px;}
+.logo-word{
+  font-family:var(--ff-d);font-size:clamp(44px,9vw,70px);font-weight:700;
+  color:#1A1D4E;letter-spacing:-0.01em;line-height:1.05;display:block;text-align:center;
 }
+.logo-sq{position:absolute;box-shadow:0 2px 6px rgba(0,0,0,.14);pointer-events:none;}
 .start-sub{
-  font-family:var(--ff-d);font-size:clamp(18px,3.5vw,26px);
-  color:#1A5A8A;margin-top:6px;letter-spacing:.05em;
+  font-family:var(--ff-d);font-size:clamp(17px,3.2vw,24px);
+  margin-top:8px;letter-spacing:.04em;display:flex;gap:.45em;justify-content:center;flex-wrap:wrap;
 }
+.start-sub .dot{color:#BBBDB0;}
+.start-sub .w1{color:#3A9BAD;}
+.start-sub .w2{color:#7B68C4;}
+.start-sub .w3{color:#4A9E5C;}
+
+/* P&T button */
+#pt-btn{
+  position:absolute;top:14px;right:14px;
+  background:rgba(255,255,255,.95);border:1.5px solid #DDD8CC;
+  border-radius:22px;padding:7px 14px 7px 10px;
+  font-family:var(--ff-d);font-size:12px;color:#1A1D4E;
+  cursor:pointer;transition:all .12s;z-index:10;white-space:nowrap;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  display:flex;align-items:center;gap:6px;
+}
+#pt-btn svg{flex-shrink:0;}
+#pt-btn:hover{background:#fff;box-shadow:0 3px 12px rgba(0,0,0,.13);}
 
 /* Mode cards */
-.mode-cards{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;width:100%;max-width:630px;position:relative;z-index:1;}
+.mode-cards{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;width:100%;max-width:640px;position:relative;z-index:1;}
 .mode-card{
-  flex:1;min-width:230px;max-width:295px;border-radius:24px;padding:18px 16px;
-  display:flex;flex-direction:column;gap:9px;
-  box-shadow:0 8px 28px rgba(0,0,0,.16);
+  flex:1;min-width:235px;max-width:300px;border-radius:26px;padding:20px 18px 18px;
+  display:flex;flex-direction:column;gap:10px;
+  box-shadow:0 6px 24px rgba(0,0,0,.10),0 1px 4px rgba(0,0,0,.05);
 }
-.free-card{background:#FFFCE8;}
-.math-card{background:#EBF5FF;}
-.card-title{font-family:var(--ff-d);font-size:clamp(17px,3.2vw,23px);text-align:center;letter-spacing:.02em;}
-.free-card .card-title{color:#38B500;}
-.math-card .card-title{color:#1A80D0;}
+.free-card{background:#FFFAEC;}
+.math-card{background:#EEE8FF;}
+.card-title{font-family:var(--ff-d);font-size:clamp(17px,3.2vw,22px);text-align:center;letter-spacing:.02em;color:#1A1D4E;font-weight:700;}
 .card-illo{display:flex;align-items:center;justify-content:center;height:140px;overflow:hidden;}
 .card-illo svg{height:100%;width:auto;max-width:100%;display:block;}
-.card-desc{font-size:16px;font-weight:700;color:#555;text-align:center;line-height:1.4;flex:1;}
+.card-desc{font-size:15px;font-weight:700;color:#5A5A7A;text-align:center;line-height:1.4;flex:1;}
 .play-btn{
   width:100%;padding:16px 10px;border:none;border-radius:50px;
-  font-family:var(--ff-d);font-size:clamp(19px,3.8vw,26px);color:#fff;
+  font-family:var(--ff-d);font-size:clamp(18px,3.5vw,24px);color:#fff;
   cursor:pointer;letter-spacing:.04em;transition:transform .12s,box-shadow .12s;
-  margin-top:4px;
+  margin-top:4px;font-weight:600;
 }
-.free-play-btn{background:#38B500;box-shadow:0 5px 0 #267900,0 5px 16px rgba(56,181,0,.35);}
-.free-play-btn:hover{transform:translateY(-2px);box-shadow:0 7px 0 #267900,0 8px 20px rgba(56,181,0,.4);}
-.math-play-btn{background:#1A80D0;box-shadow:0 5px 0 #105896,0 5px 16px rgba(26,128,208,.35);}
-.math-play-btn:hover{transform:translateY(-2px);box-shadow:0 7px 0 #105896,0 8px 20px rgba(26,128,208,.4);}
+.free-play-btn{background:#D4943A;box-shadow:0 5px 0 #AA7228,0 5px 16px rgba(212,148,58,.35);}
+.free-play-btn:hover{transform:translateY(-2px);box-shadow:0 7px 0 #AA7228,0 8px 20px rgba(212,148,58,.4);}
+.math-play-btn{background:#8A7FD4;box-shadow:0 5px 0 #6860B0,0 5px 16px rgba(138,127,212,.35);}
+.math-play-btn:hover{transform:translateY(-2px);box-shadow:0 7px 0 #6860B0,0 8px 20px rgba(138,127,212,.4);}
 
-/* Inline pickers inside cards */
+/* Inline pickers */
 .inline-picker{display:none;flex-direction:column;align-items:center;gap:10px;margin-top:4px;}
 .inline-picker.show{display:flex;}
 .picker-label{font-family:var(--ff-d);font-size:15px;color:#444;margin-bottom:2px;}
 .picker-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
-.op-btn{padding:10px 14px;border:3px solid var(--border);border-radius:12px;background:var(--surface2);font-family:var(--ff-d);font-size:16px;cursor:pointer;color:var(--text);transition:all .12s;min-width:64px;}
-.op-btn:hover,.op-btn.sel{border-color:var(--accent);background:var(--accent);color:#fff;}
-.go-btn{padding:13px 36px;background:var(--accent);color:#fff;border:none;border-radius:14px;font-family:var(--ff-d);font-size:18px;cursor:pointer;transition:background .12s,transform .12s;box-shadow:0 4px 16px rgba(91,82,232,.35);}
-.go-btn:hover{background:var(--accent-h);transform:translateY(-1px);}
+.op-btn{padding:10px 14px;border:2.5px solid #C8C4E0;border-radius:12px;background:#F3F0FF;font-family:var(--ff-d);font-size:16px;cursor:pointer;color:#1A1D4E;transition:all .12s;min-width:64px;}
+.op-btn:hover,.op-btn.sel{border-color:#8A7FD4;background:#8A7FD4;color:#fff;}
+.go-btn{padding:13px 36px;background:#8A7FD4;color:#fff;border:none;border-radius:14px;font-family:var(--ff-d);font-size:18px;cursor:pointer;transition:background .12s,transform .12s;box-shadow:0 4px 16px rgba(138,127,212,.35);}
+.go-btn:hover{background:#6860B0;transform:translateY(-1px);}
 
 /* Taglines */
-.taglines{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;position:relative;z-index:1;width:100%;max-width:630px;}
-.tg-item{flex:1;min-width:140px;max-width:195px;background:rgba(255,255,255,.38);border-radius:14px;padding:10px 13px;backdrop-filter:blur(4px);}
-.tg-head{display:block;font-family:var(--ff-d);font-size:clamp(11px,1.8vw,13px);color:#0B3D82;letter-spacing:.04em;line-height:1.2;margin-bottom:3px;}
-.tg-sub{display:block;font-family:var(--ff-b);font-size:clamp(10px,1.5vw,12px);color:rgba(15,50,100,.72);line-height:1.4;font-weight:600;}
+.taglines{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;position:relative;z-index:1;width:100%;max-width:640px;}
+.tg-item{
+  flex:1;min-width:150px;max-width:200px;
+  background:#fff;border-radius:16px;padding:12px 14px;
+  box-shadow:0 2px 10px rgba(0,0,0,.07);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.tg-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.tg-icon svg{width:18px;height:18px;}
+.tg-head{display:block;font-family:var(--ff-d);font-size:clamp(11px,1.8vw,13px);color:#1A1D4E;letter-spacing:.03em;line-height:1.2;font-weight:700;}
+.tg-sub{display:block;font-family:var(--ff-b);font-size:clamp(10px,1.5vw,12px);color:#7A7A9A;line-height:1.4;font-weight:600;}
 .ic{width:16px;height:16px;display:inline-block;vertical-align:middle;flex-shrink:0;pointer-events:none;}
 
 /* ── GAME SCREEN ── */
@@ -173,12 +201,10 @@ body{font-family:var(--ff-b);background:var(--bg);color:var(--text);overflow:hid
 #lb-body strong{font-weight:700;}
 /* ── START SCREEN meta links ── */
 #start-screen{position:relative;}
-#pt-btn{position:absolute;top:12px;right:14px;background:#1A80D0;border:none;border-radius:20px;padding:6px 14px;font-family:var(--ff-d);font-size:12px;color:#fff;cursor:pointer;transition:all .12s;z-index:10;white-space:nowrap;box-shadow:0 2px 8px rgba(26,128,208,.35);}
-#pt-btn:hover{background:#105896;}
 .start-footer{position:absolute;bottom:6px;left:0;right:0;text-align:center;display:flex;align-items:center;justify-content:center;gap:8px;}
-.start-footer button{background:none;border:none;font-family:var(--ff-b);font-size:11px;color:var(--text-muted);cursor:pointer;text-decoration:underline;transition:color .12s;}
-.start-footer button:hover{color:var(--accent);}
-.start-footer span{color:var(--text-muted);font-size:11px;}
+.start-footer button{background:none;border:none;font-family:var(--ff-b);font-size:11px;color:#9A9A8A;cursor:pointer;text-decoration:underline;transition:color .12s;}
+.start-footer button:hover{color:#555;}
+.start-footer span{color:#9A9A8A;font-size:11px;}
 /* ── CELL DECORATION ── */
 .cell-deco{position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;}
 .cell-deco svg{width:100%;height:100%;overflow:visible;}
@@ -220,27 +246,69 @@ body{font-family:var(--ff-b);background:var(--bg);color:var(--text);overflow:hid
 .conf{position:fixed;border-radius:2px;pointer-events:none;z-index:999;animation:fall linear forwards;}
 @keyframes fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1;}100%{transform:translateY(110vh) rotate(800deg);opacity:0;}}
 @media(max-width:680px){.game-body{flex-direction:column;}#panel{width:100%;min-width:0;border-left:none;border-top:2px solid var(--border);max-height:290px;}}
-@media(max-width:480px){.mode-cards{flex-direction:column;align-items:center;}.mode-card{min-width:0;width:100%;max-width:320px;}}
+@media(max-width:520px){.mode-cards{flex-direction:column;align-items:center;}.mode-card{min-width:0;width:100%;max-width:330px;}}
 </style>
 
 <!-- ── START SCREEN ── -->
 <div id="start-screen" class="screen active">
-  <button id="pt-btn">Parents &amp; Teachers</button>
-  <!-- Decorative floating blocks -->
-  <div class="deco" style="width:50px;height:50px;background:#DE151D;top:7%;left:4%;transform:rotate(-15deg)"></div>
-  <div class="deco" style="width:34px;height:34px;background:#E89223;top:16%;left:1%;transform:rotate(10deg)"></div>
-  <div class="deco" style="width:42px;height:42px;background:#38B500;top:5%;right:5%;transform:rotate(20deg)"></div>
-  <div class="deco" style="width:30px;height:30px;background:#23B0DB;top:17%;right:2%;transform:rotate(-8deg)"></div>
-  <div class="deco" style="width:38px;height:38px;background:#BA79DD;bottom:16%;left:2%;transform:rotate(12deg)"></div>
-  <div class="deco" style="width:28px;height:28px;background:#D05090;bottom:24%;left:7%;transform:rotate(-20deg)"></div>
-  <div class="deco" style="width:44px;height:44px;background:#5A35C3;bottom:18%;right:3%;transform:rotate(8deg)"></div>
-  <div class="deco" style="width:26px;height:26px;background:#E6C40C;bottom:10%;right:9%;transform:rotate(-12deg)"></div>
+
+  <!-- P&T button -->
+  <button id="pt-btn">
+    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="#1A1D4E" stroke-width="1.8" stroke-linecap="round"><circle cx="8" cy="6" r="3"/><path d="M2 17c0-3.3 2.7-6 6-6"/><circle cx="15" cy="9" r="2.5"/><path d="M11 17c0-2.2 1.8-4 4-4"/></svg>
+    Parents &amp; Teachers
+  </button>
+
+  <!-- Large organic blobs (corners) -->
+  <div class="blob" style="width:220px;height:200px;background:#72CED4;border-radius:62% 38% 55% 45% / 55% 62% 38% 45%;top:-80px;left:-60px;opacity:.42;"></div>
+  <div class="blob" style="width:150px;height:170px;background:#C4B5F4;border-radius:48% 52% 38% 62% / 60% 42% 58% 40%;top:-50px;right:-25px;opacity:.38;"></div>
+  <div class="blob" style="width:160px;height:140px;background:#72CED4;border-radius:50% 50% 62% 38% / 42% 58% 42% 58%;bottom:-40px;left:-30px;opacity:.38;"></div>
+  <div class="blob" style="width:170px;height:150px;background:#FFD97D;border-radius:42% 58% 48% 52% / 58% 42% 58% 42%;bottom:-35px;right:2%;opacity:.48;"></div>
+  <div class="blob" style="width:80px;height:80px;background:#FFA552;border-radius:50%;bottom:22%;left:1.5%;opacity:.42;"></div>
+  <div class="blob" style="width:55px;height:55px;background:#A8D8A8;border-radius:50%;top:28%;right:1%;opacity:.5;"></div>
+
+  <!-- Dot grid accent -->
+  <div class="dot-grid" style="width:80px;height:80px;right:4%;top:35%;border-radius:8px;"></div>
+
+  <!-- Small colored block squares -->
+  <div class="sq-deco" style="width:30px;height:30px;background:#E8C64E;top:20%;left:4%;transform:rotate(-12deg);opacity:.70;"></div>
+  <div class="sq-deco" style="width:22px;height:22px;background:#5AAF6F;top:14%;right:7%;transform:rotate(16deg);opacity:.65;"></div>
+  <div class="sq-deco" style="width:18px;height:18px;background:#D97A7A;bottom:30%;right:4%;transform:rotate(-8deg);opacity:.55;"></div>
+
+  <!-- Hand-drawn accent (number squiggle) -->
+  <svg class="hd-accent" style="right:5.5%;top:45%;width:40px;height:30px;opacity:.5;" viewBox="0 0 40 30" fill="none">
+    <text x="2" y="22" font-family="Fredoka,sans-serif" font-size="22" fill="#D4902C" font-weight="700">2</text>
+    <path d="M22,14 Q28,8 34,14 Q28,20 34,26" stroke="#D4902C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <!-- Sparkle accent -->
+  <svg class="hd-accent" style="left:5%;bottom:35%;width:28px;height:28px;opacity:.5;" viewBox="0 0 28 28" fill="none">
+    <line x1="14" y1="2" x2="14" y2="10" stroke="#BA79DD" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="14" y1="18" x2="14" y2="26" stroke="#BA79DD" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="2" y1="14" x2="10" y2="14" stroke="#BA79DD" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="18" y1="14" x2="26" y2="14" stroke="#BA79DD" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="5.5" y1="5.5" x2="11" y2="11" stroke="#BA79DD" stroke-width="2" stroke-linecap="round"/>
+    <line x1="17" y1="17" x2="22.5" y2="22.5" stroke="#BA79DD" stroke-width="2" stroke-linecap="round"/>
+  </svg>
 
   <!-- Title -->
-  <div class="start-header">
-    <div class="title-word" id="tw1"></div>
-    <div class="title-word" id="tw2"></div>
-    <p class="start-sub">Build - Play - Learn</p>
+  <div class="start-header" style="position:relative;z-index:1;">
+    <div class="logo-lockup">
+      <!-- floating accent shapes around the text -->
+      <div class="logo-sq" style="background:#E8C64E;width:18px;height:18px;border-radius:5px;top:-4px;left:0;transform:rotate(-14deg);"></div>
+      <div class="logo-sq" style="background:#5BAFC0;width:13px;height:13px;border-radius:4px;top:6px;right:2px;transform:rotate(10deg);"></div>
+      <div class="logo-sq" style="background:#A090D8;width:14px;height:14px;border-radius:4px;bottom:18px;left:2px;transform:rotate(12deg);"></div>
+      <div class="logo-sq" style="background:#E8A468;width:12px;height:16px;border-radius:4px;bottom:10px;right:4px;transform:rotate(-10deg);"></div>
+      <div class="logo-sq" style="background:#D97A7A;width:10px;height:10px;border-radius:3px;top:50%;right:0;transform:rotate(18deg) translateY(-50%);"></div>
+      <div class="logo-word">MATH</div>
+      <div class="logo-word">BLOCKS</div>
+    </div>
+    <p class="start-sub">
+      <span class="w1">Build</span>
+      <span class="dot">·</span>
+      <span class="w2">Play</span>
+      <span class="dot">·</span>
+      <span class="w3">Learn</span>
+    </p>
   </div>
 
   <!-- Cards -->
@@ -249,32 +317,48 @@ body{font-family:var(--ff-b);background:var(--bg);color:var(--text);overflow:hid
     <div class="mode-card free-card">
       <div class="card-title">FREE BUILD</div>
       <div class="card-illo">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <!-- Row 0 -->
-          <rect x="0" y="0" width="22" height="22" rx="4" fill="#DE151D"/>
-          <!-- face on top-left block -->
-          <circle cx="7" cy="8" r="2.8" fill="white"/><circle cx="15" cy="8" r="2.8" fill="white"/>
-          <circle cx="7" cy="8.5" r="1.7" fill="#111"/><circle cx="15" cy="8.5" r="1.7" fill="#111"/>
-          <circle cx="8.2" cy="7" r="1" fill="white"/><circle cx="16.2" cy="7" r="1" fill="white"/>
-          <path d="M5,15 Q11,20 17,15" stroke="#111" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <rect x="26" y="0" width="22" height="22" rx="4" fill="#E89223"/>
-          <rect x="52" y="0" width="22" height="22" rx="4" fill="#E6C40C"/>
-          <rect x="78" y="0" width="22" height="22" rx="4" fill="#38B500"/>
-          <!-- Row 1 -->
-          <rect x="0" y="26" width="22" height="22" rx="4" fill="#23B0DB"/>
-          <rect x="26" y="26" width="22" height="22" rx="4" fill="#BA79DD"/>
-          <rect x="52" y="26" width="22" height="22" rx="4" fill="#5A35C3"/>
-          <rect x="78" y="26" width="22" height="22" rx="4" fill="#DE151D"/>
-          <!-- Row 2 -->
-          <rect x="0" y="52" width="22" height="22" rx="4" fill="#38B500"/>
-          <rect x="26" y="52" width="22" height="22" rx="4" fill="#E6C40C"/>
-          <rect x="52" y="52" width="22" height="22" rx="4" fill="#E89223"/>
-          <rect x="78" y="52" width="22" height="22" rx="4" fill="#23B0DB"/>
-          <!-- Row 3 -->
-          <rect x="0" y="78" width="22" height="22" rx="4" fill="#BA79DD"/>
-          <rect x="26" y="78" width="22" height="22" rx="4" fill="#DE151D"/>
-          <rect x="52" y="78" width="22" height="22" rx="4" fill="#38B500"/>
-          <rect x="78" y="78" width="22" height="22" rx="4" fill="#E6C40C"/>
+        <svg viewBox="-2 -2 112 112" xmlns="http://www.w3.org/2000/svg">
+          <!-- Row 0: coral, peach, yellow, soft-green -->
+          <rect x="2" y="2" width="23" height="23" rx="6" fill="#D97A7A"/>
+          <!-- face on first block -->
+          <circle cx="9" cy="10" r="2.8" fill="white"/><circle cx="17" cy="10" r="2.8" fill="white"/>
+          <circle cx="9" cy="10.5" r="1.7" fill="#2A1A1A"/><circle cx="17" cy="10.5" r="1.7" fill="#2A1A1A"/>
+          <circle cx="10.2" cy="9" r="1" fill="white"/><circle cx="18.2" cy="9" r="1" fill="white"/>
+          <path d="M7,17 C9,21 15,21 17,17" stroke="#2A1A1A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <rect x="29" y="2" width="23" height="23" rx="6" fill="#E8A468"/>
+          <rect x="56" y="2" width="23" height="23" rx="6" fill="#E8C64E"/>
+          <rect x="83" y="2" width="23" height="23" rx="6" fill="#5AAF6F"/>
+          <!-- Row 1: soft-teal, lavender, muted-indigo, coral -->
+          <rect x="2" y="29" width="23" height="23" rx="6" fill="#5BAFC0"/>
+          <rect x="29" y="29" width="23" height="23" rx="6" fill="#A090D8"/>
+          <rect x="56" y="29" width="23" height="23" rx="6" fill="#7B68C4"/>
+          <rect x="83" y="29" width="23" height="23" rx="6" fill="#D97A7A"/>
+          <!-- Row 2: soft-green, yellow, peach, teal -->
+          <rect x="2" y="56" width="23" height="23" rx="6" fill="#5AAF6F"/>
+          <rect x="29" y="56" width="23" height="23" rx="6" fill="#E8C64E"/>
+          <rect x="56" y="56" width="23" height="23" rx="6" fill="#E8A468"/>
+          <rect x="83" y="56" width="23" height="23" rx="6" fill="#5BAFC0"/>
+          <!-- Row 3: lavender, coral, soft-green, yellow -->
+          <rect x="2" y="83" width="23" height="23" rx="6" fill="#A090D8"/>
+          <rect x="29" y="83" width="23" height="23" rx="6" fill="#D97A7A"/>
+          <rect x="56" y="83" width="23" height="23" rx="6" fill="#5AAF6F"/>
+          <rect x="83" y="83" width="23" height="23" rx="6" fill="#E8C64E"/>
+          <!-- subtle highlight overlay on all non-face blocks -->
+          <rect x="29" y="2" width="23" height="23" rx="6" fill="rgba(255,255,255,.13)"/>
+          <rect x="56" y="2" width="23" height="23" rx="6" fill="rgba(255,255,255,.13)"/>
+          <rect x="83" y="2" width="23" height="23" rx="6" fill="rgba(255,255,255,.13)"/>
+          <rect x="2" y="29" width="23" height="23" rx="6" fill="rgba(255,255,255,.10)"/>
+          <rect x="29" y="29" width="23" height="23" rx="6" fill="rgba(255,255,255,.10)"/>
+          <rect x="56" y="29" width="23" height="23" rx="6" fill="rgba(255,255,255,.10)"/>
+          <rect x="83" y="29" width="23" height="23" rx="6" fill="rgba(255,255,255,.10)"/>
+          <rect x="2" y="56" width="23" height="23" rx="6" fill="rgba(255,255,255,.10)"/>
+          <rect x="29" y="56" width="23" height="23" rx="6" fill="rgba(255,255,255,.10)"/>
+          <rect x="56" y="56" width="23" height="23" rx="6" fill="rgba(255,255,255,.10)"/>
+          <rect x="83" y="56" width="23" height="23" rx="6" fill="rgba(255,255,255,.10)"/>
+          <rect x="2" y="83" width="23" height="23" rx="6" fill="rgba(255,255,255,.10)"/>
+          <rect x="29" y="83" width="23" height="23" rx="6" fill="rgba(255,255,255,.10)"/>
+          <rect x="56" y="83" width="23" height="23" rx="6" fill="rgba(255,255,255,.10)"/>
+          <rect x="83" y="83" width="23" height="23" rx="6" fill="rgba(255,255,255,.10)"/>
         </svg>
       </div>
       <p class="card-desc">Create your own math block designs and patterns!</p>
@@ -293,36 +377,39 @@ body{font-family:var(--ff-b);background:var(--bg);color:var(--text);overflow:hid
       <div class="card-title">MATH CHALLENGE</div>
       <div class="card-illo">
         <svg viewBox="-2 0 132 168" xmlns="http://www.w3.org/2000/svg">
-          <!-- 2-block violet: units at y=102 and y=132 -->
-          <rect x="4" y="102" width="26" height="26" rx="5" fill="#BA79DD"/>
-          <rect x="4" y="130" width="26" height="26" rx="5" fill="#BA79DD"/>
-          <!-- face on top unit -->
+          <!-- 2-block soft lavender -->
+          <rect x="4" y="102" width="26" height="26" rx="6" fill="#A090D8"/>
+          <rect x="4" y="130" width="26" height="26" rx="6" fill="#A090D8"/>
+          <rect x="4" y="102" width="26" height="26" rx="6" fill="rgba(255,255,255,.13)"/>
+          <!-- face on top lavender block -->
           <circle cx="11" cy="109" r="3" fill="white"/><circle cx="23" cy="109" r="3" fill="white"/>
-          <circle cx="11" cy="109.5" r="1.8" fill="#111"/><circle cx="23" cy="109.5" r="1.8" fill="#111"/>
+          <circle cx="11" cy="109.5" r="1.8" fill="#2A1A3A"/><circle cx="23" cy="109.5" r="1.8" fill="#2A1A3A"/>
           <circle cx="12.2" cy="107.8" r="1" fill="white"/><circle cx="24.2" cy="107.8" r="1" fill="white"/>
-          <path d="M9,118 Q17,123 25,118" stroke="#111" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M9,118 C11,123 21,123 25,118" stroke="#2A1A3A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
           <!-- + operator -->
-          <text x="40" y="145" font-family="Fredoka,sans-serif" font-size="20" fill="#555" text-anchor="middle" dominant-baseline="middle">+</text>
-          <!-- 3-block orange: units at y=74, 102, 130 -->
-          <rect x="52" y="74" width="26" height="26" rx="5" fill="#E89223"/>
-          <rect x="52" y="102" width="26" height="26" rx="5" fill="#E89223"/>
-          <rect x="52" y="130" width="26" height="26" rx="5" fill="#E89223"/>
+          <text x="40" y="148" font-family="Fredoka,sans-serif" font-size="22" fill="#3E3C64" text-anchor="middle" font-weight="600">+</text>
+          <!-- 3-block soft peach-orange -->
+          <rect x="52" y="74" width="26" height="26" rx="6" fill="#E8A468"/>
+          <rect x="52" y="102" width="26" height="26" rx="6" fill="#E8A468"/>
+          <rect x="52" y="130" width="26" height="26" rx="6" fill="#E8A468"/>
+          <rect x="52" y="74" width="26" height="26" rx="6" fill="rgba(255,255,255,.13)"/>
           <circle cx="59" cy="81" r="3" fill="white"/><circle cx="71" cy="81" r="3" fill="white"/>
-          <circle cx="59" cy="81.5" r="1.8" fill="#111"/><circle cx="71" cy="81.5" r="1.8" fill="#111"/>
+          <circle cx="59" cy="81.5" r="1.8" fill="#2A1A0A"/><circle cx="71" cy="81.5" r="1.8" fill="#2A1A0A"/>
           <circle cx="60.2" cy="79.8" r="1" fill="white"/><circle cx="72.2" cy="79.8" r="1" fill="white"/>
-          <path d="M57,90 Q65,95 73,90" stroke="#111" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M57,90 C59,95 69,95 73,90" stroke="#2A1A0A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
           <!-- = operator -->
-          <text x="90" y="145" font-family="Fredoka,sans-serif" font-size="20" fill="#555" text-anchor="middle" dominant-baseline="middle">=</text>
-          <!-- 5-block green: units at y=18, 46, 74, 102, 130 -->
-          <rect x="100" y="18" width="26" height="26" rx="5" fill="#38B500"/>
-          <rect x="100" y="46" width="26" height="26" rx="5" fill="#38B500"/>
-          <rect x="100" y="74" width="26" height="26" rx="5" fill="#38B500"/>
-          <rect x="100" y="102" width="26" height="26" rx="5" fill="#38B500"/>
-          <rect x="100" y="130" width="26" height="26" rx="5" fill="#38B500"/>
+          <text x="90" y="148" font-family="Fredoka,sans-serif" font-size="22" fill="#3E3C64" text-anchor="middle" font-weight="600">=</text>
+          <!-- 5-block soft green -->
+          <rect x="100" y="18" width="26" height="26" rx="6" fill="#5AAF6F"/>
+          <rect x="100" y="46" width="26" height="26" rx="6" fill="#5AAF6F"/>
+          <rect x="100" y="74" width="26" height="26" rx="6" fill="#5AAF6F"/>
+          <rect x="100" y="102" width="26" height="26" rx="6" fill="#5AAF6F"/>
+          <rect x="100" y="130" width="26" height="26" rx="6" fill="#5AAF6F"/>
+          <rect x="100" y="18" width="26" height="26" rx="6" fill="rgba(255,255,255,.13)"/>
           <circle cx="107" cy="25" r="3" fill="white"/><circle cx="119" cy="25" r="3" fill="white"/>
-          <circle cx="107" cy="25.5" r="1.8" fill="#111"/><circle cx="119" cy="25.5" r="1.8" fill="#111"/>
+          <circle cx="107" cy="25.5" r="1.8" fill="#0A2A0A"/><circle cx="119" cy="25.5" r="1.8" fill="#0A2A0A"/>
           <circle cx="108.2" cy="23.8" r="1" fill="white"/><circle cx="120.2" cy="23.8" r="1" fill="white"/>
-          <path d="M105,34 Q113,39 121,34" stroke="#111" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M105,34 C107,39 117,39 121,34" stroke="#0A2A0A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
         </svg>
       </div>
       <p class="card-desc">Solve puzzles by building the answer!</p>
@@ -348,18 +435,28 @@ body{font-family:var(--ff-b);background:var(--bg);color:var(--text);overflow:hid
   <!-- Taglines -->
   <div class="taglines">
     <div class="tg-item">
+      <div class="tg-icon" style="background:#D4F5E2;">
+        <svg viewBox="0 0 20 20" fill="none" stroke="#1DB86B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1.5"/><rect x="11" y="3" width="6" height="6" rx="1.5"/><rect x="3" y="11" width="6" height="6" rx="1.5"/><rect x="11" y="11" width="6" height="6" rx="1.5"/></svg>
+      </div>
       <span class="tg-head">BUILD &amp; EXPLORE</span>
       <span class="tg-sub">Make numbers your way</span>
     </div>
     <div class="tg-item">
+      <div class="tg-icon" style="background:#EAE3FF;">
+        <svg viewBox="0 0 20 20" fill="none" stroke="#7B6CF6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l3 3L6 17H3v-3z"/><path d="M12 5l3 3"/></svg>
+      </div>
       <span class="tg-head">PRACTICE MATH</span>
       <span class="tg-sub">Learn by solving and playing</span>
     </div>
     <div class="tg-item">
+      <div class="tg-icon" style="background:#FFF2D0;">
+        <svg viewBox="0 0 20 20" fill="none" stroke="#E89223" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"/></svg>
+      </div>
       <span class="tg-head">CREATIVE PLAY</span>
       <span class="tg-sub">Experiment, discover, create</span>
     </div>
   </div>
+
   <div class="start-footer">
     <button id="privacy-btn">Privacy Policy</button>
     <span>·</span>
@@ -435,6 +532,7 @@ body{font-family:var(--ff-b);background:var(--bg);color:var(--text);overflow:hid
   <div class="done-btns">
     <button class="d-btn sec" id="edit-btn">✏️ Edit</button>
     <button class="d-btn pri" id="new-btn">✨ New</button>
+    <button class="d-btn sec" id="download-btn" style="display:none">⬇ PNG</button>
     <button class="d-btn sec" id="try-again-btn" style="display:none">Try Again</button>
     <button class="d-btn pri" id="next-btn" style="display:none">Next Problem ▶</button>
     <button class="d-btn pri" id="keep-practicing-btn" style="display:none">Keep Practicing ▶</button>
@@ -637,15 +735,8 @@ const $modal=document.getElementById('modal');
 let cells=[];
 let mathCorrect=0;
 
-// ── TITLE ──
-function initTitle(){
-  const W1=[['M','#DE151D'],['A','#E89223'],['T','#E6C40C'],['H','#38B500']];
-  const W2=[['B','#23B0DB'],['L','#5A35C3'],['O','#BA79DD'],['C','#D05090'],
-             ['K','#DE151D'],['S','#E89223']];
-  const tw1=document.getElementById('tw1'),tw2=document.getElementById('tw2');
-  W1.forEach(([l,c])=>{const d=document.createElement('div');d.className='tl';d.style.background=c;d.textContent=l;tw1.appendChild(d);});
-  W2.forEach(([l,c])=>{const d=document.createElement('div');d.className='tl';d.style.background=c;d.textContent=l;tw2.appendChild(d);});
-}
+// ── TITLE (text is now in HTML; no JS needed) ──
+function initTitle(){}
 
 // ── PALETTES ──
 function initSwatches(){
@@ -800,9 +891,9 @@ function handleDone(){
   $mathRes.style.display='none'; $freeCount.style.display='none';
   document.getElementById('math-congrats').style.display='none';
   ['edit-btn','new-btn'].forEach(id=>document.getElementById(id).style.display='');
-  ['next-btn','try-again-btn','keep-practicing-btn'].forEach(id=>document.getElementById(id).style.display='none');
+  ['next-btn','try-again-btn','keep-practicing-btn','download-btn'].forEach(id=>document.getElementById(id).style.display='none');
   const cnt=pts.length;
-  if(mode==='free'){$freeCount.style.display='block';$freeCount.textContent=`${cnt} block${cnt!==1?'s':''}!`;}
+  if(mode==='free'){$freeCount.style.display='block';$freeCount.textContent=`${cnt} block${cnt!==1?'s':''}!`;_dlCap.then(cap=>{if(cap)document.getElementById('download-btn').style.display='';});}
   if(mode==='math'&&math){
     document.getElementById('done-eq').textContent=math.display;
     $countTxt.textContent=`You built ${cnt} block${cnt!==1?'s':''}!`;
@@ -914,7 +1005,83 @@ document.getElementById('new-btn').addEventListener('click',()=>{
 document.getElementById('next-btn').addEventListener('click',()=>{math=genProblem(pickOp());grid=mkGrid();hist=[];$mqTxt.textContent=math.display;$lcTxt.textContent='0 blocks';showScreen('game');renderAll();});
 document.getElementById('try-again-btn').addEventListener('click',()=>{grid=mkGrid();hist=[];$lcTxt.textContent='0 blocks';showScreen('game');renderAll();});
 document.getElementById('keep-practicing-btn').addEventListener('click',()=>{mathCorrect=0;updateMathProgress();math=genProblem(pickOp());grid=mkGrid();hist=[];$mqTxt.textContent=math.display;$lcTxt.textContent='0 blocks';showScreen('game');renderAll();});
+document.getElementById('download-btn').addEventListener('click',downloadPng);
 window.addEventListener('resize',()=>{if($gs.classList.contains('active')){buildGrid();renderAll();}});
+
+// ── DOWNLOAD PNG ──
+const _dlCap = window.claude ? claude.use('downloads') : Promise.resolve(null);
+function dlRoundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.lineTo(x+w-r,y);ctx.arcTo(x+w,y,x+w,y+r,r);
+  ctx.lineTo(x+w,y+h-r);ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+  ctx.lineTo(x+r,y+h);ctx.arcTo(x,y+h,x,y+h-r,r);
+  ctx.lineTo(x,y+r);ctx.arcTo(x,y,x+r,y,r);
+  ctx.closePath();
+}
+function svgToImg(svgStr){
+  return new Promise(resolve=>{
+    const blob=new Blob([svgStr],{type:'image/svg+xml'});
+    const url=URL.createObjectURL(blob);
+    const img=new Image();
+    img.onload=()=>{URL.revokeObjectURL(url);resolve(img);};
+    img.onerror=()=>{URL.revokeObjectURL(url);resolve(null);};
+    img.src=url;
+  });
+}
+async function downloadPng(){
+  const downloads=await _dlCap;
+  if(!downloads){toast('Download not available here');return;}
+  const pts=[];
+  for(let r=0;r<GS;r++)for(let c=0;c<GS;c++)if(grid[r][c].color)pts.push({r,c});
+  if(!pts.length){toast('Nothing to download! 🎨');return;}
+  const rs=pts.map(p=>p.r),cs=pts.map(p=>p.c);
+  const r0=Math.min(...rs),r1=Math.max(...rs),c0=Math.min(...cs),c1=Math.max(...cs);
+  const rows=r1-r0+1,cols=c1-c0+1;
+  const csz=72,pad=24,radius=8;
+  const W=cols*csz+pad*2,H=rows*csz+pad*2;
+  const canvas=document.createElement('canvas');
+  canvas.width=W;canvas.height=H;
+  const ctx=canvas.getContext('2d');
+  ctx.fillStyle='#FAF7F0';
+  ctx.fillRect(0,0,W,H);
+  for(const {r,c} of pts){
+    const x=pad+(c-c0)*csz,y=pad+(r-r0)*csz;
+    ctx.fillStyle=grid[r][c].color;
+    dlRoundRect(ctx,x+1,y+1,csz-2,csz-2,radius);
+    ctx.fill();
+    ctx.strokeStyle='rgba(0,0,0,.10)';ctx.lineWidth=1.5;
+    dlRoundRect(ctx,x+1,y+1,csz-2,csz-2,radius);
+    ctx.stroke();
+  }
+  const imgJobs=[];
+  for(const {r,c} of pts){
+    const d=grid[r][c];
+    const x=pad+(c-c0)*csz,y=pad+(r-r0)*csz;
+    if(d.eye){
+      imgJobs.push(svgToImg(eyeSvg(d.eye)).then(img=>{
+        if(img)ctx.drawImage(img,x,y+csz*.08,csz,csz*.5);
+      }));
+    }
+    if(d.mouth){
+      imgJobs.push(svgToImg(mouthSvg(d.mouth)).then(img=>{
+        if(img)ctx.drawImage(img,x,y+csz*.58,csz,csz*.38);
+      }));
+    }
+    if(d.deco){
+      imgJobs.push(svgToImg(decoSvg(d.deco)).then(img=>{
+        if(img)ctx.drawImage(img,x,y,csz,csz);
+      }));
+    }
+  }
+  await Promise.all(imgJobs);
+  const blob=await new Promise(res=>canvas.toBlob(res,'image/png'));
+  try{
+    await downloads.save({filename:'mathblocks.png',data:blob});
+  }catch(e){
+    if(e&&e.code!=='declined')toast('Download failed');
+  }
+}
 
 // ── ICONS ──
 const IC={
@@ -930,6 +1097,7 @@ const IC={
   arrow:`<svg class="ic" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h12"/><path d="M12 6l4 4-4 4"/></svg>`,
   dice:`<svg class="ic" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="16" height="16" rx="3"/><circle cx="6.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="13.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="10" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="6.5" cy="13.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="13.5" cy="13.5" r="1.2" fill="currentColor" stroke="none"/></svg>`,
   refresh:`<svg class="ic" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8A7 7 0 1 0 16 14"/><path d="M17 4v4h-4"/></svg>`,
+  download:`<svg class="ic" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3v10"/><path d="M6 9l4 4 4-4"/><path d="M3 15v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1"/></svg>`,
 };
 function si(id,icon,label){const el=document.getElementById(id);if(el)el.innerHTML=IC[icon]+(label?' '+label:'');}
 function initIcons(){
@@ -939,7 +1107,8 @@ function initIcons(){
   si('game-home-btn','home','Home');
   si('done-btn','check','Done');
   si('done-home-btn','home','Home'); si('edit-btn','pencil','Edit');
-  si('new-btn','star','New'); si('next-btn','arrow','Next Problem');
+  si('new-btn','star','New'); si('download-btn','download','PNG');
+  si('next-btn','arrow','Next Problem');
   si('try-again-btn','refresh','Try Again'); si('keep-practicing-btn','arrow','Keep Practicing');
 }
 
@@ -1033,5 +1202,3 @@ document.getElementById('terms-btn').addEventListener('click',()=>openLightbox('
 // ── BOOT ──
 initTitle(); initSwatches(); initFaceSw(); initIcons();
 </script>
-
-</body></html>
