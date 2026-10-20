@@ -11,6 +11,7 @@
   --pink-bg: #F8E6F0;       --pink-fg: #CC3A75;       --pink-ink: #9C2857;
   --red-bg: #F8E3E3;        --red-fg: #CC3A30;        --red-ink: #992C24;
   --peach-bg: #FDEEDC;      --peach-fg: #DB6428;      --peach-ink: #A64A1C;
+  --indigo-bg: #E4E0FF;     --indigo-fg: #6248E0;     --indigo-ink: #4330B5;
 
   --page: #FFFFFF;
   --text: #1A1A1A;
@@ -197,6 +198,13 @@ section[id] { scroll-margin-top: 72px; }
 .template__meta { font-size: .875rem; font-weight: 700; margin-bottom: .6em; }
 .template__meta span + span::before { content: "·"; margin: 0 .5em; }
 .template__desc { margin-bottom: 1.25rem; }
+
+/* Other research templates: smaller light-indigo cards, a secondary tier below the poster grid */
+.subsection-title { margin: 2.5rem 0 1rem; color: var(--text); }
+@media (min-width: 768px) { .subsection-title { margin: 3rem 0 1.25rem; } .grid--2 { grid-template-columns: repeat(2, 1fr); } }
+.card--secondary { --bg: var(--indigo-bg); --fg: var(--indigo-fg); --ink: var(--indigo-ink); padding: 20px; }
+@media (min-width: 768px) { .card--secondary { padding: 24px; } }
+.card--secondary .template__img { aspect-ratio: 16 / 9; margin-bottom: 16px; }
 
 /* ---------- Service ---------- */
 ol.steps { display: grid; gap: 16px; margin: 32px 0 40px; }
