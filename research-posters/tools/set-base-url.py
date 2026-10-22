@@ -14,6 +14,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent.parent  # research-posters/
 FILES = [
     HERE / "index.html",
+    HERE / "consort-flow-diagram-template" / "index.html",
+    HERE / "prisma-flow-diagram-template" / "index.html",
     HERE / "sitemap.xml",
     HERE / "README.md",
     HERE / "tools" / "qr-urls.py",

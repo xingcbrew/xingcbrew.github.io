@@ -205,6 +205,25 @@ section[id] { scroll-margin-top: 72px; }
 .card--secondary { --bg: var(--indigo-bg); --fg: var(--indigo-fg); --ink: var(--indigo-ink); padding: 20px; }
 @media (min-width: 768px) { .card--secondary { padding: 24px; } }
 .card--secondary .template__img { aspect-ratio: 16 / 9; margin-bottom: 16px; }
+.guide-links { margin: 1.25rem 0 0; color: var(--muted); }
+.guide-links a { color: var(--text); font-weight: 700; }
+
+/* ---------- Guide pages (consort-flow-diagram-template/, prisma-flow-diagram-template/) ---------- */
+.guide { max-width: calc(48rem + 2 * var(--gutter)); }
+.guide h1 { font-size: clamp(2rem, 7vw, 3.25rem); margin-bottom: .4em; }
+.guide h2 { font-size: clamp(1.5rem, 4vw, 2rem); margin-top: 2.25rem; }
+.guide ul { padding-left: 1.2em; }
+.guide li { margin-bottom: .6em; }
+.guide a:not(.btn) { font-weight: 700; }
+.guide__img { width: 100%; margin: 1.5rem 0 .5rem; border-radius: var(--radius-sm); background: var(--indigo-bg); }
+.guide__cta { margin: 1.5rem 0; }
+@media (max-width: 479px) { .guide__cta .btn { width: 100%; } }
+.guide__table { overflow-x: auto; margin: 1.5rem 0; }
+.guide table { width: 100%; border-collapse: collapse; font-size: 1rem; line-height: 1.45; }
+.guide th, .guide td { text-align: left; vertical-align: top; padding: .7em .9em; border-bottom: 1px solid var(--line); }
+.guide th { background: var(--indigo-bg); color: var(--indigo-ink); font-weight: 700; }
+.guide__about { margin-top: 2.5rem; }
+.guide__about p { margin: 0; }
 
 /* ---------- Service ---------- */
 ol.steps { display: grid; gap: 16px; margin: 32px 0 40px; }
