@@ -215,13 +215,13 @@ section[id] { scroll-margin-top: 72px; }
 .guide ul { padding-left: 1.2em; }
 .guide li { margin-bottom: .6em; }
 .guide a:not(.btn) { font-weight: 700; }
-.guide__img { width: 100%; margin: 1.5rem 0 .5rem; border-radius: var(--radius-sm); background: var(--indigo-bg); }
+.guide__img { width: 100%; margin: 1.5rem 0 .5rem; border-radius: var(--radius-sm); background: var(--periwinkle-bg); }
 .guide__cta { margin: 1.5rem 0; }
 @media (max-width: 479px) { .guide__cta .btn { width: 100%; } }
 .guide__table { overflow-x: auto; margin: 1.5rem 0; }
 .guide table { width: 100%; border-collapse: collapse; font-size: 1rem; line-height: 1.45; }
 .guide th, .guide td { text-align: left; vertical-align: top; padding: .7em .9em; border-bottom: 1px solid var(--line); }
-.guide th { background: var(--indigo-bg); color: var(--indigo-ink); font-weight: 700; }
+.guide th { background: var(--periwinkle-bg); color: var(--periwinkle-ink); font-weight: 700; }
 .guide__buy-link { margin: 1rem 0 0; }
 @media (max-width: 479px) { .guide__buy-link .btn { width: 100%; } }
 .guide__about { margin-top: 2.5rem; }
