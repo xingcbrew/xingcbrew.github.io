@@ -222,6 +222,7 @@ section[id] { scroll-margin-top: 72px; }
 .guide table { width: 100%; border-collapse: collapse; font-size: 1rem; line-height: 1.45; }
 .guide th, .guide td { text-align: left; vertical-align: top; padding: .7em .9em; border-bottom: 1px solid var(--line); }
 .guide th { background: var(--periwinkle-bg); color: var(--periwinkle-ink); font-weight: 700; }
+@media (max-width: 479px) { .guide th, .guide td { padding: .7em .5em; } }
 .guide__buy-link { margin: 1rem 0 0; }
 @media (max-width: 479px) { .guide__buy-link .btn { width: 100%; } }
 .guide__about { margin-top: 2.5rem; }
