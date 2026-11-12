@@ -56,7 +56,7 @@ h2{font-size:clamp(2rem,4vw,3.1rem)}
 /* hero */
 .hero{margin:0 16px 16px;background:var(--panel);border-radius:var(--radius);padding:44px;display:grid;grid-template-columns:1.05fr 1fr;gap:36px;align-items:stretch}
 .hero h1{font-size:clamp(2.6rem,5.6vw,4.7rem);margin-bottom:22px}
-.hero .sub{color:var(--ink);max-width:360px;font-size:1.063rem}
+.hero .sub{color:var(--ink);max-width:31em;font-size:1.063rem}
 .hero-l{display:flex;flex-direction:column;justify-content:space-between;gap:28px}
 .hero-row{display:grid;grid-template-columns:1fr 1.05fr;gap:12px;margin-top:10px}
 .hours{background:var(--gray);border-radius:22px;padding:18px 20px;font-size:0.883rem}
@@ -89,8 +89,8 @@ h2{font-size:clamp(2rem,4vw,3.1rem)}
 /* services */
 .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .svc{border:1px solid var(--line);border-radius:26px;padding:12px 12px 20px;display:flex;flex-direction:column;background:#fff}
-.svc-img{background:var(--gray);border-radius:18px;height:170px;display:grid;place-items:center;margin-bottom:18px;transition:background .25s}
-.svc:hover .svc-img{background:var(--aqua)}
+.svc-img{background:var(--aqua);border-radius:18px;height:170px;display:grid;place-items:center;margin-bottom:18px;transition:background .25s}
+.svc:hover .svc-img{background:var(--aqua-deep)}
 .svc-img svg{width:112px;height:112px;stroke:var(--ink);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .svc h3{font-size:1.05rem;padding:0 10px 8px}
 .svc p{font-size:0.923rem;color:var(--muted);padding:0 10px;flex:1}
@@ -109,9 +109,13 @@ h2{font-size:clamp(2rem,4vw,3.1rem)}
 .chips{display:flex;gap:8px;margin-bottom:26px;flex-wrap:wrap}
 .chip{background:var(--gray);border:0;border-radius:999px;padding:10px 20px;font:600 .85rem "Instrument Sans";cursor:pointer;color:var(--ink)}
 .chip.on{background:var(--aqua)}
-.docs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.doc{border-radius:26px;background:var(--gray);overflow:hidden;display:flex;flex-direction:column}
-.doc.hide{display:none}
+.car-btns{display:flex;gap:8px}
+.car-btns button{width:46px;height:46px;border-radius:50%;border:1px solid #c9d3d6;background:#fff;font-size:1.1rem;cursor:pointer;color:var(--ink);transition:background .2s,color .2s}
+.car-btns button:hover:not(:disabled){background:var(--ink);color:#fff}
+.car-btns button:disabled{opacity:.35;cursor:default}
+.docs{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-behavior:smooth;margin:0 -4px;padding:0 4px}
+.docs::-webkit-scrollbar{display:none}
+.doc{flex:0 0 calc((100% - 28px)/3);scroll-snap-align:start;border-radius:26px;background:var(--gray);overflow:hidden;display:flex;flex-direction:column}
 .doc img{aspect-ratio:1/1.05;object-fit:cover;width:100%}
 .doc div{padding:18px 20px 22px}
 .doc h3{font-size:1.05rem;margin-bottom:2px}
@@ -162,7 +166,8 @@ footer b{color:var(--ink);font-family:Outfit}
   .hero,.about-top,.loc{grid-template-columns:1fr}
   .hero-r{min-height:420px}
   .vals{grid-template-columns:repeat(2,1fr)}
-  .svc-grid,.docs,.tgrid{grid-template-columns:repeat(2,1fr)}
+  .svc-grid,.tgrid{grid-template-columns:repeat(2,1fr)}
+  .doc{flex-basis:calc((100% - 14px)/2)}
   .ba{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:640px){
@@ -171,7 +176,8 @@ footer b{color:var(--ink);font-family:Outfit}
   .cta{margin:0 8px 10px;padding:34px 22px}
   nav .btn.book{display:none}
   .hero-row{grid-template-columns:1fr}
-  .vals,.svc-grid,.docs,.tgrid{grid-template-columns:1fr}
+  .vals,.svc-grid,.tgrid{grid-template-columns:1fr}
+  .doc{flex-basis:82%}
   .ba{grid-template-columns:repeat(2,1fr)}
   .val{min-height:0}.ico{margin-bottom:28px}
   .form{grid-template-columns:1fr}
@@ -248,7 +254,7 @@ footer b{color:var(--ink);font-family:Outfit}
     <article class="svc"><div class="svc-img"><svg viewBox="0 0 64 64"><path d="M22 8h20c3 0 5 2 5 5v3c0 3-2 5-5 5H22c-3 0-5-2-5-5v-3c0-3 2-5 5-5z"/><path d="M24 21h16v5H24z"/><path d="M26 26v12l6 15 6-15V26M23 31h18M24 36h16M27 42h10"/></svg></div><h3>Dental Implants</h3><p>A titanium root placed in the jaw. After 2 to 3 months it fixes in place, and a porcelain tooth is fabricated on top.</p><a href="https://sohodental.ca/dental-implants/">Learn more <span>→</span></a></article>
     <article class="svc"><div class="svc-img"><svg viewBox="0 0 64 64"><path d="M3 36V26c0-6 4-10 10-10h38c6 0 10 4 10 10v10"/><path transform="translate(-3 14) scale(0.6)" stroke-width="3.67" d="M14 22c0-6 4-10 10-10 4 0 6 2 8 2s4-2 8-2c6 0 10 4 10 10 0 5-2 8-3 12l-2 14c-.5 3-4 3-5 0l-2-12c-.5-2-1.5-3-6-3s-5.500 1-6 3l-2 12c-1 3-4.500 3-5 0l-2-14c-1-4-3-7-3-12z"/><path transform="translate(29 14) scale(0.6)" stroke-width="3.67" d="M14 22c0-6 4-10 10-10 4 0 6 2 8 2s4-2 8-2c6 0 10 4 10 10 0 5-2 8-3 12l-2 14c-.5 3-4 3-5 0l-2-12c-.5-2-1.5-3-6-3s-5.500 1-6 3l-2 12c-1 3-4.500 3-5 0l-2-14c-1-4-3-7-3-12z"/></svg></div><h3>Invisalign</h3><p>Comfortable, virtually invisible straightening. 3-D computer imaging maps the entire treatment from start to finish.</p><a href="https://sohodental.ca/invisalign/">Learn more <span>→</span></a></article>
     <article class="svc"><div class="svc-img"><svg viewBox="0 0 64 64"><path transform="translate(9.6 9.3) scale(0.7)" stroke-width="3.14" d="M14 22c0-6 4-10 10-10 4 0 6 2 8 2s4-2 8-2c6 0 10 4 10 10 0 5-2 8-3 12l-2 14c-.5 3-4 3-5 0l-2-12c-.5-2-1.5-3-6-3s-5.500 1-6 3l-2 12c-1 3-4.500 3-5 0l-2-14c-1-4-3-7-3-12z"/><path d="M32.0 7.0L32.0 2.0M48.1 12.8L51.3 9.0M15.9 12.8L12.7 9.0M56.6 27.7L61.5 26.8M7.4 27.7L2.5 26.8M53.7 44.5L58.0 47.0M10.3 44.5L6.0 47.0"/></svg></div><h3>Cosmetic Dentistry</h3><p>From full smile makeovers to replacing one stained filling. Often the fix is simpler than you think.</p><a href="https://sohodental.ca/cosmetic-dentistry/">Learn more <span>→</span></a></article>
-    <article class="svc"><div class="svc-img"><svg viewBox="0 0 64 64"><path d="M10 8h14v7H10zM13 8v7M17 8v7M21 8v7M24 11h20c4 0 6 1 6 3"/><path transform="translate(11 22) scale(0.65)" stroke-width="3.38" d="M14 22c0-6 4-10 10-10 4 0 6 2 8 2s4-2 8-2c6 0 10 4 10 10 0 5-2 8-3 12l-2 14c-.5 3-4 3-5 0l-2-12c-.5-2-1.5-3-6-3s-5.500 1-6 3l-2 12c-1 3-4.500 3-5 0l-2-14c-1-4-3-7-3-12z"/></svg></div><h3>Professional Cleanings</h3><p>Detect problems early and avoid costly treatment. Controlling plaque and calculus helps you keep your teeth for life.</p><a href="https://sohodental.ca/cleaning/">Learn more <span>→</span></a></article>
+    <article class="svc"><div class="svc-img"><svg viewBox="0 0 64 64"><circle cx="42" cy="22" r="9"/><path d="M35 29L13 51M10 54l5-5M50 52L23 25M23 25c-3-3-2-7 1-9"/></svg></div><h3>Professional Cleanings</h3><p>Detect problems early and avoid costly treatment. Controlling plaque and calculus helps you keep your teeth for life.</p><a href="https://sohodental.ca/cleaning/">Learn more <span>→</span></a></article>
     <article class="svc"><div class="svc-img"><svg viewBox="0 0 64 64"><path d="M14 22c0-6 4-10 10-10 4 0 6 2 8 2s4-2 8-2c6 0 10 4 10 10 0 5-2 8-3 12l-2 14c-.5 3-4 3-5 0l-2-12c-.5-2-1.5-3-6-3s-5.500 1-6 3l-2 12c-1 3-4.500 3-5 0l-2-14c-1-4-3-7-3-12z"/><path d="M26 34l1 10M38 34l-1 10M32 24v6"/></svg></div><h3>Root Canals &amp; Extractions</h3><p>Root canal treatment can be done easily and comfortably. When extraction is the best option, we keep it safe and painless.</p><a href="https://sohodental.ca/root-canals-extractions/">Learn more <span>→</span></a></article>
     <article class="svc"><div class="svc-img"><svg viewBox="0 0 64 64"><g transform="rotate(45 32 32)"><rect x="20" y="25" width="26" height="14" rx="2"/><path d="M46 32h7M53 26v12M20 32h-8M10 32H6M26 25v5M31 25v5M36 25v5M41 25v5M20 21v22"/></g></svg></div><h3>Dental Botox for TMJ</h3><p>An alternative for troublesome TMD: headache, clenching, grinding and sleep bruxism, with improved pain and function.</p><a href="https://sohodental.ca/botox-tmj/">Learn more <span>→</span></a></article>
   </div>
@@ -275,12 +281,19 @@ footer b{color:var(--ink);font-family:Outfit}
   <span class="tag">Our doctors</span>
   <div class="head">
     <h2>Dental Experts<br>You Can Trust</h2>
-    <p>Experienced dentists who treat each patient as an individual and welcome your input.</p>
+    <div style="display:flex;flex-direction:column;gap:18px;align-items:flex-end">
+      <p>Experienced dentists and hygienists who treat each patient as an individual and welcome your input.</p>
+      <div class="car-btns"><button id="prev" aria-label="Previous" disabled>←</button><button id="next" aria-label="Next">→</button></div>
+    </div>
   </div>
-  <div class="docs">
+  <div class="docs" id="docs">
     <article class="doc"><img src="img/haji.jpg" alt="Dr. Feisel Haji" loading="lazy"><div><h3>Dr. Feisel Haji</h3><small>Principal Dentist &amp; Owner</small><p>DDS, Western University (1996), with a hospital residency at Hamilton General. Dawson Academy alumnus and mentor, with a focus on implant, esthetic and restorative dentistry.</p></div></article>
     <article class="doc"><img src="img/husain.jpg" alt="Dr. Fawzia Husain" loading="lazy"><div><h3>Dr. Fawzia Husain</h3><small>General Dentist · joined Nov 2024</small><p>Almost 30 years of experience. A U of T graduate with advanced training in cosmetics and comprehensive care, and a passion for family dentistry.</p></div></article>
     <article class="doc"><img src="img/sharma.jpg" alt="Dr. Pooja Sharma" loading="lazy"><div><h3>Dr. Pooja Sharma</h3><small>General Dentist · joined Aug 2022</small><p>Comprehensive and aesthetic care with a passion for staying current on the latest techniques. Fluent in English and Hindi.</p></div></article>
+    <article class="doc"><img src="img/michelle.jpg" alt="Michelle" loading="lazy"><div><h3>Michelle</h3><small>Registered Dental Hygienist</small><p>Joined in January 2022. Inspired by a high-school co-op placement, she earned her diploma in Dental Hygiene in 2003.</p></div></article>
+    <article class="doc"><img src="img/lisa.jpg" alt="Lisa" loading="lazy"><div><h3>Lisa</h3><small>Registered Dental Hygienist</small><p>Joined in October 2019. Before dentistry she worked in behavioural therapy with individuals on the autism spectrum, and she goes the extra mile for patient comfort.</p></div></article>
+    <article class="doc"><img src="img/ferlyn.jpg" alt="Ferlyn" loading="lazy"><div><h3>Ferlyn</h3><small>Registered Dental Assistant</small><p>Part of the chairside team helping every visit run smoothly and comfortably.</p></div></article>
+    <article class="doc"><img src="img/mildred.jpg" alt="Mildred" loading="lazy"><div><h3>Mildred</h3><small>Registered Dental Assistant</small><p>Part of the chairside team helping every visit run smoothly and comfortably.</p></div></article>
   </div>
 </section>
 
@@ -386,6 +399,15 @@ document.querySelectorAll('[data-hours]').forEach(ul=>{
 })();
 // doctor card tap highlight for values
 document.querySelectorAll('.val').forEach(v=>v.addEventListener('mouseenter',()=>document.querySelectorAll('.val.on').forEach(x=>x!==v&&x.classList.remove('on'))));
+
+// doctors carousel
+(function(){
+  const t=document.getElementById('docs'),p=document.getElementById('prev'),n=document.getElementById('next');
+  const step=()=>t.querySelector('.doc').getBoundingClientRect().width+14;
+  const upd=()=>{p.disabled=t.scrollLeft<4;n.disabled=t.scrollLeft+t.clientWidth>=t.scrollWidth-4};
+  p.onclick=()=>t.scrollBy({left:-step()});n.onclick=()=>t.scrollBy({left:step()});
+  t.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
+})();
 </script>
 </body>
 </html>
