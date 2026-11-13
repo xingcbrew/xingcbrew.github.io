@@ -3,7 +3,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://xingbrew.ca/research-posters/sitemap.xml
-
-# Client design samples: keep out of search results.
-User-agent: *
-Disallow: /website-sample/
