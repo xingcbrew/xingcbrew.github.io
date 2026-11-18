@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jingle Bells | Xing Brew Design Co.</title>
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <!-- Unlisted page: kept out of search results. Don't add it to a sitemap or link it from other pages. -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <style>
+    :root { --bg:#FBFAFF; --text:#231F3A; --muted:#5D5A78; --link:#5E2AA8; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#12111F; --text:#ECEAFB; --muted:#A9A6C7; --link:#C9A2FF; }
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; min-height: 100dvh;
+      background: var(--bg); color: var(--text);
+      font: 17px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    main { max-width: 960px; margin: 0 auto; padding: clamp(24px, 6vh, 64px) 16px 32px; }
+    h1 { margin: 0 0 16px; font-size: clamp(2rem, 6vw, 3rem); line-height: 1.1; letter-spacing: -0.03em; font-weight: 800; }
+    video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; border-radius: 16px; }
+    footer { max-width: 960px; margin: 0 auto; padding: 0 16px 28px; color: var(--muted); font-size: .95rem; }
+    footer a { color: var(--link); }
+    a:focus-visible { outline: 3px solid var(--link); outline-offset: 3px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Jingle Bells</h1>
+    <video controls playsinline preload="metadata" poster="poster.jpg">
+      <source src="jingle-bells.mp4" type="video/mp4">
+      Your browser can't play this video. <a href="jingle-bells.mp4">Download it instead</a>.
+    </video>
+  </main>
+  <footer>&copy; Xing Brew 2026. All rights reserved.</footer>
+</body>
+</html>
